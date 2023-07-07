@@ -2,6 +2,7 @@ gpaw_env
 *.gpw
 GPAW_SETUPS
 
+LOG_*
 ORIG_*
 TEMP_*
 OLD_*
