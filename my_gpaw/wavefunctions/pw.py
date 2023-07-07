@@ -67,6 +67,8 @@ class PW(Mode):
             be given to perform an explicit real-space interpolation.
         """
 
+        print("Enter PW")
+
         assert not gammacentered
         self.ecut = ecut / Ha
         # Don't do expensive planning in dry-run mode:
@@ -85,6 +87,10 @@ class PW(Mode):
             self.cell_cv = cell / Bohr
 
         Mode.__init__(self, force_complex_dtype)
+
+        print("Exit PW")
+
+
 
     def __call__(self, parallel, initksl, gd, **kwargs):
         dedepsilon = 0.0

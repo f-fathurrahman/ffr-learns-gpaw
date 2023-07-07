@@ -127,6 +127,8 @@ class GPAW(Calculator):
                  parallel=None,
                  **kwargs):
 
+        print("Enter 130")
+
         if txt == '?':
             txt = '-' if restart is None else None
 
@@ -140,6 +142,7 @@ class GPAW(Calculator):
                                     .format(key, allowed))
             self.parallel.update(parallel)
 
+        print("Constructing Timer")
         if timer is None:
             self.timer = Timer()
         else:
@@ -154,18 +157,22 @@ class GPAW(Calculator):
         self.observers = []  # XXX move to self.scf
         self.initialized = False
 
+        print("Constructing MPI World communicator")
         self.world = communicator
         if self.world is None:
             self.world = mpi.world
         elif not hasattr(self.world, 'new_communicator'):
             self.world = mpi.world.new_communicator(np.asarray(self.world))
 
+        print("Constructing GPAWLogger")
         self.log = GPAWLogger(world=self.world)
         self.log.fd = txt
 
         self.reader = None
 
+        print("Initializing Calculator")
         Calculator.__init__(self, restart, label=label, **kwargs)
+        print("Finished initializing Calculator")
 
     def new(self,
             timer=None,
@@ -405,14 +412,31 @@ class GPAW(Calculator):
                         system_changes.append('positions')
         return system_changes
 
+
     def calculate(self, atoms=None, properties=['energy'],
                   system_changes=['cell']):
+
+        print("     -----------------------")
+        print("     ENTER: GPAW.calculate()")
+        print("     -----------------------")
+
         for _ in self.icalculate(atoms, properties, system_changes):
             pass
+        
+        print("     ----------------------")
+        print("     EXIT: GPAW.calculate()")
+        print("     ----------------------")
+
+
 
     def icalculate(self, atoms=None, properties=['energy'],
                    system_changes=['cell']):
         """Calculate things."""
+
+        print("     ------------------------")
+        print("     ENTER: GPAW.icalculate()")
+        print("     ------------------------")
+
 
         Calculator.calculate(self, atoms)
         atoms = self.atoms
@@ -423,6 +447,9 @@ class GPAW(Calculator):
                 # Only positions have changed:
                 self.density.reset()
             else:
+                print()
+                print("Pass here 451 in ", __file__)
+                print()
                 # Drastic changes:
                 self.wfs = None
                 self.density = None
@@ -433,11 +460,34 @@ class GPAW(Calculator):
             self.set_positions(atoms)
 
         if not self.initialized:
+            print()
+            print("!!! GPAW Calculator is not initialized")
+            print("!!! Calling initialize()")
+            print()
             self.initialize(atoms)
             self.set_positions(atoms)
+        else:
+            print()
+            print("!!! GPAW Calculator is already initialized")
+            print()
 
         if not (self.wfs.positions_set and self.hamiltonian.positions_set):
+            print()
+            print("Calling GPAW.set_positions()")
+            print()
             self.set_positions(atoms)
+            print()
+            print("After calling GPAW.set_positions()")
+            print()
+        else:
+            print()
+            print("!!! set_positions is already called")
+            print()            
+
+
+        print()
+        print("Pass here 463 in ", __file__)
+        print()
 
         yield
 
@@ -499,6 +549,12 @@ class GPAW(Calculator):
                     pass
                 else:
                     self.results['stress'] = stress * (Ha / Bohr**3)
+
+        print("     -----------------------")
+        print("     EXIT: GPAW.icalculate()")
+        print("     -----------------------")
+
+
 
     def summary(self):
         self.hamiltonian.summary(self.wfs, self.log)
@@ -653,6 +709,12 @@ class GPAW(Calculator):
         print_positions(self.atoms, self.log, self.density.magmom_av)
 
     def initialize(self, atoms=None, reading=False):
+
+        print("     -----------------")
+        print("     ENTER: initialize")
+        print("     -----------------")
+
+
         """Inexpensive initialization."""
 
         self.log('Initialize ...\n')
@@ -971,6 +1033,12 @@ class GPAW(Calculator):
         self.initialized = True
         self.log('... initialized\n')
 
+        print("     ----------------")
+        print("     EXIT: initialize")
+        print("     ----------------")
+
+
+
     def create_setups(self, mode, xc):
         if self.parameters.filter is None and mode.name != 'pw':
             gamma = 1.6
@@ -1233,6 +1301,13 @@ class GPAW(Calculator):
     def create_wave_functions(self, mode, realspace,
                               nspins, collinear, nbands, nao, nvalence,
                               setups, cell_cv, pbc_c, N_c, xc):
+        
+        print()
+        print("    ---------------------------")
+        print("    ENTER create_wave_functions")
+        print("    ---------------------------")
+        print()
+
         par = self.parameters
 
         kd = self.create_kpoint_descriptor(nspins)
@@ -1351,6 +1426,15 @@ class GPAW(Calculator):
             self.wfs = mode(self, collinear=collinear, **wfs_kwargs)
 
         self.log(self.wfs, '\n')
+
+        print()
+        print("    --------------------------")
+        print("    EXIT create_wave_functions")
+        print("    --------------------------")
+        print()
+
+
+
 
     def dry_run(self):
         # Can be overridden like in gpaw.atom.atompaw
