@@ -71,6 +71,8 @@ class Davidson(Eigensolver):
         else:
             self.diagonalizer_backend = ScipyDiagonalizer()
 
+
+
     def estimate_memory(self, mem, wfs):
         Eigensolver.estimate_memory(self, mem, wfs)
         nbands = wfs.bd.nbands
@@ -80,8 +82,18 @@ class Davidson(Eigensolver):
         mem.subnode('S_2n2n', 4 * nbands * nbands * mem.itemsize[wfs.dtype])
         mem.subnode('eps_2n', 2 * nbands * mem.floatsize)
 
+
+
     @timer('Davidson')
     def iterate_one_k_point(self, ham, wfs, kpt, weights):
+
+        #print()
+        #print("----------------------------------")
+        #print("ENTER Davidson.iterate_one_k_point")
+        #print("----------------------------------")
+        #print()
+
+
         """Do Davidson iterations for the kpoint"""
         if isinstance(ham.xc, HybridXC):
             self.niter = 1
@@ -222,4 +234,11 @@ class Davidson(Eigensolver):
                     kpt, wfs, ham, psit, P, kpt.eps_n, R, P2)
 
         error = wfs.gd.comm.sum(error)
+
+        #print()
+        #print("---------------------------------")
+        #print("EXIT Davidson.iterate_one_k_point")
+        #print("---------------------------------")
+        #print()
+
         return error

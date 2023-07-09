@@ -669,6 +669,9 @@ class GPAW(Calculator):
             else:
                 raise TypeError('Unknown keyword argument: "%s"' % key)
 
+
+
+
     def initialize_positions(self, atoms=None):
         """Update the positions of the atoms."""
         self.log('Initializing position-dependent things.\n')
@@ -685,6 +688,9 @@ class GPAW(Calculator):
         self.wfs.set_positions(self.spos_ac, atom_partition)
         self.density.set_positions(self.spos_ac, atom_partition)
         self.hamiltonian.set_positions(self.spos_ac, atom_partition)
+
+
+
 
     def set_positions(self, atoms=None):
         """Update the positions of the atoms and initialize wave functions."""
@@ -708,11 +714,16 @@ class GPAW(Calculator):
             self.wfs.occupations.initialize_reference_orbitals()
         print_positions(self.atoms, self.log, self.density.magmom_av)
 
+
+
+
     def initialize(self, atoms=None, reading=False):
 
+        print()
         print("     -----------------")
         print("     ENTER: initialize")
         print("     -----------------")
+        print()
 
 
         """Inexpensive initialization."""
@@ -1033,9 +1044,11 @@ class GPAW(Calculator):
         self.initialized = True
         self.log('... initialized\n')
 
+        print()
         print("     ----------------")
         print("     EXIT: initialize")
         print("     ----------------")
+        print()
 
 
 
@@ -1062,10 +1075,14 @@ class GPAW(Calculator):
                              xc, filter=filter, world=self.world)
         self.log(self.setups)
 
+
+
     def create_grid_descriptor(self, N_c, cell_cv, pbc_c,
                                domain_comm, parsize_domain):
         return GridDescriptor(N_c, cell_cv, pbc_c, domain_comm,
                               parsize_domain)
+
+
 
     def create_occupations(self, cell_cv, magmom, orbital_free, nvalence):
         dct = self.parameters.occupations
@@ -1218,7 +1235,17 @@ class GPAW(Calculator):
 
         self.log(self.density, '\n')
 
+
+
+
     def create_hamiltonian(self, realspace, mode, xc):
+
+        print()
+        print("    -------------------------")
+        print("    ENTER: create_hamiltonian")
+        print("    -------------------------")
+        print()
+
         dens = self.density
         kwargs = dict(
             gd=dens.gd, finegd=dens.finegd,
@@ -1255,6 +1282,9 @@ class GPAW(Calculator):
                     xc_redist = GridRedistributor(self.world, bcast_comm,
                                                   gd, aux_gd)
 
+            print()
+            print("!!! Calling ReciprocalSpaceHamiltonian")
+            print()
             self.hamiltonian = ReciprocalSpaceHamiltonian(
                 pd2=dens.pd2, pd3=dens.pd3, realpbc_c=self.atoms.pbc,
                 xc_redistributor=xc_redist,
@@ -1264,7 +1294,23 @@ class GPAW(Calculator):
         self.hamiltonian.soc = self.parameters.experimental.get('soc')
         self.log(self.hamiltonian, '\n')
 
+        print()
+        print("    -------------------------")
+        print("    EXIT: create_hamiltonian")
+        print("    -------------------------")
+        print()
+
+
+
     def create_kpoint_descriptor(self, nspins):
+        
+
+        print()
+        print("    ------------------------------")
+        print("    ENTER create_kpoint_descriptor")
+        print("    ------------------------------")
+        print()
+
         par = self.parameters
 
         # Zero cell vectors that are not periodic so that ASE's
@@ -1296,7 +1342,17 @@ class GPAW(Calculator):
 
         self.log(kd)
 
+        print()
+        print("    -----------------------------")
+        print("    EXIT create_kpoint_descriptor")
+        print("    -----------------------------")
+        print()
+
+
         return kd
+
+
+
 
     def create_wave_functions(self, mode, realspace,
                               nspins, collinear, nbands, nao, nvalence,
@@ -1422,6 +1478,9 @@ class GPAW(Calculator):
                             reuse_wfs_method=reuse_wfs_method,
                             collinear=collinear,
                             **wfs_kwargs)
+            print()
+            print("!!! Pass here 1460 in ", __file__)
+            print()
         else:
             self.wfs = mode(self, collinear=collinear, **wfs_kwargs)
 
@@ -1450,6 +1509,8 @@ class GPAW(Calculator):
 
         raise SystemExit
 
+
+
     def get_atomic_electrostatic_potentials(self) -> Array1D:
         r"""Return the electrostatic potential at the atomic sites.
 
@@ -1475,6 +1536,8 @@ class GPAW(Calculator):
         W_aL.partition.comm.sum(W_a)
         return W_a
 
+
+
     def linearize_to_xc(self, newxc):
         """Linearize Hamiltonian to difference XC functional.
 
@@ -1485,6 +1548,9 @@ class GPAW(Calculator):
         self.log('Linearizing xc-hamiltonian to ' + str(newxc))
         newxc.initialize(self.density, self.hamiltonian, self.wfs)
         self.hamiltonian.linearize_to_xc(newxc, self.density)
+
+
+
 
     def attach(self, function, n=1, *args, **kwargs):
         """Register observer function to run during the SCF cycle.
@@ -1521,6 +1587,8 @@ class GPAW(Calculator):
 
         self.observers.append((function, n, args, kwargs))
 
+
+
     def call_observers(self, iter, final=False):
         """Call all registered callback functions."""
         for function, n, args, kwargs in self.observers:
@@ -1544,8 +1612,13 @@ class GPAW(Calculator):
                 args = tuple([self if arg is self_ else arg for arg in args])
                 function(*args, **kwargs)
 
+
+
     def get_reference_energy(self):
         return self.wfs.setups.Eref * Ha
+
+
+
 
     def get_homo_lumo(self, spin=None):
         """Return HOMO and LUMO eigenvalues.
@@ -1555,6 +1628,8 @@ class GPAW(Calculator):
         If spin is 0 or 1, return HOMO-LUMO eigenvalues taken among
         only those states with the given spin."""
         return self.wfs.get_homo_lumo(spin) * Ha
+
+
 
     def estimate_memory(self, mem):
         """Estimate memory use of this object."""
