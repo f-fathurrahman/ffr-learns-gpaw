@@ -305,6 +305,32 @@ def is_contiguous(array, dtype=None):
         return array.flags.c_contiguous and array.dtype == dtype
 
 
+def py_radial_hartree(l: int, nrdr: np.ndarray, r: np.ndarray, vr: np.ndarray) -> None:
+
+    M = nrdr.shape[0]
+
+    p = 0.0
+    q = 0.0
+    for g in range(M-1, 0, -1):
+        R = r[g]
+        rl = R**l
+        dp = nrdr[g]/rl
+        rlp1 = rl * R
+        dq = nrdr[g] * rlp1
+        vr[g] = (p + 0.5 * dp) * rlp1 - (q + 0.5 * dq) / rl
+        p += dp
+        q += dq
+    
+    vr[0] = 0.0
+    f = 4.0*pi / (2*l + 1)
+    #for (int g = 1; g < M; g++)
+    for g in range(1,M):
+        R = r[g]
+        vr[g] = f * (vr[g] + q / R**l)
+
+    return
+
+
 
 def radial_kinetic_energy_density(rgd, r, f_j, l_j, u_j):
     """Kinetic energy density from a restricted set of wf's
@@ -422,7 +448,8 @@ vrold = None
 
 while True:
     # calculate hartree potential
-    radial_hartree(0, n * r * dr, r, vHr)
+    #radial_hartree(0, n * r * dr, r, vHr)
+    py_radial_hartree(0, n * r * dr, r, vHr)
 
     # add potential from nuclear point charge (v = -Z / r)
     vHr -= Z
