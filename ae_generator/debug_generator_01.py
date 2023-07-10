@@ -1,10 +1,90 @@
 from math import pi, sqrt
 import numpy as np
+from numpy.linalg import inv
+import scipy.linalg
 
 from my_gpaw.atom.all_electron import AllElectron, shoot
+from my_gpaw.utilities import hartree
+from my_gpaw.atom.filter import Filter
+from my_gpaw import __version__ as version
+from my_gpaw.setup_data import SetupData
+
+# For checking ghost states
+def check_diagonalize(h, N, beta, e_ln, n_ln, q_ln, emax, vt_in, lmax, dH_lnn, dO_lnn, ghost):
+    ng = 350
+    print()
+    print('Diagonalizing with gridspacing h=%.3f' % h)
+    R = h * np.arange(1, ng + 1)
+    G = (N * R / (beta + R) + 0.5).astype(int)
+    G = np.clip(G, 1, N - 2)
+    R1 = np.take(r, G - 1)
+    R2 = np.take(r, G)
+    R3 = np.take(r, G + 1)
+    x1 = (R - R2) * (R - R3) / (R1 - R2) / (R1 - R3)
+    x2 = (R - R1) * (R - R3) / (R2 - R1) / (R2 - R3)
+    x3 = (R - R1) * (R - R2) / (R3 - R1) / (R3 - R2)
+    #
+    def interpolate(f):
+        f1 = np.take(f, G - 1)
+        f2 = np.take(f, G)
+        f3 = np.take(f, G + 1)
+        return f1 * x1 + f2 * x2 + f3 * x3
+    vt = interpolate(vt_in)
+    print()
+    print('state   all-electron     PAW')
+    print('-------------------------------')
+    for l in range(4):
+        if l <= lmax:
+            q_n = np.array([interpolate(q) for q in q_ln[l]])
+            H = np.dot(np.transpose(q_n),
+                       np.dot(dH_lnn[l], q_n)) * h
+            S = np.dot(np.transpose(q_n),
+                       np.dot(dO_lnn[l], q_n)) * h
+        else:
+            H = np.zeros((ng, ng))
+            S = np.zeros((ng, ng))
+        H.ravel()[::ng + 1] += vt + 1.0 / h**2 + l * (l + 1) / 2.0 / R**2
+        H.ravel()[1::ng + 1] -= 0.5 / h**2
+        H.ravel()[ng::ng + 1] -= 0.5 / h**2
+        S.ravel()[::ng + 1] += 1.0
+        #
+        e_n, _ = scipy.linalg.eigh(H, S)
+        #
+        ePAW = e_n[0]
+        if l <= lmax and n_ln[l][0] > 0:
+            eAE = e_ln[l][0]
+            print('%d%s:   %12.6f %12.6f' % (n_ln[l][0], 'spdf'[l], eAE, ePAW), end='')
+            if abs(eAE - ePAW) > 0.014:
+                print('  GHOST-STATE!')
+                ghost = True
+            else:
+                print()
+        else:
+            print('*%s:                %12.6f' % ('spdf'[l], ePAW), end='')
+            if ePAW < emax:
+                print('  GHOST-STATE!')
+                ghost = True
+            else:
+                print()
+    print('-------------------------------')
+
+
+
+def divide_by_r(r, x_g, l):
+    p = x_g.copy()
+    p[1:] /= r[1:]
+    # XXXXX go to higher order!!!!!
+    if l == 0:  # l_j[self.jcorehole] == 0:
+        p[0] = (p[2] + (p[1] - p[2]) * (r[0] - r[2]) / (r[1] - r[2]))
+    return p
+
+def divide_all_by_r(r, x_jg):
+    return [divide_by_r(r, x_g, l) for x_g, l in zip(x_jg, vl_j)]
+
+
 
 # AllElectron object
-symbol = "Si"
+symbol = "Pd"
 
 xcname = "LDA"
 scalarrel = True
@@ -32,25 +112,46 @@ ae_calc = AllElectron(symbol,
 from my_gpaw.atom.configurations import parameters, configurations
 par = parameters[symbol]
 
+par_keys = par.keys()
 # Some kwargs for Generator.run() method
 core = par["core"]
 rcut = par["rcut"]
+#XXX Those two parameters are always present for all atomic species?
 
-extra = None
-logderiv = False
-vbar = None
+if "extra" in par_keys:
+    extra = par["extra"]
+else:
+    extra = None
+
+if "vbar" in par_keys:
+    vbar = par["vbar"]
+else:
+    vbar = None
+
+if "filter" in par_keys:
+    hfilter, xfilter = par["filter"]
+else:
+    hfilter = 0.4
+    xfilter = 1.75
+
+if "rcutcomp" in par_keys:
+    rcutcomp = par["rcutcomp"]
+else:
+    rcutcomp = None
+
+if "empty_states" in par_keys:
+    empty_states = par["empty_states"]
+else:
+    empty_states = ""
+
 exx = False
 name = None
 normconserving = ""
-
-#filter = (0.4, 1.75)
-hfilter = 0.4
-xfilter = 1.75
-
-rcutcomp = None
 write_xml = True
-empty_states = ""
 yukawa_gamma = 0.0
+logderiv = False
+
+
 
 if isinstance(rcut, float):
     rcut_l = [rcut]
@@ -436,3 +537,308 @@ gt /= norm
 Nt = np.dot(nt, dv)
 rhot = nt - (Nt + charge / (4 * pi)) * gt
 print('Pseudo-electron charge', 4 * pi * Nt)
+
+vHt = np.zeros(N)
+hartree(0, rhot * r * dr, r, vHt)
+vHt[1:] /= r[1:]
+vHt[0] = vHt[1]
+
+vXCt = np.zeros(N)
+#extra_xc_data = {} # only for GLLB
+
+ae_calc.xc.calculate_spherical(ae_calc.rgd, nt.reshape((1, -1)), vXCt.reshape((1, -1)))
+
+vt = vHt + vXCt
+
+if orbital_free:
+    vt /= tw_coeff
+
+# Construct zero potential:
+gc = 1 + int(rcutvbar * N / (rcutvbar + beta))
+if vbar_type == 'f':
+    assert lmax == 2
+    uf = np.zeros(N)
+    l = 3
+    #
+    # Solve for all-electron f-state:
+    eps = 0.0
+    shoot(uf, l, ae_calc.vr, eps, ae_calc.r2dvdr, r, dr, c10, c2, scalarrel, gmax=gmax)
+    uf *= 1.0 / uf[gc]
+    #
+    # Fit smooth pseudo f-state polynomium:
+    A = np.ones((4, 4))
+    A[:, 0] = 1.0
+    A[:, 1] = r[gc - 2:gc + 2]**2
+    A[:, 2] = A[:, 1]**2
+    A[:, 3] = A[:, 1] * A[:, 2]
+    a = uf[gc - 2:gc + 2] / r[gc - 2:gc + 2]**(l + 1)
+    a0, a1, a2, a3 = np.linalg.solve(A, a)
+    r1 = r[:gc]
+    r2 = r1**2
+    rl1 = r1**(l + 1)
+    y = a0 + r2 * (a1 + r2 * (a2 + r2 * a3))
+    sf = uf.copy()
+    sf[:gc] = rl1 * y
+    #
+    # From 0 to gc, use analytic formula for kinetic energy operator:
+    r4 = r2**2
+    r6 = r4 * r2
+    enumerator = (a0 * l * (l + 1) +
+                  a1 * (l + 2) * (l + 3) * r2 +
+                  a2 * (l + 4) * (l + 5) * r4 +
+                  a3 * (l + 6) * (l + 7) * r6)
+    denominator = a0 + a1 * r2 + a2 * r4 + a3 * r6
+    ekin_over_phit = - 0.5 * (enumerator / denominator - l * (l + 1))
+    ekin_over_phit[1:] /= r2[1:]
+    #
+    vbar = eps - vt
+    vbar[:gc] -= ekin_over_phit
+    vbar[0] = vbar[1]  # Actually we can collect the terms into
+    # a single fraction without poles, so as to avoid doing this,
+    # but this is good enough
+    #
+    # From gc to gmax, use finite-difference formula for kinetic
+    # energy operator:
+    vbar[gc:gmax] -= ae_calc.kin(l, sf)[gc:gmax] / sf[gc:gmax] # ???
+    vbar[gmax:] = 0.0
+else:
+    assert vbar_type == 'poly'
+    A = np.ones((2, 2))
+    A[0] = 1.0
+    A[1] = r[gc - 1:gc + 1]**2
+    a = vt[gc - 1:gc + 1]
+    a = np.linalg.solve(np.transpose(A), a)
+    r2 = r**2
+    vbar = a[0] + r2 * a[1] - vt
+    vbar[gc:] = 0.0
+#
+vt += vbar
+
+
+# Construct projector functions:
+for l, (e_n, s_n, q_n) in enumerate(zip(e_ln, s_ln, q_ln)):
+    for e, s, q in zip(e_n, s_n, q_n):
+        q[:] = ae_calc.kin(l, s) + (vt - e) * s
+        q[gcutmax:] = 0.0
+#
+my_filter = Filter(r, dr, gcutfilter, hfilter).filter
+if orbital_free:
+    vbar *= tw_coeff
+vbar = my_filter(vbar * r)
+#
+# Calculate matrix elements:
+dK_lnn = []
+dH_lnn = []
+dO_lnn = []
+#
+for l, (e_n, u_n, s_n, q_n) in enumerate(zip(e_ln, u_ln,
+                                             s_ln, q_ln)):
+    A_nn = np.inner(s_n, q_n * dr)
+    # Do a LU decomposition of A:
+    nn = len(e_n)
+    L_nn = np.identity(nn, float)
+    U_nn = A_nn.copy()
+    #
+    # Keep all bound states normalized
+    if sum([n > 0 for n in n_ln[l]]) <= 1:
+        for i in range(nn):
+            for j in range(i + 1, nn):
+                L_nn[j, i] = 1.0 * U_nn[j, i] / U_nn[i, i]
+                U_nn[j, :] -= U_nn[i, :] * L_nn[j, i]
+    #
+    dO_nn = (np.inner(u_n, u_n * dr) - np.inner(s_n, s_n * dr))
+    #
+    e_nn = np.zeros((nn, nn))
+    e_nn.ravel()[::nn + 1] = e_n
+    dH_nn = np.dot(dO_nn, e_nn) - A_nn
+    #
+    q_n[:] = np.dot(inv(np.transpose(U_nn)), q_n)
+    s_n[:] = np.dot(inv(L_nn), s_n)
+    u_n[:] = np.dot(inv(L_nn), u_n)
+    #
+    dO_nn = np.dot(np.dot(inv(L_nn), dO_nn),
+                   inv(np.transpose(L_nn)))
+    dH_nn = np.dot(np.dot(inv(L_nn), dH_nn),
+                   inv(np.transpose(L_nn)))
+    #
+    ku_n = [ae_calc.kin(l, u, e) for u, e in zip(u_n, e_n)]
+    ks_n = [ae_calc.kin(l, s) for s in s_n]
+    dK_nn = 0.5 * (np.inner(u_n, ku_n * dr) - np.inner(s_n, ks_n * dr))
+    dK_nn += np.transpose(dK_nn).copy()
+    #
+    dK_lnn.append(dK_nn)
+    dO_lnn.append(dO_nn)
+    dH_lnn.append(dH_nn)
+    #
+    for n, q in enumerate(q_n):
+        q[:] = my_filter(q, l) * r**(l + 1)
+    #
+    A_nn = np.inner(s_n, q_n * dr)
+    q_n[:] = np.dot(inv(np.transpose(A_nn)), q_n)
+#
+#self.vt = vt
+#self.vbar = vbar
+#
+print('state    eigenvalue         norm')
+print('--------------------------------')
+for l, (n_n, f_n, e_n) in enumerate(zip(n_ln, f_ln, e_ln)):
+    for n in range(len(e_n)):
+        if n_n[n] > 0:
+            f = '(%d)' % f_n[n]
+            print('%d%s%-4s: %12.6f %12.6f' % (
+                n_n[n], 'spdf'[l], f, e_n[n],
+                np.dot(s_ln[l][n]**2, dr)))
+        else:
+            print('*%s    : %12.6f' % ('spdf'[l], e_n[n]))
+print('--------------------------------')
+
+# LOG DERIV calculation is skipped ....
+
+# Writing data skipped ....
+
+
+
+# Test for ghost states:
+for h in [0.05]:
+    check_diagonalize(h, N, beta, e_ln, n_ln, q_ln, emax, vt, lmax, dH_lnn, dO_lnn, ghost)
+
+
+
+vn_j = []
+vl_j = []
+vf_j = []
+ve_j = []
+vu_j = []
+vs_j = []
+vq_j = []
+j_ln = [[0 for f in f_n] for f_n in f_ln]
+j = 0
+for l, n_n in enumerate(n_ln):
+    for n, nn in enumerate(n_n):
+        if nn > 0:
+            vf_j.append(f_ln[l][n])
+            vn_j.append(nn)
+            vl_j.append(l)
+            ve_j.append(e_ln[l][n])
+            vu_j.append(u_ln[l][n])
+            vs_j.append(s_ln[l][n])
+            vq_j.append(q_ln[l][n])
+            j_ln[l][n] = j
+            j += 1
+for l, n_n in enumerate(n_ln):
+    for n, nn in enumerate(n_n):
+        if nn < 0:
+            vf_j.append(0)
+            vn_j.append(nn)
+            vl_j.append(l)
+            ve_j.append(e_ln[l][n])
+            vu_j.append(u_ln[l][n])
+            vs_j.append(s_ln[l][n])
+            vq_j.append(q_ln[l][n])
+            j_ln[l][n] = j
+            j += 1
+nj = j
+
+dK_jj = np.zeros((nj, nj))
+for l, j_n in enumerate(j_ln):
+    for n1, j1 in enumerate(j_n):
+        for n2, j2 in enumerate(j_n):
+            dK_jj[j1, j2] = dK_lnn[l][n1, n2]
+            if orbital_free:
+                dK_jj[j1, j2] *= tw_coeff
+
+X_gamma = yukawa_gamma
+if exx:
+    X_p = constructX(self)
+    if yukawa_gamma is not None and yukawa_gamma > 0:
+        X_pg = constructX(self, yukawa_gamma)
+    else:
+        X_pg = None
+    ExxC = atomic_exact_exchange(self, 'core-core')
+else:
+    X_p = None
+    X_pg = None
+    ExxC = None
+
+
+sqrt4pi = sqrt(4 * pi)
+# This is the returned variable
+setup = SetupData(symbol, ae_calc.xc.name, name, readxml=False, generator_version=1)
+
+setup.l_j = vl_j
+setup.l_orb_J = vl_j
+setup.n_j = vn_j
+setup.f_j = vf_j
+setup.eps_j = ve_j
+setup.rcut_j = [rcut_l[l] for l in vl_j]
+
+setup.nc_g = nc * sqrt4pi
+setup.nct_g = nct * sqrt4pi
+setup.nvt_g = (nt - nct) * sqrt4pi
+setup.e_kinetic_core = Ekincore
+setup.vbar_g = vbar * sqrt4pi
+setup.tauc_g = tauc * sqrt4pi
+setup.tauct_g = tauct * sqrt4pi
+setup.extra_xc_data = {} # extra_xc_data
+setup.Z = Z
+setup.Nc = Nc
+setup.Nv = Nv
+setup.e_kinetic = ae_calc.Ekin
+setup.e_xc = ae_calc.Exc
+setup.e_electrostatic = ae_calc.e_coulomb
+setup.e_total = ae_calc.e_coulomb + ae_calc.Exc + ae_calc.Ekin
+
+setup.rgd = ae_calc.rgd
+
+setup.shape_function = {'type': 'gauss',
+                        'rc': rcutcomp / sqrt(gamma)}
+setup.e_kin_jj = dK_jj
+setup.ExxC = ExxC
+setup.phi_jg = divide_all_by_r(r, vu_j)
+setup.phit_jg = divide_all_by_r(r, vs_j)
+setup.pt_jg = divide_all_by_r(r, vq_j)
+setup.X_p = X_p
+setup.X_pg = X_pg
+setup.X_gamma = X_gamma
+
+if ae_calc.jcorehole is not None:
+    setup.has_corehole = True
+    setup.lcorehole = l_j[jcorehole]  # l_j or vl_j ????? XXX
+    setup.ncorehole = n_j[jcorehole]
+    setup.phicorehole_g = divide_by_r(r, ae_calc.u_j[jcorehole], setup.lcorehole)
+    setup.core_hole_e = e_j[jcorehole]
+    setup.core_hole_e_kin = Ekincorehole
+    setup.fcorehole = fcorehole
+
+if ghost and not orbital_free:
+    # In orbital_free we are not interested in ghosts
+    raise RuntimeError('Ghost!')
+
+if scalarrel:
+    reltype = 'scalar-relativistic'
+else:
+    reltype = 'non-relativistic'
+
+attrs = [('type', reltype), ('name', 'gpaw-%s' % version)]
+data = 'Frozen core: ' + (core or 'none')
+
+setup.generatorattrs = attrs
+setup.generatordata = data
+setup.orbital_free = orbital_free
+setup.version = '0.6'
+
+id_j = []
+for l, n in zip(vl_j, vn_j):
+    if n > 0:
+        my_id = '%s-%d%s' % (symbol, n, 'spdf'[l])
+    else:
+        my_id = '%s-%s%d' % (symbol, 'spdf'[l], -n)
+    id_j.append(my_id)
+setup.id_j = id_j
+
+#if write_xml:
+#    setup.write_xml()
+
+#return setup
+
+
