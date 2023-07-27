@@ -8,7 +8,7 @@ def search_icut(fr, QUITE_SMALL=1e-3):
     icut = 0
     Nnodes = 0
     for i in range(N-1,0,-1):
-        if fr[i] > QUITE_SMALL:
+        if abs(fr[i]) > QUITE_SMALL:
             icut = i
             break
     return icut
