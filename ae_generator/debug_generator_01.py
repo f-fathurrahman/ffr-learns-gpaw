@@ -13,7 +13,7 @@ from my_gpaw.setup_data import SetupData
 def check_diagonalize(h, N, beta, e_ln, n_ln, q_ln, emax, vt_in, lmax, dH_lnn, dO_lnn, ghost):
     ng = 350
     print()
-    print('Diagonalizing with gridspacing h=%.3f' % h)
+    print("Diagonalizing with gridspacing h=%.3f" % h)
     R = h * np.arange(1, ng + 1)
     G = (N * R / (beta + R) + 0.5).astype(int)
     G = np.clip(G, 1, N - 2)
@@ -31,8 +31,8 @@ def check_diagonalize(h, N, beta, e_ln, n_ln, q_ln, emax, vt_in, lmax, dH_lnn, d
         return f1 * x1 + f2 * x2 + f3 * x3
     vt = interpolate(vt_in)
     print()
-    print('state   all-electron     PAW')
-    print('-------------------------------')
+    print("state   all-electron     PAW")
+    print("-------------------------------")
     for l in range(4):
         if l <= lmax:
             q_n = np.array([interpolate(q) for q in q_ln[l]])
@@ -53,20 +53,20 @@ def check_diagonalize(h, N, beta, e_ln, n_ln, q_ln, emax, vt_in, lmax, dH_lnn, d
         ePAW = e_n[0]
         if l <= lmax and n_ln[l][0] > 0:
             eAE = e_ln[l][0]
-            print('%d%s:   %12.6f %12.6f' % (n_ln[l][0], 'spdf'[l], eAE, ePAW), end='')
+            print("%d%s:   %12.6f %12.6f" % (n_ln[l][0], "spdf"[l], eAE, ePAW), end="")
             if abs(eAE - ePAW) > 0.014:
-                print('  GHOST-STATE!')
+                print("  GHOST-STATE!")
                 ghost = True
             else:
                 print()
         else:
-            print('*%s:                %12.6f' % ('spdf'[l], ePAW), end='')
+            print("*%s:                %12.6f" % ("spdf"[l], ePAW), end="")
             if ePAW < emax:
-                print('  GHOST-STATE!')
+                print("  GHOST-STATE!")
                 ghost = True
             else:
                 print()
-    print('-------------------------------')
+    print("-------------------------------")
 
 
 
@@ -370,14 +370,14 @@ print("lmax = ", lmax)
 #self.lmax = lmax
 
 rcut_l.extend([rcutmin] * (lmax + 1 - len(rcut_l)))
-print('Cutoffs:')
-for rc, s in zip(rcut_l, 'spdf'):
-    print('rc(%s)=%.3f' % (s, rc))
-print('rc(vbar)=%.3f' % rcutvbar)
-print('rc(comp)=%.3f' % rcutcomp)
-print('rc(nct)=%.3f' % rcutmax)
+print("Cutoffs:")
+for rc, s in zip(rcut_l, "spdf"):
+    print("rc(%s)=%.3f" % (s, rc))
+print("rc(vbar)=%.3f" % rcutvbar)
+print("rc(comp)=%.3f" % rcutcomp)
+print("rc(nct)=%.3f" % rcutmax)
 print()
-print('Kinetic energy of the core states: %.6f' % Ekincore)
+print("Kinetic energy of the core states: %.6f" % Ekincore)
 
 
 # Allocate arrays:
@@ -420,9 +420,9 @@ for l, (n_n, e_n, u_n) in enumerate(zip(n_ln, e_ln, u_ln)):
             u *= 1.0 / u[gcut_l[l]]
 
 charge = Z - Nv - Nc
-print('Charge: %.1f' % charge)
-print('Core electrons: %.1f' % Nc)
-print('Valence electrons: %.1f' % Nv)
+print("Charge: %.1f" % charge)
+print("Core electrons: %.1f" % Nc)
+print("Valence electrons: %.1f" % Nv)
 
 
 # Construct smooth wave functions:
@@ -486,7 +486,7 @@ for l, (u_n, s_n) in enumerate(zip(u_ln, s_ln)):
         coefs.append(a)
         if nodeless:
             if not np.all(s[1:gc] > 0.0):
-                raise RuntimeError('Error: The %d%s pseudo wave has a node!' % (n_ln[l][0], 'spdf'[l]))
+                raise RuntimeError("Error: The %d%s pseudo wave has a node!" % (n_ln[l][0], "spdf"[l]))
             # Only the first state for each l must be nodeless:
             nodeless = False
 
@@ -502,7 +502,7 @@ a = nc[gcutnc - 2:gcutnc + 2]
 a = np.linalg.solve(np.transpose(A), a)
 r2 = r[:gcutnc]**2
 nct[:gcutnc] = a[0] + r2 * (a[1] + r2 * (a[2] + r2 * a[3]))
-print('Pseudo-core charge: %.6f' % (4 * pi * np.dot(nct, dv)))
+print("Pseudo-core charge: %.6f" % (4 * pi * np.dot(nct, dv)))
 
 
 # ... and the pseudo core kinetic energy density:
@@ -526,7 +526,7 @@ gaussian = np.zeros(N)
 gamma = 10.0
 gaussian[:gmax] = np.exp(-gamma * x[:gmax]**2)
 gt = 4 * (gamma / rcutcomp**2)**1.5 / sqrt(pi) * gaussian
-print('Shape function alpha=%.3f' % (gamma / rcutcomp**2))
+print("Shape function alpha=%.3f" % (gamma / rcutcomp**2))
 norm = np.dot(gt, dv)
 #  print norm, norm-1
 assert abs(norm - 1) < 1e-2
@@ -536,7 +536,7 @@ gt /= norm
 # Calculate smooth charge density:
 Nt = np.dot(nt, dv)
 rhot = nt - (Nt + charge / (4 * pi)) * gt
-print('Pseudo-electron charge', 4 * pi * Nt)
+print("Pseudo-electron charge", 4 * pi * Nt)
 
 vHt = np.zeros(N)
 hartree(0, rhot * r * dr, r, vHt)
@@ -555,7 +555,7 @@ if orbital_free:
 
 # Construct zero potential:
 gc = 1 + int(rcutvbar * N / (rcutvbar + beta))
-if vbar_type == 'f':
+if vbar_type == "f":
     assert lmax == 2
     uf = np.zeros(N)
     l = 3
@@ -602,7 +602,7 @@ if vbar_type == 'f':
     vbar[gc:gmax] -= ae_calc.kin(l, sf)[gc:gmax] / sf[gc:gmax] # ???
     vbar[gmax:] = 0.0
 else:
-    assert vbar_type == 'poly'
+    assert vbar_type == "poly"
     A = np.ones((2, 2))
     A[0] = 1.0
     A[1] = r[gc - 1:gc + 1]**2
@@ -679,18 +679,18 @@ for l, (e_n, u_n, s_n, q_n) in enumerate(zip(e_ln, u_ln,
 #self.vt = vt
 #self.vbar = vbar
 #
-print('state    eigenvalue         norm')
-print('--------------------------------')
+print("state    eigenvalue         norm")
+print("--------------------------------")
 for l, (n_n, f_n, e_n) in enumerate(zip(n_ln, f_ln, e_ln)):
     for n in range(len(e_n)):
         if n_n[n] > 0:
-            f = '(%d)' % f_n[n]
-            print('%d%s%-4s: %12.6f %12.6f' % (
-                n_n[n], 'spdf'[l], f, e_n[n],
+            f = "(%d)" % f_n[n]
+            print("%d%s%-4s: %12.6f %12.6f" % (
+                n_n[n], "spdf"[l], f, e_n[n],
                 np.dot(s_ln[l][n]**2, dr)))
         else:
-            print('*%s    : %12.6f' % ('spdf'[l], e_n[n]))
-print('--------------------------------')
+            print("*%s    : %12.6f" % ("spdf"[l], e_n[n]))
+print("--------------------------------")
 
 # LOG DERIV calculation is skipped ....
 
@@ -754,7 +754,7 @@ if exx:
         X_pg = constructX(self, yukawa_gamma)
     else:
         X_pg = None
-    ExxC = atomic_exact_exchange(self, 'core-core')
+    ExxC = atomic_exact_exchange(self, "core-core")
 else:
     X_p = None
     X_pg = None
@@ -790,8 +790,8 @@ setup.e_total = ae_calc.e_coulomb + ae_calc.Exc + ae_calc.Ekin
 
 setup.rgd = ae_calc.rgd
 
-setup.shape_function = {'type': 'gauss',
-                        'rc': rcutcomp / sqrt(gamma)}
+setup.shape_function = {"type": "gauss",
+                        "rc": rcutcomp / sqrt(gamma)}
 setup.e_kin_jj = dK_jj
 setup.ExxC = ExxC
 setup.phi_jg = divide_all_by_r(r, vu_j)
@@ -812,27 +812,27 @@ if ae_calc.jcorehole is not None:
 
 if ghost and not orbital_free:
     # In orbital_free we are not interested in ghosts
-    raise RuntimeError('Ghost!')
+    raise RuntimeError("Ghost!")
 
 if scalarrel:
-    reltype = 'scalar-relativistic'
+    reltype = "scalar-relativistic"
 else:
-    reltype = 'non-relativistic'
+    reltype = "non-relativistic"
 
-attrs = [('type', reltype), ('name', 'gpaw-%s' % version)]
-data = 'Frozen core: ' + (core or 'none')
+attrs = [("type", reltype), ("name", "gpaw-%s" % version)]
+data = "Frozen core: " + (core or "none")
 
 setup.generatorattrs = attrs
 setup.generatordata = data
 setup.orbital_free = orbital_free
-setup.version = '0.6'
+setup.version = "0.6"
 
 id_j = []
 for l, n in zip(vl_j, vn_j):
     if n > 0:
-        my_id = '%s-%d%s' % (symbol, n, 'spdf'[l])
+        my_id = "%s-%d%s" % (symbol, n, "spdf"[l])
     else:
-        my_id = '%s-%s%d' % (symbol, 'spdf'[l], -n)
+        my_id = "%s-%s%d" % (symbol, "spdf"[l], -n)
     id_j.append(my_id)
 setup.id_j = id_j
 
