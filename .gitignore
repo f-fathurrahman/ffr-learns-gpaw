@@ -2,6 +2,8 @@ gpaw_env
 *.gpw
 GPAW_SETUPS
 
+IMG_*
+
 LOG_*
 ORIG_*
 TEMP_*
