@@ -354,6 +354,10 @@ def radial_kinetic_energy_density(rgd, r, f_j, l_j, u_j):
 
 
 
+# ------------
+# Main program
+# ------------
+
 
 symbol = "Si"
 
@@ -378,6 +382,9 @@ Z, nlfe_j = configurations[symbol]
 # XXX: why is energy needed here?
 
 
+print("All electron calculation for ", symbol)
+
+
 # Collect principal quantum numbers, angular momentum quantum
 # numbers, occupation numbers and eigenvalues (j is a combined
 # index for n and l):
@@ -386,10 +393,18 @@ l_j = [l for n, l, f, e in nlfe_j]
 f_j = [f for n, l, f, e in nlfe_j]
 e_j = [e for n, l, f, e in nlfe_j]
 
+print("Electron configuration:")
+print("n_j = ", n_j)
+print("l_j = ", l_j)
+print("f_j = ", f_j)
+print("e_j = ", e_j) # starting guess
+
 
 maxnodes = max([n - l - 1 for n, l in zip(n_j, l_j)])
+print("maxnodes = ", maxnodes)
+
 N = (maxnodes + 1) * gpernode
-beta = 0.4
+beta = 0.4 # parameter for radial grid
 
 
 # Core-hole stuffs setup here ....
