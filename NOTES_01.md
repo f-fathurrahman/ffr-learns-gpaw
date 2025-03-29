@@ -37,6 +37,9 @@ In `icalculate` interesting things happen in `initialize` method.
 for the SCF calculation.
 
 
+XXX: `icalculate` must be called in a `for` loop? because it is a generator?
+
+`mode` is initialized using `PW`
 
 ReciprocalSpaceHamiltonian
 

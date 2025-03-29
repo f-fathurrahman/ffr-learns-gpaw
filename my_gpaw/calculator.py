@@ -438,8 +438,10 @@ class GPAW(Calculator):
         print("     ------------------------")
 
 
-        Calculator.calculate(self, atoms)
+        Calculator.calculate(self, atoms) # why call this?
         atoms = self.atoms
+
+        print("Pass here 444 in ", __file__)
 
         if system_changes:
             self.log('System changes:', ', '.join(system_changes), '\n')

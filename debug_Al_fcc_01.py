@@ -5,7 +5,7 @@ name = "Al-fcc"
 a = 4.05
 b = a/2
 
-bulk = Atoms("Al",
+atoms = Atoms("Al",
     cell=[[0, b, b],
           [b, 0, b],
           [b, b, 0]],
@@ -19,9 +19,21 @@ calc = GPAW(
 )
 print("Pass here 21")
 
-bulk.calc = calc
-for _ in calc.icalculate(bulk):
-    pass
-#calc.icalculate(atoms=bulk, properties=['energy'])
+atoms.calc = calc
 
-print("pass here 23")
+# icalculate must be called in a `for` loop? because it is a generator
+#calc.icalculate(bulk)
+#for _ in calc.icalculate(bulk):
+#    pass
+
+# Drastic changes:
+calc.wfs = None
+calc.density = None
+calc.hamiltonian = None
+calc.scf = None
+
+from my_gpaw_initialize import my_gpaw_initialize
+#calc.initialize(atoms)
+my_gpaw_initialize(calc, atoms)
+
+print("\n---- Script ended normally ----")
