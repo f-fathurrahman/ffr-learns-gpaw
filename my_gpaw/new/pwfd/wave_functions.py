@@ -5,18 +5,18 @@ from math import pi
 from typing import Optional
 
 import numpy as np
-from gpaw.core.arrays import DistributedArrays
-from gpaw.core.atom_arrays import AtomArrays, AtomDistribution
-from gpaw.core.atom_centered_functions import AtomCenteredFunctions
-from gpaw.core.plane_waves import PlaneWaveExpansions
-from gpaw.core.uniform_grid import UniformGrid, UniformGridFunctions
-from gpaw.fftw import get_efficient_fft_size
-from gpaw.gpu import as_xp
-from gpaw.new import prod, zip
-from gpaw.new.potential import Potential
-from gpaw.new.wave_functions import WaveFunctions
-from gpaw.setup import Setups
-from gpaw.typing import Array2D, Array3D, ArrayND, Vector
+from my_gpaw.core.arrays import DistributedArrays
+from my_gpaw.core.atom_arrays import AtomArrays, AtomDistribution
+from my_gpaw.core.atom_centered_functions import AtomCenteredFunctions
+from my_gpaw.core.plane_waves import PlaneWaveExpansions
+from my_gpaw.core.uniform_grid import UniformGrid, UniformGridFunctions
+from my_gpaw.fftw import get_efficient_fft_size
+from my_gpaw.gpu import as_xp
+from my_gpaw.new import prod, zip
+from my_gpaw.new.potential import Potential
+from my_gpaw.new.wave_functions import WaveFunctions
+from my_gpaw.setup import Setups
+from my_gpaw.typing import Array2D, Array3D, ArrayND, Vector
 
 
 class PWFDWaveFunctions(WaveFunctions):

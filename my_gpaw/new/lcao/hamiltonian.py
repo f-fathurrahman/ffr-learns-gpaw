@@ -1,15 +1,15 @@
 from __future__ import annotations
 
 import numpy as np
-from gpaw.core.matrix import Matrix
-from gpaw.external import ExternalPotential
-from gpaw.lfc import BasisFunctions
-from gpaw.new import zip
-from gpaw.new.calculation import DFTState
-from gpaw.new.fd.pot_calc import UniformGridPotentialCalculator
-from gpaw.new.hamiltonian import Hamiltonian
-from gpaw.new.lcao.wave_functions import LCAOWaveFunctions
-from gpaw.typing import Array2D, Array3D
+from my_gpaw.core.matrix import Matrix
+from my_gpaw.external import ExternalPotential
+from my_gpaw.lfc import BasisFunctions
+from my_gpaw.new import zip
+from my_gpaw.new.calculation import DFTState
+from my_gpaw.new.fd.pot_calc import UniformGridPotentialCalculator
+from my_gpaw.new.hamiltonian import Hamiltonian
+from my_gpaw.new.lcao.wave_functions import LCAOWaveFunctions
+from my_gpaw.typing import Array2D, Array3D
 
 
 class HamiltonianMatrixCalculator:
@@ -150,7 +150,7 @@ class LCAOHamiltonian(Hamiltonian):
                                       ext: ExternalPotential,
                                       pot_calc: UniformGridPotentialCalculator
                                       ) -> HamiltonianMatrixCalculator:
-        from gpaw.utilities import unpack
+        from my_gpaw.utilities import unpack
         vext_r = pot_calc.vbar_r.new()
         finegd = vext_r.desc._gd
 

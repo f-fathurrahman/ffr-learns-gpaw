@@ -6,7 +6,7 @@ import pytest
 import numpy as np
 
 # Script modules
-from gpaw.response.heisenberg import calculate_single_site_magnon_energies,\
+from my_gpaw.response.heisenberg import calculate_single_site_magnon_energies,\
     calculate_fm_magnon_energies
 
 

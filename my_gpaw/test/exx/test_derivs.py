@@ -2,17 +2,17 @@ import numpy as np
 import pytest
 from ase import Atoms
 
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.hybrids.kpts import PWKPoint
-from gpaw.kpt_descriptor import KPointDescriptor
-from gpaw.mpi import world
-from gpaw.projections import Projections
-from gpaw.pw.descriptor import PWDescriptor
-from gpaw.pw.lfc import PWLFC
-from gpaw.hybrids.wstc import WignerSeitzTruncatedCoulomb as WSTC
-from gpaw.spline import Spline
-from gpaw.symmetry import Symmetry
-from gpaw.wavefunctions.arrays import PlaneWaveExpansionWaveFunctions
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.hybrids.kpts import PWKPoint
+from my_gpaw.kpt_descriptor import KPointDescriptor
+from my_gpaw.mpi import world
+from my_gpaw.projections import Projections
+from my_gpaw.pw.descriptor import PWDescriptor
+from my_gpaw.pw.lfc import PWLFC
+from my_gpaw.hybrids.wstc import WignerSeitzTruncatedCoulomb as WSTC
+from my_gpaw.spline import Spline
+from my_gpaw.symmetry import Symmetry
+from my_gpaw.wavefunctions.arrays import PlaneWaveExpansionWaveFunctions
 
 
 class AP:

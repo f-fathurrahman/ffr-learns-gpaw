@@ -1,13 +1,13 @@
 import numpy as np
 import pytest
 
-from gpaw.mpi import world
-from gpaw.atom.radialgd import EquidistantRadialGridDescriptor
-from gpaw.fd_operators import Gradient
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.setup import Setup, Setups
-from gpaw.spherical_harmonics import YL
-from gpaw.utilities.tools import coordinates
+from my_gpaw.mpi import world
+from my_gpaw.atom.radialgd import EquidistantRadialGridDescriptor
+from my_gpaw.fd_operators import Gradient
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.setup import Setup, Setups
+from my_gpaw.spherical_harmonics import YL
+from my_gpaw.utilities.tools import coordinates
 
 
 def rlYlm(L, r_vg):

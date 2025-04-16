@@ -3,10 +3,10 @@ import pytest
 
 from ase.parallel import world, parprint
 from ase.units import Bohr
-from gpaw import GPAW
-from gpaw.lcao.dipoletransition import get_dipole_transitions
-from gpaw.utilities.dipole import dipole_matrix_elements_from_calc
-from gpaw.lrtddft.kssingle import KSSingles
+from my_gpaw import GPAW
+from my_gpaw.lcao.dipoletransition import get_dipole_transitions
+from my_gpaw.utilities.dipole import dipole_matrix_elements_from_calc
+from my_gpaw.lrtddft.kssingle import KSSingles
 
 
 @pytest.mark.later
@@ -42,8 +42,8 @@ def test_dipole_transition(gpw_files, tmp_path_factory):
     # ------------------------------------------------------------------------
     # compare to utilities implementation
     if world.rank == 0:
-        from gpaw.new.ase_interface import GPAW as NewGPAW
-        from gpaw.mpi import serial_comm
+        from my_gpaw.new.ase_interface import GPAW as NewGPAW
+        from my_gpaw.mpi import serial_comm
         refcalc = NewGPAW(gpw_files['h2o_lcao_wfs'],
                           parallel={'world': serial_comm})
         uref = dipole_matrix_elements_from_calc(refcalc, 0, 6)

@@ -4,9 +4,9 @@ import numpy as np
 import pytest
 from ase import Atoms
 
-from gpaw import PW, FermiDirac
-from gpaw.calculator import GPAW
-from gpaw.new.calculation import DFTCalculation
+from my_gpaw import PW, FermiDirac
+from my_gpaw.calculator import GPAW
+from my_gpaw.new.calculation import DFTCalculation
 
 
 @pytest.mark.stress

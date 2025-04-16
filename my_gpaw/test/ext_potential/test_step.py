@@ -2,8 +2,8 @@ import pytest
 
 from ase import Atoms
 
-from gpaw import GPAW
-from gpaw.external import StepPotentialz
+from my_gpaw import GPAW
+from my_gpaw.external import StepPotentialz
 
 
 @pytest.mark.later

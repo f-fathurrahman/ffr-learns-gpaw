@@ -1,7 +1,7 @@
 from ase import Atoms
 
-from gpaw import GPAW, FermiDirac
-from gpaw.test import equal
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.test import equal
 
 
 def test_spin_spinFe3plus():

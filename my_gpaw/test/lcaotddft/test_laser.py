@@ -2,14 +2,14 @@ import numpy as np
 import pytest
 from ase.build import molecule
 from ase.units import Bohr, Hartree
-from gpaw import GPAW
-from gpaw.external import ConstantElectricField
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
-from gpaw.lcaotddft.laser import GaussianPulse
-from gpaw.mpi import world
-from gpaw.tddft.units import as_to_au
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.external import ConstantElectricField
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
+from my_gpaw.lcaotddft.laser import GaussianPulse
+from my_gpaw.mpi import world
+from my_gpaw.tddft.units import as_to_au
+from my_gpaw.test import equal
 
 # Settings
 dt = 20.0

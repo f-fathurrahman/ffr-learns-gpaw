@@ -2,8 +2,8 @@ import numpy as np
 
 import pytest
 
-from gpaw.mpi import world
-from gpaw.response.pw_parallelization import Blocks1D
+from my_gpaw.mpi import world
+from my_gpaw.response.pw_parallelization import Blocks1D
 
 
 @pytest.mark.response

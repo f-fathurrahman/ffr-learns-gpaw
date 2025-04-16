@@ -1,9 +1,9 @@
 import numpy as np
 import pytest
 from ase.build import molecule
-from gpaw import GPAW, restart
-from gpaw.mom import prepare_mom_calculation
-from gpaw.test import equal
+from my_gpaw import GPAW, restart
+from my_gpaw.mom import prepare_mom_calculation
+from my_gpaw.test import equal
 
 
 @pytest.mark.mom

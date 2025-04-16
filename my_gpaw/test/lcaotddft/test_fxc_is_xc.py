@@ -2,11 +2,11 @@ import numpy as np
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
-from gpaw.mpi import world
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
+from my_gpaw.mpi import world
+from my_gpaw.test import equal
 
 
 @pytest.mark.rttddft

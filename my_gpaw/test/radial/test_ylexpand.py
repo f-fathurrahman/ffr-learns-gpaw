@@ -3,9 +3,9 @@ from math import pi
 from ase import Atoms
 from ase.parallel import parprint
 
-from gpaw import GPAW
-from gpaw.test import equal
-from gpaw.analyse.expandyl import AngularIntegral, ExpandYl
+from my_gpaw import GPAW
+from my_gpaw.test import equal
+from my_gpaw.analyse.expandyl import AngularIntegral, ExpandYl
 
 
 def test_radial_ylexpand(in_tmp_dir):

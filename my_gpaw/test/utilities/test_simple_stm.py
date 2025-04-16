@@ -1,10 +1,10 @@
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW, FermiDirac
-from gpaw.analyse.simple_stm import SimpleStm
-from gpaw.mpi import rank, size
-from gpaw.test import equal
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.analyse.simple_stm import SimpleStm
+from my_gpaw.mpi import rank, size
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

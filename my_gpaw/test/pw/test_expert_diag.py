@@ -2,8 +2,8 @@ import pytest
 import numpy as np
 from ase.build import bulk
 
-from gpaw import GPAW, PW
-from gpaw.mpi import world
+from my_gpaw import GPAW, PW
+from my_gpaw.mpi import world
 
 # This test is asserting that the expert diagonalization
 # routine gives the same result as the non-expert version

@@ -2,10 +2,10 @@ import pytest
 import numpy as np
 from ase.build import molecule
 
-from gpaw import GPAW
-from gpaw.tddft import TDDFT, DipoleMomentWriter
-from gpaw.mpi import world
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.tddft import TDDFT, DipoleMomentWriter
+from my_gpaw.mpi import world
+from my_gpaw.test import equal
 
 
 @pytest.mark.gllb
@@ -35,7 +35,7 @@ def test_tddft_fxc_linearize(in_tmp_dir):
     # Test the absolute values
     data = np.loadtxt('dm.dat').ravel()
     if 0:
-        from gpaw.test import print_reference
+        from my_gpaw.test import print_reference
         print_reference(data, 'ref', '%.12le')
 
     ref = [0.000000000000e+00,

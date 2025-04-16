@@ -5,8 +5,8 @@ gradient stabilized method. Requires Numpy and GPAW's own BLAS."""
 
 import numpy as np
 
-from gpaw.utilities.blas import axpy
-from gpaw.mpi import rank
+from my_gpaw.utilities.blas import axpy
+from my_gpaw.mpi import rank
 
 from .base import BaseSolver
 

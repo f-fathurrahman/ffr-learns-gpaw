@@ -6,9 +6,9 @@ import ase.units as units
 import numpy as np
 import pytest
 from ase.build import bulk
-from gpaw import GPAW
-from gpaw.elph import DisplacementRunner, Supercell
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.elph import DisplacementRunner, Supercell
+from my_gpaw.mpi import world
 
 
 @pytest.mark.elph

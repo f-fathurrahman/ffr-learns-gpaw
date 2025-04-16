@@ -242,7 +242,7 @@ def write_projections(calc, seed=None, spin=0, orbitals_ai=None, soc=None):
 
     f = open(seed + '.amn', 'w')
 
-    print('Kohn-Sham input generated from GPAW calculation', file=f)
+    print('Kohn-Sham input generated from my_gpaw calculation', file=f)
     print('%10d %6d %6d' % (Nn, Nk, Nw), file=f)
 
     P_kni = np.zeros((Nk, Nn, Nw), complex)
@@ -317,7 +317,7 @@ def write_overlaps(calc, seed=None, spin=0, soc=None, less_memory=False):
 
     f = open(seed + '.mmn', 'w')
 
-    print('Kohn-Sham input generated from GPAW calculation', file=f)
+    print('Kohn-Sham input generated from my_gpaw calculation', file=f)
     print('%10d %6d %6d' % (Nn, Nk, Nb), file=f)
 
     icell_cv = (2 * np.pi) * np.linalg.inv(calc.wfs.gd.cell_cv).T

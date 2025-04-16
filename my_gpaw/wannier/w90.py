@@ -87,7 +87,7 @@ class Wannier90:
         ndirections = len(directions)
 
         with (self.folder / f'{self.prefix}.mmn').open('w') as fd:
-            print('Input generated from GPAW', file=fd)
+            print('Input generated from my_gpaw', file=fd)
             print(f'{nbands} {nbzkpts} {ndirections}', file=fd)
 
             for bz_index1 in range(nbzkpts):
@@ -109,7 +109,7 @@ class Wannier90:
         nbzkpts, nproj, nbands = proj_kmn.shape
 
         with (self.folder / f'{self.prefix}.amn').open('w') as fd:
-            print('Input generated from GPAW', file=fd)
+            print('Input generated from my_gpaw', file=fd)
             print(f'{nbands} {nbzkpts} {nproj}', file=fd)
 
             for bz_index, proj_mn in enumerate(proj_kmn):

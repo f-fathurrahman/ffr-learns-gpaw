@@ -1,6 +1,6 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW, PW
+from my_gpaw import GPAW, PW
 
 
 @pytest.mark.ci

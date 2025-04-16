@@ -1,5 +1,5 @@
 from packaging.version import Version
-from gpaw import __ase_version_required__
+from my_gpaw import __ase_version_required__
 from ase import __version__
 
 

@@ -1,7 +1,7 @@
 from math import pi
 import numpy as np
 import pytest
-from gpaw.xc.libxc import LibXC
+from my_gpaw.xc.libxc import LibXC
 
 
 @pytest.mark.libxc

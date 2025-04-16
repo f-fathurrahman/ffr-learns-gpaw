@@ -4,9 +4,9 @@ import numpy as np
 from ase import Atom, Atoms
 
 import gpaw.mpi as mpi
-from gpaw import GPAW, FermiDirac, PoissonSolver
-from gpaw.test import equal
-from gpaw.utilities.dos import RawLDOS, raw_orbital_LDOS, raw_wignerseitz_LDOS
+from my_gpaw import GPAW, FermiDirac, PoissonSolver
+from my_gpaw.test import equal
+from my_gpaw.utilities.dos import RawLDOS, raw_orbital_LDOS, raw_wignerseitz_LDOS
 
 
 def test_utilities_ldos(in_tmp_dir):

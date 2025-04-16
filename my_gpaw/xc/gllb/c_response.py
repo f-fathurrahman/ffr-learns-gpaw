@@ -3,13 +3,13 @@ from math import sqrt, pi
 import numpy as np
 
 from ase.units import Ha
-from gpaw import BadParallelization
-from gpaw.mpi import world
-from gpaw.density import redistribute_array, redistribute_atomic_matrices
-from gpaw.sphere.lebedev import weight_n
-from gpaw.utilities import pack, pack_atomic_matrices, unpack_atomic_matrices
-from gpaw.xc.gllb import safe_sqr
-from gpaw.xc.gllb.contribution import Contribution
+from my_gpaw import BadParallelization
+from my_gpaw.mpi import world
+from my_gpaw.density import redistribute_array, redistribute_atomic_matrices
+from my_gpaw.sphere.lebedev import weight_n
+from my_gpaw.utilities import pack, pack_atomic_matrices, unpack_atomic_matrices
+from my_gpaw.xc.gllb import safe_sqr
+from my_gpaw.xc.gllb.contribution import Contribution
 
 # XXX Work in process
 debug = False
@@ -677,7 +677,7 @@ class C_Response(Contribution):
     def heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeelp(self, olddens):
         # XXX This function should be removed once the deprecated
         # `fixdensity=True` option is removed.
-        from gpaw.density import redistribute_array
+        from my_gpaw.density import redistribute_array
         self.vt_sg = redistribute_array(self.vt_sg,
                                         olddens.finegd, self.finegd,
                                         self.wfs.nspins, self.wfs.kptband_comm)

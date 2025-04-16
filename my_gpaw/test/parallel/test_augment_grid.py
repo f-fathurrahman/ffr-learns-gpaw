@@ -1,8 +1,8 @@
 import pytest
 import numpy as np
-from gpaw import GPAW
+from my_gpaw import GPAW
 from ase.build import molecule
-from gpaw.mpi import world
+from my_gpaw.mpi import world
 
 
 @pytest.mark.later

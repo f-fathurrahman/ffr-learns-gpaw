@@ -1,9 +1,9 @@
 # Test of the handling of degenerate bands in response code
 import pytest
 from ase import Atoms
-from gpaw import GPAW, PW
-from gpaw.response.df import DielectricFunction
-from gpaw.test import findpeak, equal
+from my_gpaw import GPAW, PW
+from my_gpaw.response.df import DielectricFunction
+from my_gpaw.test import findpeak, equal
 import numpy as np
 
 

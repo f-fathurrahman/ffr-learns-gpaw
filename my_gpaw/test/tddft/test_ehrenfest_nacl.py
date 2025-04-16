@@ -1,8 +1,8 @@
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.tddft import TDDFT
-from gpaw.tddft.ehrenfest import EhrenfestVelocityVerlet
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.tddft import TDDFT
+from my_gpaw.tddft.ehrenfest import EhrenfestVelocityVerlet
+from my_gpaw.test import equal
 import pytest
 
 

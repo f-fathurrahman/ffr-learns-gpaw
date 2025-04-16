@@ -1,5 +1,5 @@
 import numpy as np
-from gpaw.utilities.ewald import Ewald
+from my_gpaw.utilities.ewald import Ewald
 
 
 def test_utilities_ewald():

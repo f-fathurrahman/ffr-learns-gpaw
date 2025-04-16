@@ -1,5 +1,5 @@
 from ase import Atoms
-from gpaw import GPAW, FermiDirac
+from my_gpaw import GPAW, FermiDirac
 
 
 def test_symmetry_usesymm():

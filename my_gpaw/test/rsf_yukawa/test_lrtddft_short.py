@@ -4,13 +4,13 @@ from ase import Atoms
 from ase.units import Hartree
 
 import _gpaw
-from gpaw import GPAW
-from gpaw.cluster import Cluster
-from gpaw.eigensolvers import RMMDIIS
-from gpaw.lrtddft import LrTDDFT
-from gpaw.mpi import world
-from gpaw.occupations import FermiDirac
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
+from my_gpaw.eigensolvers import RMMDIIS
+from my_gpaw.lrtddft import LrTDDFT
+from my_gpaw.mpi import world
+from my_gpaw.occupations import FermiDirac
+from my_gpaw.test import equal
 
 
 @pytest.mark.hybrids

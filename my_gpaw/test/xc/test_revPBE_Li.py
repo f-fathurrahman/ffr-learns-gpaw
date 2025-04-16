@@ -1,7 +1,7 @@
 from ase import Atoms
 from ase.units import Hartree
-from gpaw import GPAW, PoissonSolver, FermiDirac, Davidson, MixerSum
-from gpaw.test import equal
+from my_gpaw import GPAW, PoissonSolver, FermiDirac, Davidson, MixerSum
+from my_gpaw.test import equal
 
 
 def test_xc_revPBE_Li():

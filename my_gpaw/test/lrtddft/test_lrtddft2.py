@@ -4,9 +4,9 @@ from io import StringIO
 from ase.io import read
 from ase.units import Ha
 
-from gpaw import GPAW, FermiDirac
-from gpaw.lrtddft import LrTDDFT
-from gpaw.lrtddft2 import LrTDDFT2
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.lrtddft import LrTDDFT
+from my_gpaw.lrtddft2 import LrTDDFT2
 
 
 jend = 12  # LUMO

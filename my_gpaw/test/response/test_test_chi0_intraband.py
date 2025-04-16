@@ -1,9 +1,9 @@
 import numpy as np
 import pytest
 
-from gpaw import GPAW, PW
-from gpaw.test import equal, findpeak
-from gpaw.response.df import DielectricFunction
+from my_gpaw import GPAW, PW
+from my_gpaw.test import equal, findpeak
+from my_gpaw.response.df import DielectricFunction
 from ase.build import bulk
 from ase.units import Bohr, Hartree
 

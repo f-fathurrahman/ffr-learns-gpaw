@@ -1,10 +1,10 @@
 import pytest
 import numpy as np
 from ase.build import bulk
-from gpaw import GPAW, FermiDirac
-from gpaw.response.bse import BSE, read_bse_eigenvalues
-from gpaw.response.df import read_response_function
-from gpaw.test import findpeak, equal
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.response.bse import BSE, read_bse_eigenvalues
+from my_gpaw.response.df import read_response_function
+from my_gpaw.test import findpeak, equal
 
 
 @pytest.mark.response

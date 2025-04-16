@@ -1,13 +1,13 @@
 import numpy as np
 import pytest
 from ase.build import molecule
-from gpaw import GPAW
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
-from gpaw.mpi import world
-from gpaw.poisson import PoissonSolver
-from gpaw.tddft.spectrum import photoabsorption_spectrum
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
+from my_gpaw.mpi import world
+from my_gpaw.poisson import PoissonSolver
+from my_gpaw.tddft.spectrum import photoabsorption_spectrum
+from my_gpaw.test import equal
 
 
 @pytest.mark.rttddft
@@ -36,7 +36,7 @@ def test_lcaotddft_simple(in_tmp_dir):
     # Test dipole moment
     data_i = np.loadtxt('dm.dat')[:, 2:].ravel()
     if 0:
-        from gpaw.test import print_reference
+        from my_gpaw.test import print_reference
         print_reference(data_i, 'ref_i', '%.12le')
 
     ref_i = [-9.383700894739e-16,
@@ -61,7 +61,7 @@ def test_lcaotddft_simple(in_tmp_dir):
     # Test spectrum
     data_i = np.loadtxt('spec.dat').ravel()
     if 0:
-        from gpaw.test import print_reference
+        from my_gpaw.test import print_reference
         print_reference(data_i, 'ref_i', '%.12le')
 
     ref_i = [0.000000000000e+00,

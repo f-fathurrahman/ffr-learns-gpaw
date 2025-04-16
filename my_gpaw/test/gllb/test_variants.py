@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 from ase.build import bulk
-from gpaw import GPAW
-from gpaw.test import gen
+from my_gpaw import GPAW
+from my_gpaw.test import gen
 
 
 def run(xc):

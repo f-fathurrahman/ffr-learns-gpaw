@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
-from gpaw.response.g0w0 import G0W0
-from gpaw.mpi import world
+from my_gpaw.response.g0w0 import G0W0
+from my_gpaw.mpi import world
 
 
 class FragileG0W0(G0W0):

@@ -2,7 +2,7 @@
 import pytest
 from ase.dft.bandgap import bandgap
 from ase.build import bulk
-from gpaw import GPAW, PW, Mixer
+from my_gpaw import GPAW, PW, Mixer
 
 
 @pytest.mark.later

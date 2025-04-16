@@ -5,14 +5,14 @@ import time
 from ase.build import bulk
 from ase.parallel import parprint
 
-from gpaw import GPAW, PW
-from gpaw.test import findpeak, equal
-from gpaw.mpi import size, world
+from my_gpaw import GPAW, PW
+from my_gpaw.test import findpeak, equal
+from my_gpaw.mpi import size, world
 
-from gpaw.response import ResponseGroundStateAdapter
-from gpaw.response.chiks import ChiKSCalculator
-from gpaw.response.susceptibility import ChiFactory
-from gpaw.response.pair_functions import read_susceptibility_array
+from my_gpaw.response import ResponseGroundStateAdapter
+from my_gpaw.response.chiks import ChiKSCalculator
+from my_gpaw.response.susceptibility import ChiFactory
+from my_gpaw.response.pair_functions import read_susceptibility_array
 
 
 @pytest.mark.kspair

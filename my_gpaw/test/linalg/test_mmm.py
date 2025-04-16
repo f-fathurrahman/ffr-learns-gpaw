@@ -1,6 +1,6 @@
 """Test BLAS matrix-matrix-multiplication interface."""
 import numpy as np
-from gpaw.utilities.blas import mmm
+from my_gpaw.utilities.blas import mmm
 
 
 def test_linalg_mmm():

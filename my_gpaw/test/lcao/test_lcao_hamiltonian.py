@@ -2,11 +2,11 @@ import numpy as np
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW, restart
-from gpaw.atom.basis import BasisMaker
-from gpaw.lcao.tools import get_lcao_hamiltonian
-from gpaw.mpi import world
-from gpaw.test import equal
+from my_gpaw import GPAW, restart
+from my_gpaw.atom.basis import BasisMaker
+from my_gpaw.lcao.tools import get_lcao_hamiltonian
+from my_gpaw.mpi import world
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

@@ -1,6 +1,6 @@
 import pytest
 from ase.parallel import parprint
-from gpaw import GPAW
+from my_gpaw import GPAW
 
 
 @pytest.mark.later

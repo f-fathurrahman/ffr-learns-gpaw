@@ -3,7 +3,7 @@ from time import time
 import numpy as np
 import pytest
 
-from gpaw.utilities.blas import mmm
+from my_gpaw.utilities.blas import mmm
 
 
 @pytest.mark.ci

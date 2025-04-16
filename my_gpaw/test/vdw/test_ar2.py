@@ -1,9 +1,9 @@
 from math import sqrt
 import pytest
 from ase import Atoms
-from gpaw import GPAW, Mixer, Davidson
-from gpaw.test import equal
-from gpaw.xc.vdw import VDWFunctional
+from my_gpaw import GPAW, Mixer, Davidson
+from my_gpaw.test import equal
+from my_gpaw.xc.vdw import VDWFunctional
 
 
 @pytest.mark.libxc

@@ -1,9 +1,9 @@
 import pytest
 
-from gpaw.new.density import atomic_occupation_numbers
-from gpaw.setup import create_setup
-from gpaw.spinorbit import soc, projected_soc
-from gpaw.xc import XC
+from my_gpaw.new.density import atomic_occupation_numbers
+from my_gpaw.setup import create_setup
+from my_gpaw.spinorbit import soc, projected_soc
+from my_gpaw.xc import XC
 
 
 def test_rad_pot():

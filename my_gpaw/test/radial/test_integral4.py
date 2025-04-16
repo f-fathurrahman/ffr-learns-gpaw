@@ -1,7 +1,7 @@
 import pytest
 import numpy.random as ra
-from gpaw.setup import create_setup
-from gpaw.xc import XC
+from my_gpaw.setup import create_setup
+from my_gpaw.xc import XC
 
 
 @pytest.mark.ci

@@ -3,10 +3,10 @@ from itertools import product
 import pytest
 import numpy as np
 
-from gpaw.response.integrators import TetrahedronIntegrator, Integrand
-from gpaw.response.frequencies import FrequencyGridDescriptor
+from my_gpaw.response.integrators import TetrahedronIntegrator, Integrand
+from my_gpaw.response.frequencies import FrequencyGridDescriptor
 
-from gpaw.response import ResponseContext
+from my_gpaw.response import ResponseContext
 
 
 class MyIntegrand(Integrand):

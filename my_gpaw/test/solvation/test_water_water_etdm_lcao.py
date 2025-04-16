@@ -1,10 +1,10 @@
-from gpaw import GPAW
-from gpaw.cluster import Cluster
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
+from my_gpaw.test import equal
 from ase.build import molecule
 from ase.units import mol, kcal
-from gpaw.directmin.etdm import ETDM
-from gpaw.solvation import SolvationGPAW, get_HW14_water_kwargs
+from my_gpaw.directmin.etdm import ETDM
+from my_gpaw.solvation import SolvationGPAW, get_HW14_water_kwargs
 
 
 def test_solvation_water_water_etdm_lcao():

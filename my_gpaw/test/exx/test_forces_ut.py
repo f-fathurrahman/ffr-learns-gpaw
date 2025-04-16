@@ -3,22 +3,22 @@ import numpy as np
 from ase import Atoms
 from ase.units import Ha, Bohr
 
-from gpaw.kpt_descriptor import KPointDescriptor
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.kpoint import KPoint
-from gpaw.symmetry import Symmetry
-from gpaw.wavefunctions.arrays import PlaneWaveExpansionWaveFunctions
-from gpaw.pw.descriptor import PWDescriptor
-from gpaw.pw.lfc import PWLFC
-from gpaw.projections import Projections
-from gpaw.mpi import world
-from gpaw.spline import Spline
-from gpaw.hybrids.energy import calculate_energy
-from gpaw.hybrids.forces import calculate_forces
-from gpaw.hybrids.coulomb import coulomb_interaction
-from gpaw.hybrids.paw import calculate_paw_stuff
-from gpaw.hybrids.symmetry import Symmetry as Sym
-from gpaw.hybrids.kpts import get_kpt
+from my_gpaw.kpt_descriptor import KPointDescriptor
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.kpoint import KPoint
+from my_gpaw.symmetry import Symmetry
+from my_gpaw.wavefunctions.arrays import PlaneWaveExpansionWaveFunctions
+from my_gpaw.pw.descriptor import PWDescriptor
+from my_gpaw.pw.lfc import PWLFC
+from my_gpaw.projections import Projections
+from my_gpaw.mpi import world
+from my_gpaw.spline import Spline
+from my_gpaw.hybrids.energy import calculate_energy
+from my_gpaw.hybrids.forces import calculate_forces
+from my_gpaw.hybrids.coulomb import coulomb_interaction
+from my_gpaw.hybrids.paw import calculate_paw_stuff
+from my_gpaw.hybrids.symmetry import Symmetry as Sym
+from my_gpaw.hybrids.kpts import get_kpt
 
 
 N = 20

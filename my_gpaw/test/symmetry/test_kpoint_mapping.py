@@ -1,6 +1,6 @@
-from gpaw.symmetry import map_k_points_fast, map_k_points
+from my_gpaw.symmetry import map_k_points_fast, map_k_points
 from ase.dft.kpoints import monkhorst_pack
-from gpaw import GPAW
+from my_gpaw import GPAW
 from ase.build import bulk
 import numpy as np
 from itertools import product

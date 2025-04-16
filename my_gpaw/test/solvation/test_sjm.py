@@ -1,11 +1,11 @@
-from gpaw.solvation.sjm import SJM, SJMPower12Potential
+from my_gpaw.solvation.sjm import SJM, SJMPower12Potential
 
 from ase.build import fcc111
-from gpaw import FermiDirac
+from my_gpaw import FermiDirac
 
 # Import solvation modules
 from ase.data.vdw import vdw_radii
-from gpaw.solvation import (
+from my_gpaw.solvation import (
     EffectivePotentialCavity,
     LinearDielectric,
     GradientSurface,

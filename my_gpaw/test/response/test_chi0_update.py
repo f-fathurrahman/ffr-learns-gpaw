@@ -5,8 +5,8 @@ import numpy as np
 # Script modules
 from ase.build import bulk
 
-from gpaw import GPAW, PW, FermiDirac
-from gpaw.response.chi0 import Chi0
+from my_gpaw import GPAW, PW, FermiDirac
+from my_gpaw.response.chi0 import Chi0
 
 
 @pytest.mark.response

@@ -1,7 +1,7 @@
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.test import equal
-from gpaw.xc.tools import vxc
+from my_gpaw import GPAW
+from my_gpaw.test import equal
+from my_gpaw.xc.tools import vxc
 
 
 def test_xc_degeneracy():

@@ -5,15 +5,15 @@ from itertools import product, combinations
 
 import numpy as np
 import pytest
-from gpaw import GPAW
-from gpaw.mpi import world
-from gpaw.response import ResponseContext, ResponseGroundStateAdapter
-from gpaw.response.frequencies import ComplexFrequencyDescriptor
-from gpaw.response.chiks import ChiKSCalculator
-from gpaw.response.chi0 import Chi0
-from gpaw.response.pair_functions import (get_inverted_pw_mapping,
+from my_gpaw import GPAW
+from my_gpaw.mpi import world
+from my_gpaw.response import ResponseContext, ResponseGroundStateAdapter
+from my_gpaw.response.frequencies import ComplexFrequencyDescriptor
+from my_gpaw.response.chiks import ChiKSCalculator
+from my_gpaw.response.chi0 import Chi0
+from my_gpaw.response.pair_functions import (get_inverted_pw_mapping,
                                           get_pw_coordinates)
-from gpaw.test.conftest import response_band_cutoff
+from my_gpaw.test.conftest import response_band_cutoff
 
 # ---------- chiks parametrization ---------- #
 

@@ -2,11 +2,11 @@ from typing import Callable
 
 import _gpaw
 import numpy as np
-from gpaw.core.plane_waves import PlaneWaveExpansions
-from gpaw.core.uniform_grid import UniformGridFunctions
-from gpaw.gpu import cupy as cp
-from gpaw.new import zip
-from gpaw.new.hamiltonian import Hamiltonian
+from my_gpaw.core.plane_waves import PlaneWaveExpansions
+from my_gpaw.core.uniform_grid import UniformGridFunctions
+from my_gpaw.gpu import cupy as cp
+from my_gpaw.new import zip
+from my_gpaw.new.hamiltonian import Hamiltonian
 
 
 class PWHamiltonian(Hamiltonian):

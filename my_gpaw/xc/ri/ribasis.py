@@ -1,4 +1,4 @@
-from gpaw.basis_data import BasisFunction
+from my_gpaw.basis_data import BasisFunction
 from collections import defaultdict
 
 

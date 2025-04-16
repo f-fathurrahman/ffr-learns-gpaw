@@ -1,9 +1,9 @@
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW
-from gpaw.tddft import TDDFT, DipoleMomentWriter, photoabsorption_spectrum
-from gpaw.tddft.abc import PML, LinearAbsorbingBoundary, P4AbsorbingBoundary
+from my_gpaw import GPAW
+from my_gpaw.tddft import TDDFT, DipoleMomentWriter, photoabsorption_spectrum
+from my_gpaw.tddft.abc import PML, LinearAbsorbingBoundary, P4AbsorbingBoundary
 
 
 @pytest.mark.later

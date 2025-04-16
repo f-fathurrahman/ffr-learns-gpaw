@@ -10,8 +10,8 @@ https://doi.org/10.1016/j.cpc.2021.108047
 """
 
 import numpy as np
-from gpaw.lcao.eigensolver import DirectLCAO
-from gpaw.utilities.tools import tri2full
+from my_gpaw.lcao.eigensolver import DirectLCAO
+from my_gpaw.utilities.tools import tri2full
 
 
 class DirectMinLCAO(DirectLCAO):

@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from gpaw.response.g0w0 import G0W0
+from my_gpaw.response.g0w0 import G0W0
 
 
 reference_kn = [[0.69806561, 2.58472004, 2.58472066,

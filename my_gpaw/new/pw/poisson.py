@@ -2,10 +2,10 @@ from math import pi
 
 import numpy as np
 from ase.units import Bohr, Ha
-from gpaw.core import PlaneWaves, UniformGrid
-from gpaw.core.plane_waves import PlaneWaveExpansions
-from gpaw.new import cached_property
-from gpaw.new.poisson import PoissonSolver
+from my_gpaw.core import PlaneWaves, UniformGrid
+from my_gpaw.core.plane_waves import PlaneWaveExpansions
+from my_gpaw.new import cached_property
+from my_gpaw.new.poisson import PoissonSolver
 from scipy.special import erf
 
 

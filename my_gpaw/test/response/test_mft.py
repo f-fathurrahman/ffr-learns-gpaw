@@ -7,18 +7,18 @@ import pytest
 import numpy as np
 
 # Script modules
-from gpaw import GPAW
+from my_gpaw import GPAW
 
-from gpaw.response import ResponseGroundStateAdapter, ResponseContext
-from gpaw.response.chiks import ChiKSCalculator
-from gpaw.response.localft import LocalFTCalculator, LocalPAWFTCalculator
-from gpaw.response.mft import IsotropicExchangeCalculator
-from gpaw.response.site_kernels import (SphericalSiteKernels,
+from my_gpaw.response import ResponseGroundStateAdapter, ResponseContext
+from my_gpaw.response.chiks import ChiKSCalculator
+from my_gpaw.response.localft import LocalFTCalculator, LocalPAWFTCalculator
+from my_gpaw.response.mft import IsotropicExchangeCalculator
+from my_gpaw.response.site_kernels import (SphericalSiteKernels,
                                         CylindricalSiteKernels,
                                         ParallelepipedicSiteKernels)
-from gpaw.response.heisenberg import (calculate_single_site_magnon_energies,
+from my_gpaw.response.heisenberg import (calculate_single_site_magnon_energies,
                                       calculate_fm_magnon_energies)
-from gpaw.test.conftest import response_band_cutoff
+from my_gpaw.test.conftest import response_band_cutoff
 
 
 @pytest.mark.response

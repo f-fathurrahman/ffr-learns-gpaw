@@ -2,10 +2,10 @@ import pytest
 from ase import Atoms
 from ase.optimize import BFGS
 
-from gpaw import PW, SCIPY_VERSION
-from gpaw.new.ase_interface import GPAW as NewGPAW
-from gpaw.calculator import GPAW as OldGPAW
-from gpaw.mpi import world
+from my_gpaw import PW, SCIPY_VERSION
+from my_gpaw.new.ase_interface import GPAW as NewGPAW
+from my_gpaw.calculator import GPAW as OldGPAW
+from my_gpaw.mpi import world
 
 
 @pytest.mark.parametrize(

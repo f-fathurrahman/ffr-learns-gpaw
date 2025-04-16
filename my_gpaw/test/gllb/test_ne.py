@@ -1,10 +1,10 @@
 import pytest
 from ase import Atoms, Atom
-from gpaw import GPAW
-from gpaw.atom.generator import Generator
-from gpaw.atom.configurations import parameters
-from gpaw.test import equal
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.atom.generator import Generator
+from my_gpaw.atom.configurations import parameters
+from my_gpaw.test import equal
+from my_gpaw.mpi import world
 
 
 @pytest.mark.gllb

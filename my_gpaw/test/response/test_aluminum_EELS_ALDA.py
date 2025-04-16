@@ -5,10 +5,10 @@ import numpy as np
 from ase.build import bulk
 from ase.parallel import parprint
 
-from gpaw import GPAW, PW
-from gpaw.test import findpeak
-from gpaw.response.df import DielectricFunction, read_response_function
-from gpaw.mpi import size, world
+from my_gpaw import GPAW, PW
+from my_gpaw.test import findpeak
+from my_gpaw.response.df import DielectricFunction, read_response_function
+from my_gpaw.mpi import size, world
 
 
 @pytest.mark.response

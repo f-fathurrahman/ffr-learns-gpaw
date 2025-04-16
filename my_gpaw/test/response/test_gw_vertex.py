@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from gpaw.response.g0w0 import G0W0
+from my_gpaw.response.g0w0 import G0W0
 
 
 @pytest.mark.response

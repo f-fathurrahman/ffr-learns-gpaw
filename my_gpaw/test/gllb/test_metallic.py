@@ -1,7 +1,7 @@
 import pytest
 import numpy as np
 from ase.build import bulk
-from gpaw import GPAW
+from my_gpaw import GPAW
 
 
 def run(xc, repeat=1):

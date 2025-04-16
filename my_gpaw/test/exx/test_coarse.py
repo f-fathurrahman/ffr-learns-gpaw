@@ -4,9 +4,9 @@ from ase import Atoms
 from ase.utils.timing import Timer
 import pytest
 
-from gpaw import GPAW
-from gpaw.test import equal
-from gpaw.xc.hybrid import HybridXC
+from my_gpaw import GPAW
+from my_gpaw.test import equal
+from my_gpaw.xc.hybrid import HybridXC
 
 
 @pytest.mark.libxc

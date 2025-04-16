@@ -1,10 +1,10 @@
 import numpy as np
 from ase.build import molecule
 from ase.data.vdw import vdw_radii
-from gpaw import GPAW
-from gpaw.cluster import Cluster
-from gpaw.test import equal
-from gpaw.solvation import (SolvationGPAW, EffectivePotentialCavity,
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
+from my_gpaw.test import equal
+from my_gpaw.solvation import (SolvationGPAW, EffectivePotentialCavity,
                             Power12Potential, LinearDielectric)
 
 vdw_radii = vdw_radii.copy()

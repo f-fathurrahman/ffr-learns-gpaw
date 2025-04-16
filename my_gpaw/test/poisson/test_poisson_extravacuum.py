@@ -1,11 +1,11 @@
 import pytest
-from gpaw.mpi import world
+from my_gpaw.mpi import world
 import time
 import numpy as np
 
-from gpaw.poisson import PoissonSolver
-from gpaw.poisson_extravacuum import ExtraVacuumPoissonSolver
-from gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.poisson import PoissonSolver
+from my_gpaw.poisson_extravacuum import ExtraVacuumPoissonSolver
+from my_gpaw.grid_descriptor import GridDescriptor
 
 
 pytestmark = pytest.mark.skipif(world.size > 4,
@@ -22,7 +22,7 @@ def test_poisson_poisson_extravacuum():
             res = {True: 'ok', False: 'not ok'}[abs(x - y) < tol]
             print('%.10e vs %.10e at %.10e is %s' % (x, y, tol, res))
     else:
-        from gpaw.test import equal
+        from my_gpaw.test import equal
 
     # Model grid
     N = 16

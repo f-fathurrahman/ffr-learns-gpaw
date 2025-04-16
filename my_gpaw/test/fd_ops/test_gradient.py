@@ -1,7 +1,7 @@
-from gpaw.fd_operators import Gradient, FDOperator
+from my_gpaw.fd_operators import Gradient, FDOperator
 import numpy as np
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.mpi import world
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.mpi import world
 
 
 def test_fd_ops_gradient():

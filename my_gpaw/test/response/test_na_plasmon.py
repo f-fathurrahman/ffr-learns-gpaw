@@ -2,11 +2,11 @@ import pytest
 import numpy as np
 
 from ase import Atoms
-from gpaw import GPAW, PW
-from gpaw.mpi import world
-from gpaw.test import equal, findpeak
-from gpaw.utilities import compiled_with_sl
-from gpaw.response.df import DielectricFunction
+from my_gpaw import GPAW, PW
+from my_gpaw.mpi import world
+from my_gpaw.test import equal, findpeak
+from my_gpaw.utilities import compiled_with_sl
+from my_gpaw.response.df import DielectricFunction
 
 # Comparing the plasmon peaks found in bulk sodium for two different
 # atomic structures. Testing for idential plasmon peaks. Not using

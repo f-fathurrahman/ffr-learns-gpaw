@@ -1,6 +1,6 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW, PW
+from my_gpaw import GPAW, PW
 
 
 @pytest.mark.libxc
@@ -58,5 +58,5 @@ if __name__ == '__main__':
     prof.enable()
     test_exx_double_cell(1)
     prof.disable()
-    from gpaw.mpi import rank, size
+    from my_gpaw.mpi import rank, size
     prof.dump_stats(f'prof-{size}.{rank}')

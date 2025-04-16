@@ -1,13 +1,13 @@
 import numpy as np
 import pytest
 from ase.build import molecule
-from gpaw import GPAW
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
-from gpaw.lcaotddft.wfwriter import WaveFunctionWriter
-from gpaw.mpi import world
-from gpaw.tddft.spectrum import photoabsorption_spectrum
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
+from my_gpaw.lcaotddft.wfwriter import WaveFunctionWriter
+from my_gpaw.mpi import world
+from my_gpaw.tddft.spectrum import photoabsorption_spectrum
+from my_gpaw.test import equal
 
 
 @pytest.mark.rttddft

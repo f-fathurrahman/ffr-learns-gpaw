@@ -1,12 +1,12 @@
 """Check for tunability of gamma for yukawa potential."""
 import pytest
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.cluster import Cluster
-from gpaw.eigensolvers import RMMDIIS
-from gpaw.xc.hybrid import HybridXC
-from gpaw.occupations import FermiDirac
-from gpaw.test import gen
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
+from my_gpaw.eigensolvers import RMMDIIS
+from my_gpaw.xc.hybrid import HybridXC
+from my_gpaw.occupations import FermiDirac
+from my_gpaw.test import gen
 import _gpaw
 
 

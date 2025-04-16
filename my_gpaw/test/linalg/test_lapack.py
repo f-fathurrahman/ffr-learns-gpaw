@@ -1,7 +1,7 @@
 import numpy as np
 
-from gpaw.test import equal
-from gpaw.lrtddft.apmb import sqrt_matrix
+from my_gpaw.test import equal
+from my_gpaw.lrtddft.apmb import sqrt_matrix
 
 # check sqrt of a matrix
 

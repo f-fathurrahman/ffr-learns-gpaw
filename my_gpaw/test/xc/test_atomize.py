@@ -1,8 +1,8 @@
 import pytest
 from ase import Atom, Atoms
-from gpaw import GPAW, Davidson, Mixer
-from gpaw.test import equal
-from gpaw.xc.hybrid import HybridXC
+from my_gpaw import GPAW, Davidson, Mixer
+from my_gpaw.test import equal
+from my_gpaw.xc.hybrid import HybridXC
 
 
 @pytest.mark.mgga

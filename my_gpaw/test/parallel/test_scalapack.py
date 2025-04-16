@@ -11,12 +11,12 @@ import pytest
 import numpy as np
 from scipy.linalg import eigh, inv, cholesky
 
-from gpaw.mpi import world, rank
-from gpaw.blacs import BlacsGrid, Redistributor
-from gpaw.utilities.tools import tri2full
-from gpaw.utilities import compiled_with_sl
-from gpaw.utilities.blas import rk
-from gpaw.utilities.scalapack import \
+from my_gpaw.mpi import world, rank
+from my_gpaw.blacs import BlacsGrid, Redistributor
+from my_gpaw.utilities.tools import tri2full
+from my_gpaw.utilities import compiled_with_sl
+from my_gpaw.utilities.blas import rk
+from my_gpaw.utilities.scalapack import \
     scalapack_general_diagonalize_dc, \
     scalapack_diagonalize_dc, \
     scalapack_inverse_cholesky, \

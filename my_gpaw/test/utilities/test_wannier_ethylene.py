@@ -5,10 +5,10 @@ import pytest
 import numpy as np
 from ase import Atoms
 
-from gpaw import GPAW
-from gpaw.mpi import size
-from gpaw.wannier.overlaps import calculate_overlaps
-from gpaw.wannier.edmiston_ruedenberg import localize
+from my_gpaw import GPAW
+from my_gpaw.mpi import size
+from my_gpaw.wannier.overlaps import calculate_overlaps
+from my_gpaw.wannier.edmiston_ruedenberg import localize
 
 pytestmark = pytest.mark.ci
 

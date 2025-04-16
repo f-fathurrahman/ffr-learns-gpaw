@@ -1,12 +1,12 @@
 import numpy as np
 import pytest
 from ase import Atoms
-from gpaw.fdtd.poisson_fdtd import QSFDTD
-from gpaw.fdtd.polarizable_material import (PermittivityPlus,
+from my_gpaw.fdtd.poisson_fdtd import QSFDTD
+from my_gpaw.fdtd.polarizable_material import (PermittivityPlus,
                                             PolarizableMaterial,
                                             PolarizableSphere)
-from gpaw.mpi import world
-from gpaw.test import equal
+from my_gpaw.mpi import world
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

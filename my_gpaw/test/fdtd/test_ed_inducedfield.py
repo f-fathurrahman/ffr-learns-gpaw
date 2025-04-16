@@ -1,18 +1,18 @@
 import numpy as np
 import pytest
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.fdtd.poisson_fdtd import FDTDPoissonSolver
-from gpaw.fdtd.polarizable_material import (PermittivityPlus,
+from my_gpaw import GPAW
+from my_gpaw.fdtd.poisson_fdtd import FDTDPoissonSolver
+from my_gpaw.fdtd.polarizable_material import (PermittivityPlus,
                                             PolarizableMaterial,
                                             PolarizableSphere)
-from gpaw.inducedfield.inducedfield_base import BaseInducedField
-from gpaw.inducedfield.inducedfield_fdtd import (
+from my_gpaw.inducedfield.inducedfield_base import BaseInducedField
+from my_gpaw.inducedfield.inducedfield_fdtd import (
     FDTDInducedField, calculate_hybrid_induced_field)
-from gpaw.inducedfield.inducedfield_tddft import TDDFTInducedField
-from gpaw.mpi import world
-from gpaw.tddft import TDDFT, DipoleMomentWriter
-from gpaw.test import equal
+from my_gpaw.inducedfield.inducedfield_tddft import TDDFTInducedField
+from my_gpaw.mpi import world
+from my_gpaw.tddft import TDDFT, DipoleMomentWriter
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

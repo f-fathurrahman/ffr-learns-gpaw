@@ -1,9 +1,9 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.mixer import Mixer
-from gpaw.test import equal
-from gpaw.test import gen
+from my_gpaw import GPAW
+from my_gpaw.mixer import Mixer
+from my_gpaw.test import equal
+from my_gpaw.test import gen
 
 
 @pytest.mark.ofdft

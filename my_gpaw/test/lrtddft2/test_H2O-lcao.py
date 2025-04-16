@@ -3,9 +3,9 @@ import numpy as np
 
 from ase.build import molecule
 
-from gpaw import GPAW
-from gpaw.lrtddft2 import LrTDDFT2
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.lrtddft2 import LrTDDFT2
+from my_gpaw.test import equal
 
 
 @pytest.mark.lrtddft

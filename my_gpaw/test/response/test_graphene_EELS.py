@@ -4,9 +4,9 @@ import pytest
 from ase.lattice.hexagonal import Graphene
 from ase.parallel import parprint as pp
 
-from gpaw import GPAW
-from gpaw.response.df import DielectricFunction
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.response.df import DielectricFunction
+from my_gpaw.mpi import world
 
 
 @pytest.mark.response

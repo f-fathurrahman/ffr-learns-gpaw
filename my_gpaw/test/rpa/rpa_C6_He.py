@@ -1,14 +1,14 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW, PW
-from gpaw.mpi import serial_comm
-from gpaw.test import equal
+from my_gpaw import GPAW, PW
+from my_gpaw.mpi import serial_comm
+from my_gpaw.test import equal
 
 
 @pytest.mark.response
 @pytest.mark.skip(reason='TODO')
 def test_rpa_C6_He():
-    from gpaw.xc.rpa_correlation_energy import RPACorrelation
+    from my_gpaw.xc.rpa_correlation_energy import RPACorrelation
     ecut = 50
 
     He = Atoms('He')

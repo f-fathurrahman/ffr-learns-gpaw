@@ -9,12 +9,12 @@ import numpy as np
 # Script modules
 from ase.build import bulk
 
-from gpaw import GPAW, PW, FermiDirac
-from gpaw.response.tool import (get_bz_transitions,
+from my_gpaw import GPAW, PW, FermiDirac
+from my_gpaw.response.tool import (get_bz_transitions,
                                 get_chi0_integrand,
                                 get_degeneracy_matrix,
                                 get_individual_transition_strengths)
-from gpaw.test import equal
+from my_gpaw.test import equal
 
 
 @pytest.mark.response

@@ -96,7 +96,7 @@ class SymmetryChecker:
                    calc,
                    band: int,
                    spin: int = 0) -> Dict[str, Any]:
-        """Check wave function from GPAW calculation."""
+        """Check wave function from my_gpaw calculation."""
         wfs = calc.get_pseudo_wave_function(band, spin=spin)
         grid_vectors = (calc.atoms.cell.T / wfs.shape).T
         return self.check_function(wfs, grid_vectors)
@@ -107,7 +107,7 @@ class SymmetryChecker:
                           n2: int,
                           spin: int = 0,
                           output: str = '-') -> None:
-        """Check several wave functions from GPAW calculation."""
+        """Check several wave functions from my_gpaw calculation."""
         lines = ['band    energy     norm  normcut     best     ' +
                  ''.join(f'{sym:8}' for sym in self.group.symmetries)]
         n2 = n2 or calc.get_number_of_bands()

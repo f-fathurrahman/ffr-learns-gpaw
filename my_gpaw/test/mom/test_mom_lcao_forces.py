@@ -2,8 +2,8 @@ import numpy as np
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW
-from gpaw.mom import prepare_mom_calculation
+from my_gpaw import GPAW
+from my_gpaw.mom import prepare_mom_calculation
 
 
 @pytest.mark.mom

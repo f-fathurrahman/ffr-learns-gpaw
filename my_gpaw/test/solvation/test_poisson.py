@@ -5,14 +5,14 @@ from ase.units import Bohr
 import numpy as np
 from scipy.special import erf
 
-from gpaw.solvation.poisson import (WeightedFDPoissonSolver,
+from my_gpaw.solvation.poisson import (WeightedFDPoissonSolver,
                                     ADM12PoissonSolver,
                                     PolarizationPoissonSolver)
-from gpaw.solvation.dielectric import Dielectric
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.utilities.gauss import Gaussian
-from gpaw.fd_operators import Gradient
-from gpaw.test import equal
+from my_gpaw.solvation.dielectric import Dielectric
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.utilities.gauss import Gaussian
+from my_gpaw.fd_operators import Gradient
+from my_gpaw.test import equal
 
 nn = 3
 accuracy = 2e-10

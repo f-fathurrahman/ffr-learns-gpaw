@@ -3,16 +3,16 @@ import pytest
 
 from ase import Atoms
 
-from gpaw import GPAW
-from gpaw.mpi import world, serial_comm
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.lcaotddft.densitymatrix import DensityMatrix
-from gpaw.lcaotddft.magneticmomentwriter import MagneticMomentWriter
-from gpaw.lcaotddft.magneticmomentwriter import parse_header
-from gpaw.tddft.spectrum import rotatory_strength_spectrum
-from gpaw.tddft.units import as_to_au, eV_to_au, au_to_eV, rot_au_to_cgs
+from my_gpaw import GPAW
+from my_gpaw.mpi import world, serial_comm
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.lcaotddft.densitymatrix import DensityMatrix
+from my_gpaw.lcaotddft.magneticmomentwriter import MagneticMomentWriter
+from my_gpaw.lcaotddft.magneticmomentwriter import parse_header
+from my_gpaw.tddft.spectrum import rotatory_strength_spectrum
+from my_gpaw.tddft.units import as_to_au, eV_to_au, au_to_eV, rot_au_to_cgs
 
-from gpaw.test import only_on_master
+from my_gpaw.test import only_on_master
 from . import parallel_options, check_txt_data, copy_and_cut_file
 
 pytestmark = pytest.mark.usefixtures('module_tmp_path')
@@ -123,7 +123,7 @@ def test_magnetic_moment_restart(initialize_system, module_tmp_path, parallel,
 
 @only_on_master(world)
 def test_spectrum(in_tmp_dir):
-    from gpaw.utilities.folder import Folder
+    from my_gpaw.utilities.folder import Folder
 
     # Parameters for test data
     kick_strength = 1e-5

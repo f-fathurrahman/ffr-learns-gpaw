@@ -2,10 +2,10 @@ import numpy as np
 import pytest
 from ase.parallel import parprint
 
-from gpaw import GPAW, restart
-from gpaw.elf import ELF
-from gpaw.mpi import rank
-from gpaw.test import equal
+from my_gpaw import GPAW, restart
+from my_gpaw.elf import ELF
+from my_gpaw.mpi import rank
+from my_gpaw.test import equal
 
 
 @pytest.mark.mgga

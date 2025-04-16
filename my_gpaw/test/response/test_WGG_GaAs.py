@@ -1,11 +1,11 @@
 import pytest
 import numpy as np
-from gpaw.response.coulomb_kernels import CoulombKernel
-from gpaw.response.pair import get_gs_and_context
-from gpaw import GPAW, PW, FermiDirac
-from gpaw.mpi import world
-from gpaw.response.chi0 import Chi0
-from gpaw.response.screened_interaction import initialize_w_calculator
+from my_gpaw.response.coulomb_kernels import CoulombKernel
+from my_gpaw.response.pair import get_gs_and_context
+from my_gpaw import GPAW, PW, FermiDirac
+from my_gpaw.mpi import world
+from my_gpaw.response.chi0 import Chi0
+from my_gpaw.response.screened_interaction import initialize_w_calculator
 from ase.build import bulk
 from ase import Atoms
 

@@ -1,8 +1,8 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.lrtddft import LrTDDFT
-from gpaw.lrtddft.spectrum import spectrum
+from my_gpaw import GPAW
+from my_gpaw.lrtddft import LrTDDFT
+from my_gpaw.lrtddft.spectrum import spectrum
 
 
 @pytest.mark.lrtddft

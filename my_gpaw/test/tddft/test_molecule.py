@@ -2,10 +2,10 @@ import pytest
 
 from ase.build import molecule
 
-from gpaw import GPAW
-from gpaw.tddft import TDDFT, DipoleMomentWriter
-from gpaw.mpi import world, serial_comm
-from gpaw.utilities import compiled_with_sl
+from my_gpaw import GPAW
+from my_gpaw.tddft import TDDFT, DipoleMomentWriter
+from my_gpaw.mpi import world, serial_comm
+from my_gpaw.utilities import compiled_with_sl
 
 from ..lcaotddft.test_molecule import only_on_master
 
@@ -42,7 +42,7 @@ def calculate_time_propagation(gpw_fpath, *,
 
 
 def check_dm(ref_fpath, fpath, rtol=1e-8, atol=1e-12):
-    from gpaw.tddft.spectrum import read_dipole_moment_file
+    from my_gpaw.tddft.spectrum import read_dipole_moment_file
 
     world.barrier()
     _, time_ref_t, _, dm_ref_tv = read_dipole_moment_file(ref_fpath)

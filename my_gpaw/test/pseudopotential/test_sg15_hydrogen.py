@@ -2,7 +2,7 @@
 # agrees with PAW for the H2 eigenvalue.
 
 from ase.build import molecule
-from gpaw import GPAW, Davidson, Mixer
+from my_gpaw import GPAW, Davidson, Mixer
 
 
 def test_pseudopotential_sg15_hydrogen(sg15_hydrogen):

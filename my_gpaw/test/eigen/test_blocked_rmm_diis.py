@@ -1,7 +1,7 @@
 from ase import Atom, Atoms
 
-from gpaw import GPAW, Mixer, RMMDIIS
-from gpaw.test import equal
+from my_gpaw import GPAW, Mixer, RMMDIIS
+from my_gpaw.test import equal
 
 
 def test_eigen_blocked_rmm_diis(in_tmp_dir):

@@ -3,12 +3,12 @@ from __future__ import annotations
 from typing import Dict, Tuple
 
 import numpy as np
-from gpaw.core.uniform_grid import UniformGridFunctions
-from gpaw.new import zip
-from gpaw.new.lcao.wave_functions import LCAOWaveFunctions
-from gpaw.new.potential import Potential
-from gpaw.typing import Array2D, Array3D
-from gpaw.utilities.blas import mmm
+from my_gpaw.core.uniform_grid import UniformGridFunctions
+from my_gpaw.new import zip
+from my_gpaw.new.lcao.wave_functions import LCAOWaveFunctions
+from my_gpaw.new.potential import Potential
+from my_gpaw.typing import Array2D, Array3D
+from my_gpaw.utilities.blas import mmm
 
 Derivatives = Tuple[Array3D,
                     Array3D,

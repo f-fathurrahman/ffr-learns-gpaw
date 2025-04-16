@@ -8,8 +8,8 @@ import pytest
 from ase.build import bulk
 from ase.parallel import world
 
-from gpaw import GPAW
-from gpaw.elph.electronphonon import ElectronPhononCoupling
+from my_gpaw import GPAW
+from my_gpaw.elph.electronphonon import ElectronPhononCoupling
 
 
 @pytest.mark.elph

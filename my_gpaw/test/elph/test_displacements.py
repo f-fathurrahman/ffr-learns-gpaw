@@ -10,9 +10,9 @@ import pytest
 from ase.build import bulk
 from ase.utils.filecache import MultiFileJSONCache
 
-from gpaw import GPAW
-from gpaw.elph import DisplacementRunner
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.elph import DisplacementRunner
+from my_gpaw.mpi import world
 
 
 @pytest.mark.elph

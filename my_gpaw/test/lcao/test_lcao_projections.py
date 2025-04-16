@@ -2,9 +2,9 @@ import numpy as np
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW
-from gpaw.lcao.projected_wannier import get_lcao_projections_HSP
-from gpaw.poisson import FDPoissonSolver
+from my_gpaw import GPAW
+from my_gpaw.lcao.projected_wannier import get_lcao_projections_HSP
+from my_gpaw.poisson import FDPoissonSolver
 
 
 @pytest.mark.later

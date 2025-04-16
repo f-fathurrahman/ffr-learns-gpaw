@@ -4,9 +4,9 @@ from ase import Atoms
 from ase.calculators.test import numeric_force
 
 import _gpaw
-from gpaw import GPAW, Mixer, PoissonSolver
-from gpaw.external import PointChargePotential
-from gpaw.test import equal
+from my_gpaw import GPAW, Mixer, PoissonSolver
+from my_gpaw.external import PointChargePotential
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

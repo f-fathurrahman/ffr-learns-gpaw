@@ -8,8 +8,8 @@ import pytest
 from ase import Atoms
 from ase.units import Bohr, Hartree
 
-from gpaw import GPAW
-from gpaw.external import PointChargePotential
+from my_gpaw import GPAW
+from my_gpaw.external import PointChargePotential
 
 
 @pytest.mark.later

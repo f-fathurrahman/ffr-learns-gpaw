@@ -1,8 +1,8 @@
 from ase import Atom, Atoms
-from gpaw import GPAW
-from gpaw.eigensolvers.davidson import Davidson
-from gpaw.mpi import size
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.eigensolvers.davidson import Davidson
+from my_gpaw.mpi import size
+from my_gpaw.test import equal
 
 
 def test_eigen_davidson():

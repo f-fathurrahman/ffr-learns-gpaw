@@ -3,9 +3,9 @@ files in functional should describe the derivatives of the
 KS functional
 """
 
-from gpaw.xc import xc_string_to_dict
+from my_gpaw.xc import xc_string_to_dict
 from ase.utils import basestring
-from gpaw.directmin.functional.ks import KSLCAO
+from my_gpaw.directmin.functional.ks import KSLCAO
 
 
 def get_functional(func):

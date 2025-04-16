@@ -2,8 +2,8 @@
 import pytest
 import numpy as np
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.mpi import world
 
 
 def test_parallel_kptpar(in_tmp_dir):

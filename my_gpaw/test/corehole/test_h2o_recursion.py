@@ -3,8 +3,8 @@ from math import cos, pi, sin
 import pytest
 from ase import Atom, Atoms
 
-from gpaw import GPAW, Davidson, Mixer, PoissonSolver
-from gpaw.test import equal, gen
+from my_gpaw import GPAW, Davidson, Mixer, PoissonSolver
+from my_gpaw.test import equal, gen
 
 
 @pytest.mark.later
@@ -29,7 +29,7 @@ def test_corehole_h2o_recursion(in_tmp_dir):
     e = H2O.get_potential_energy()
     niter = calc.get_number_of_iterations()
 
-    from gpaw.xas import RecursionMethod
+    from my_gpaw.xas import RecursionMethod
 
     if 1:
         r = RecursionMethod(calc)

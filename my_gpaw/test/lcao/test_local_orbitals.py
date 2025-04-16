@@ -1,8 +1,8 @@
 import pytest
 from ase.build import graphene_nanoribbon, molecule
-from gpaw import GPAW
-from gpaw.lcao.local_orbitals import LocalOrbitals
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.lcao.local_orbitals import LocalOrbitals
+from my_gpaw.mpi import world
 
 pytestmark = pytest.mark.skipif(world.size > 1,
                                 reason='world.size > 1')

@@ -1,13 +1,13 @@
 import pytest
-from gpaw.mpi import world
+from my_gpaw.mpi import world
 import sys
 
-from gpaw.utilities import devnull
+from my_gpaw.utilities import devnull
 
-from gpaw import GPAW, FermiDirac
-from gpaw import KohnShamConvergenceError
-from gpaw.utilities import compiled_with_sl
-from gpaw.forces import calculate_forces
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw import KohnShamConvergenceError
+from my_gpaw.utilities import compiled_with_sl
+from my_gpaw.forces import calculate_forces
 
 from ase.build import molecule
 

@@ -1,5 +1,5 @@
 import pytest
-from gpaw.response.integrators import czher
+from my_gpaw.response.integrators import czher
 import numpy as np
 from time import time
 

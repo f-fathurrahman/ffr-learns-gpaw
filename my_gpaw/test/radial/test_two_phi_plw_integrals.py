@@ -4,11 +4,11 @@ import pytest
 @pytest.mark.response
 def test_two_phi_plw_integrals():
     import numpy as np
-    from gpaw.lfc import LocalizedFunctionsCollection as LFC
-    from gpaw.grid_descriptor import GridDescriptor
-    from gpaw.atom.radialgd import EquidistantRadialGridDescriptor
-    from gpaw.spline import Spline
-    from gpaw.response.paw import two_phi_planewave_integrals, Setuplet
+    from my_gpaw.lfc import LocalizedFunctionsCollection as LFC
+    from my_gpaw.grid_descriptor import GridDescriptor
+    from my_gpaw.atom.radialgd import EquidistantRadialGridDescriptor
+    from my_gpaw.spline import Spline
+    from my_gpaw.response.paw import two_phi_planewave_integrals, Setuplet
     # Initialize s, p, d (9 in total) wave and put them on grid
     rc = 2.0
     a = 2.5 * rc

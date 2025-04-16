@@ -1,8 +1,8 @@
 import pytest
 import numpy as np
-from gpaw.response.df import DielectricFunction
-from gpaw.response.qeh import BuildingBlock, check_building_blocks
-from gpaw.mpi import world, size
+from my_gpaw.response.df import DielectricFunction
+from my_gpaw.response.qeh import BuildingBlock, check_building_blocks
+from my_gpaw.mpi import world, size
 
 """
 xxx QEH module seem to require at least 6x6x1 kpoints.

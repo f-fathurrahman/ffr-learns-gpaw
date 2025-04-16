@@ -1,7 +1,7 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.xc.vdw import VDWFunctional
+from my_gpaw import GPAW
+from my_gpaw.xc.vdw import VDWFunctional
 
 
 @pytest.mark.libxc

@@ -5,11 +5,11 @@ import numpy as np
 from ase import Atoms
 from ase.units import Bohr, Hartree
 
-from gpaw.mpi import rank, size
-from gpaw import GPAW
-from gpaw.external import ConstantElectricField
-from gpaw.utilities import packed_index
-from gpaw.pair_density import PairDensity
+from my_gpaw.mpi import rank, size
+from my_gpaw import GPAW
+from my_gpaw.external import ConstantElectricField
+from my_gpaw.utilities import packed_index
+from my_gpaw.pair_density import PairDensity
 
 # Three ways to compute the polarizability of hydrogen:
 # 1. Perturbation theory
@@ -23,7 +23,7 @@ from gpaw.pair_density import PairDensity
 
 @pytest.mark.skip(reason='TODO')
 def test_stark_shift():
-    from gpaw.point_charges import PointCharges
+    from my_gpaw.point_charges import PointCharges
     to_au = Hartree / Bohr**2
     to_eVA = Hartree / Bohr
 

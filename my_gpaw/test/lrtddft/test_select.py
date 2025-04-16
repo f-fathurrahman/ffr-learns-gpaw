@@ -1,7 +1,7 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW, FermiDirac
-from gpaw.lrtddft import LrTDDFT
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.lrtddft import LrTDDFT
 
 
 @pytest.mark.lrtddft

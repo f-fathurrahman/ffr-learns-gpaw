@@ -1,5 +1,5 @@
 import pytest
-from gpaw.lrtddft import d2Excdnsdnt, d2Excdn2
+from my_gpaw.lrtddft import d2Excdnsdnt, d2Excdn2
 import numpy as np
 
 

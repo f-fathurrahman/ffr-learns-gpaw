@@ -2,13 +2,13 @@ from types import SimpleNamespace
 
 import numpy as np
 
-from gpaw.new.builder import DFTComponentsBuilder
-from gpaw.new.calculation import DFTState
-from gpaw.new.ibzwfs import create_ibz_wave_functions as create_ibzwfs
-from gpaw.new.lcao.eigensolver import LCAOEigensolver
-from gpaw.new.lcao.hamiltonian import LCAOHamiltonian
-from gpaw.new.pwfd.davidson import Davidson
-from gpaw.new.pwfd.wave_functions import PWFDWaveFunctions
+from my_gpaw.new.builder import DFTComponentsBuilder
+from my_gpaw.new.calculation import DFTState
+from my_gpaw.new.ibzwfs import create_ibz_wave_functions as create_ibzwfs
+from my_gpaw.new.lcao.eigensolver import LCAOEigensolver
+from my_gpaw.new.lcao.hamiltonian import LCAOHamiltonian
+from my_gpaw.new.pwfd.davidson import Davidson
+from my_gpaw.new.pwfd.wave_functions import PWFDWaveFunctions
 
 
 class PWFDDFTComponentsBuilder(DFTComponentsBuilder):
@@ -60,7 +60,7 @@ class PWFDDFTComponentsBuilder(DFTComponentsBuilder):
         return ibzwfs
 
     def create_ibz_wave_functions(self, basis, potential, *, log):
-        from gpaw.new.lcao.builder import create_lcao_ibzwfs
+        from my_gpaw.new.lcao.builder import create_lcao_ibzwfs
 
         if self.params.random:
             return self.create_random_ibz_wave_functions(log)

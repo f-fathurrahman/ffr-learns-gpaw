@@ -6,12 +6,12 @@ import numpy as np
 from ase.build import molecule
 from ase.units import Hartree
 
-from gpaw import GPAW
-from gpaw.mpi import rank, world
-from gpaw.test import equal
-from gpaw.gauss import Gauss
-from gpaw.lrtddft import LrTDDFT, photoabsorption_spectrum
-from gpaw.lrtddft.kssingle import KSSingles
+from my_gpaw import GPAW
+from my_gpaw.mpi import rank, world
+from my_gpaw.test import equal
+from my_gpaw.gauss import Gauss
+from my_gpaw.lrtddft import LrTDDFT, photoabsorption_spectrum
+from my_gpaw.lrtddft.kssingle import KSSingles
 
 
 @pytest.mark.lrtddft

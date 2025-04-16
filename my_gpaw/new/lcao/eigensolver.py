@@ -1,8 +1,8 @@
 import numpy as np
 
-from gpaw.new.eigensolver import Eigensolver
-from gpaw.new.lcao.hamiltonian import HamiltonianMatrixCalculator
-from gpaw.new.lcao.wave_functions import LCAOWaveFunctions
+from my_gpaw.new.eigensolver import Eigensolver
+from my_gpaw.new.lcao.hamiltonian import HamiltonianMatrixCalculator
+from my_gpaw.new.lcao.wave_functions import LCAOWaveFunctions
 
 
 class LCAOEigensolver(Eigensolver):

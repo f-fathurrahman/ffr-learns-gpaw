@@ -1,6 +1,6 @@
 import pytest
 from ase.build import bulk
-from gpaw import GPAW, LCAO
+from my_gpaw import GPAW, LCAO
 
 # This test calculates a GLLB quasiparticle gap with LCAO and verifies
 # that it does not change from a reference value.  Note that the

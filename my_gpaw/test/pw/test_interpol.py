@@ -1,9 +1,9 @@
 import pytest
 import numpy as np
-from gpaw.test import equal
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.pw.descriptor import PWDescriptor
-from gpaw.mpi import world
+from my_gpaw.test import equal
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.pw.descriptor import PWDescriptor
+from my_gpaw.mpi import world
 
 
 @pytest.mark.ci

@@ -1,8 +1,8 @@
 from ase import Atoms
 from ase.calculators.test import numeric_force
-from gpaw import GPAW, FermiDirac, PoissonSolver
-from gpaw.test import equal
-from gpaw.xc.tools import vxc
+from my_gpaw import GPAW, FermiDirac, PoissonSolver
+from my_gpaw.test import equal
+from my_gpaw.xc.tools import vxc
 
 
 def test_generic_8Si():

@@ -1,6 +1,6 @@
 import numpy as np
 from ase.units import Hartree
-from gpaw.directmin.tools import d_matrix
+from my_gpaw.directmin.tools import d_matrix
 
 
 class KSLCAO:

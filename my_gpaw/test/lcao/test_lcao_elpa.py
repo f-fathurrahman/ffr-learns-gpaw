@@ -1,8 +1,8 @@
 import pytest
-from gpaw.utilities.elpa import LibElpa
+from my_gpaw.utilities.elpa import LibElpa
 from ase.build import molecule
-from gpaw.mpi import world
-from gpaw import GPAW, Mixer
+from my_gpaw.mpi import world
+from my_gpaw import GPAW, Mixer
 
 pytestmark = pytest.mark.skipif(not LibElpa.have_elpa(),
                                 reason='not LibElpa.have_elpa()')

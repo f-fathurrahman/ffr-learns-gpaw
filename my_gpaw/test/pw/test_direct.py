@@ -1,6 +1,6 @@
 from ase import Atoms
-from gpaw import GPAW, PW
-from gpaw.mpi import world
+from my_gpaw import GPAW, PW
+from my_gpaw.mpi import world
 
 
 def test_pw_direct():

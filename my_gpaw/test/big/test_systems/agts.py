@@ -1,6 +1,6 @@
 from myqueue.workflow import run
-from gpaw.test.big.test_systems.create import create_test_systems
-from gpaw import GPAW, PW, MixerFull
+from my_gpaw.test.big.test_systems.create import create_test_systems
+from my_gpaw import GPAW, PW, MixerFull
 from ase.optimize import BFGS
 
 

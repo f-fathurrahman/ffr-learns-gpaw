@@ -3,18 +3,18 @@ import pytest
 import numpy as np
 
 # Script modules
-from gpaw import GPAW
-from gpaw.test import findpeak
-from gpaw.response import ResponseGroundStateAdapter, ResponseContext
-from gpaw.response.chiks import ChiKSCalculator
-from gpaw.response.susceptibility import (ChiFactory, spectral_decomposition,
+from my_gpaw import GPAW
+from my_gpaw.test import findpeak
+from my_gpaw.response import ResponseGroundStateAdapter, ResponseContext
+from my_gpaw.response.chiks import ChiKSCalculator
+from my_gpaw.response.susceptibility import (ChiFactory, spectral_decomposition,
                                           EigendecomposedSpectrum,
                                           read_full_spectral_weight,
                                           read_eigenmode_lineshapes)
-from gpaw.response.fxc_kernels import AdiabaticFXCCalculator
-from gpaw.response.dyson import HXCScaling
-from gpaw.response.pair_functions import read_susceptibility_array
-from gpaw.test.conftest import response_band_cutoff
+from my_gpaw.response.fxc_kernels import AdiabaticFXCCalculator
+from my_gpaw.response.dyson import HXCScaling
+from my_gpaw.response.pair_functions import read_susceptibility_array
+from my_gpaw.test.conftest import response_band_cutoff
 
 
 @pytest.mark.kspair

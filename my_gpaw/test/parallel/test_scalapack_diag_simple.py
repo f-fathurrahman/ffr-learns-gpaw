@@ -6,9 +6,9 @@ from scipy.linalg import eigh
 # Set-up a simple matrix in parallel, diagonalize using ScaLAPACK
 # D&C driver then compare *eigenvalues* with serial LAPACK diagonlize
 
-from gpaw.blacs import BlacsGrid
-from gpaw.mpi import world
-from gpaw.utilities.scalapack import scalapack_set, \
+from my_gpaw.blacs import BlacsGrid
+from my_gpaw.mpi import world
+from my_gpaw.utilities.scalapack import scalapack_set, \
     scalapack_zero
 
 

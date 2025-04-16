@@ -3,8 +3,8 @@ from unittest import SkipTest
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW
-from gpaw.mpi import size
+from my_gpaw import GPAW
+from my_gpaw.mpi import size
 
 
 @pytest.mark.later

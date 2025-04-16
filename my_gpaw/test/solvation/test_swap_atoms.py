@@ -1,8 +1,8 @@
-from gpaw.cluster import Cluster
+from my_gpaw.cluster import Cluster
 from ase.build import molecule
 from ase.units import Pascal, m
 from ase.data.vdw import vdw_radii
-from gpaw.solvation import (
+from my_gpaw.solvation import (
     SolvationGPAW,
     EffectivePotentialCavity,
     Power12Potential,

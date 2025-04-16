@@ -5,8 +5,8 @@ import pytest
 from ase.build import bulk
 # from ase.phonons import Phonons
 
-from gpaw import GPAW
-from gpaw.elph import ElectronPhononMatrix
+from my_gpaw import GPAW
+from my_gpaw.elph import ElectronPhononMatrix
 
 
 @pytest.mark.serial

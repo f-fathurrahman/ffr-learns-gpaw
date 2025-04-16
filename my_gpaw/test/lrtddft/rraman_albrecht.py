@@ -4,10 +4,10 @@ from ase.vibrations.resonant_raman import ResonantRaman
 from ase.vibrations.albrecht import Albrecht
 from ase.parallel import world, DummyMPI
 
-from gpaw import GPAW
-from gpaw.lrtddft.kssingle import KSSingles
-from gpaw.analyse.overlap import Overlap
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.lrtddft.kssingle import KSSingles
+from my_gpaw.analyse.overlap import Overlap
+from my_gpaw.test import equal
 
 
 @pytest.mark.skip(reason='TODO')

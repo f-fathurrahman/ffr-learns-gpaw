@@ -7,8 +7,8 @@ import numpy as np
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW
-from gpaw.atom.basis import BasisMaker
+from my_gpaw import GPAW
+from my_gpaw.atom.basis import BasisMaker
 
 
 @pytest.mark.later  # basis set cutoff?

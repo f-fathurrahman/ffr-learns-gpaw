@@ -1,6 +1,6 @@
 import pytest
 from ase import Atom, Atoms
-from gpaw import GPAW, FermiDirac
+from my_gpaw import GPAW, FermiDirac
 
 
 def test_spin_spinpol():

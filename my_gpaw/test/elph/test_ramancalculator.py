@@ -2,10 +2,10 @@ import numpy as np
 import pytest
 
 from ase.utils.filecache import MultiFileJSONCache
-from gpaw import GPAW
-from gpaw.lcao.dipoletransition import get_momentum_transitions
-from gpaw.elph import ResonantRamanCalculator
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.lcao.dipoletransition import get_momentum_transitions
+from my_gpaw.elph import ResonantRamanCalculator
+from my_gpaw.mpi import world
 
 
 def get_random_g(nk, nb):

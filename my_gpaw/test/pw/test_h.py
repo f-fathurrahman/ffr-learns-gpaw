@@ -1,6 +1,6 @@
 from ase.build import molecule
-from gpaw import GPAW, PW
-from gpaw.mpi import world
+from my_gpaw import GPAW, PW
+from my_gpaw.mpi import world
 
 
 def test_pw_h(in_tmp_dir):

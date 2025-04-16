@@ -1,6 +1,6 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW, FermiDirac
+from my_gpaw import GPAW, FermiDirac
 
 
 @pytest.mark.libxc

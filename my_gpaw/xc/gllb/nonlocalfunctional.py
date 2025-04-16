@@ -1,6 +1,6 @@
 import numpy as np
 from ase.units import Ha
-from gpaw.xc.functional import XCFunctional
+from my_gpaw.xc.functional import XCFunctional
 
 
 class NonLocalFunctional(XCFunctional):

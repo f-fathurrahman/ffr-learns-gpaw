@@ -1,5 +1,5 @@
 import pytest
-from gpaw.xc import XC
+from my_gpaw.xc import XC
 
 
 @pytest.mark.libxc

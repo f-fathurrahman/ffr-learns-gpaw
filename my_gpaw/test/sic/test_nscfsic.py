@@ -1,8 +1,8 @@
 import pytest
-from gpaw.mpi import world
+from my_gpaw.mpi import world
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.utilities.sic import NSCFSIC
+from my_gpaw import GPAW
+from my_gpaw.utilities.sic import NSCFSIC
 
 pytestmark = pytest.mark.skipif(world.size > 1,
                                 reason='world.size > 1')

@@ -1,6 +1,6 @@
 # listserv.fysik.dtu.dk/pipermail/gpaw-developers/2014-February/004374.html
-from gpaw import GPAW
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.test import equal
 from ase.build import molecule
 
 

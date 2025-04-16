@@ -1,7 +1,7 @@
 import pytest
 
-from gpaw.mpi import world
-from gpaw.xc.fxc import FXCCorrelation
+from my_gpaw.mpi import world
+from my_gpaw.xc.fxc import FXCCorrelation
 
 
 @pytest.mark.rpa

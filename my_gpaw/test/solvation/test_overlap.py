@@ -1,12 +1,12 @@
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW
-from gpaw.cluster import Cluster
-from gpaw.analyse.overlap import Overlap
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
+from my_gpaw.analyse.overlap import Overlap
 import gpaw.solvation as solv
-from gpaw.lrtddft import LrTDDFT
-from gpaw.poisson import PoissonSolver
+from my_gpaw.lrtddft import LrTDDFT
+from my_gpaw.poisson import PoissonSolver
 
 
 @pytest.mark.skip(reason='TODO')

@@ -1,4 +1,4 @@
-from gpaw.mixer import (MixerSum, SeparateSpinMixerDriver, SpinSumMixerDriver,
+from my_gpaw.mixer import (MixerSum, SeparateSpinMixerDriver, SpinSumMixerDriver,
                         get_mixer_from_keywords)
 
 

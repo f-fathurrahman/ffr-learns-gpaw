@@ -1,10 +1,10 @@
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW
-from gpaw.atom.basis import BasisMaker
-from gpaw.poisson import FDPoissonSolver as PoissonSolver
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.atom.basis import BasisMaker
+from my_gpaw.poisson import FDPoissonSolver as PoissonSolver
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

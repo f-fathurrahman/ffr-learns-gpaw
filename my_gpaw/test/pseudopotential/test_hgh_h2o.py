@@ -15,8 +15,8 @@ Forces are compared to a previous finite-difference result.
 import numpy as np
 from ase.build import molecule
 
-from gpaw import GPAW, PoissonSolver
-from gpaw.test import equal
+from my_gpaw import GPAW, PoissonSolver
+from my_gpaw.test import equal
 
 
 def test_pseudopotential_hgh_h2o():
@@ -78,7 +78,7 @@ def test_pseudopotential_hgh_h2o():
     try:
         dH_asp = calc.hamiltonian.dH_asp
     except AttributeError:
-        from gpaw.utilities import pack2
+        from my_gpaw.utilities import pack2
         dH_asii = calc.calculation.state.potential.dH_asii
         dH_asp = {a: pack2(dH_sii) for a, dH_sii in dH_asii.items()}
 

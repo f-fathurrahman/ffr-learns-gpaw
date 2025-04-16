@@ -1,11 +1,11 @@
 from ase.build import molecule
 from ase.parallel import parprint
 
-from gpaw import GPAW
-from gpaw.cluster import Cluster
-from gpaw.analyse.hirshfeld import HirshfeldDensity, HirshfeldPartitioning
-from gpaw.analyse.wignerseitz import WignerSeitz
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
+from my_gpaw.analyse.hirshfeld import HirshfeldDensity, HirshfeldPartitioning
+from my_gpaw.analyse.wignerseitz import WignerSeitz
+from my_gpaw.test import equal
 import pytest
 
 

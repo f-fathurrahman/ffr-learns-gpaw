@@ -1,9 +1,9 @@
 import pytest
 import numpy as np
 from ase import Atoms
-from gpaw import GPAW, FermiDirac, PW
-from gpaw.response.df import DielectricFunction
-from gpaw.test import equal, findpeak
+from my_gpaw import GPAW, FermiDirac, PW
+from my_gpaw.response.df import DielectricFunction
+from my_gpaw.test import equal, findpeak
 
 
 @pytest.fixture

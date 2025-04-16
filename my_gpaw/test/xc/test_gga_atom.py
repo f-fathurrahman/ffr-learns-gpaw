@@ -1,13 +1,13 @@
 import numpy as np
 import numpy.random as ra
-from gpaw.test import equal
-from gpaw.setup import create_setup
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.lfc import LFC
-from gpaw.spline import Spline
-from gpaw.xc import XC
-from gpaw.utilities import pack
-from gpaw.mpi import serial_comm
+from my_gpaw.test import equal
+from my_gpaw.setup import create_setup
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.lfc import LFC
+from my_gpaw.spline import Spline
+from my_gpaw.xc import XC
+from my_gpaw.utilities import pack
+from my_gpaw.mpi import serial_comm
 
 
 def test_xc_gga_atom():

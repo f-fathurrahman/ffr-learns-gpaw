@@ -8,23 +8,23 @@ from ase.data import atomic_numbers, covalent_radii
 from ase.neighborlist import neighbor_list
 from ase.units import Bohr, Ha
 
-from gpaw.core.arrays import DistributedArrays
-from gpaw.core.atom_arrays import AtomArraysLayout
-from gpaw.core.domain import Domain
-from gpaw.core.matrix import Matrix
-from gpaw.lcao.tci import TCIExpansions
-from gpaw.lfc import BasisFunctions
-from gpaw.mpi import MPIComm, serial_comm
-from gpaw.new import zip
-from gpaw.new.calculation import DFTState
-from gpaw.new.lcao.builder import LCAODFTComponentsBuilder, create_lcao_ibzwfs
-from gpaw.new.lcao.hamiltonian import CollinearHamiltonianMatrixCalculator
-from gpaw.new.lcao.wave_functions import LCAOWaveFunctions
-from gpaw.new.pot_calc import PotentialCalculator
-from gpaw.setup import Setup
-from gpaw.spline import Spline
-from gpaw.utilities.timing import NullTimer
-from gpaw.typing import Array3D
+from my_gpaw.core.arrays import DistributedArrays
+from my_gpaw.core.atom_arrays import AtomArraysLayout
+from my_gpaw.core.domain import Domain
+from my_gpaw.core.matrix import Matrix
+from my_gpaw.lcao.tci import TCIExpansions
+from my_gpaw.lfc import BasisFunctions
+from my_gpaw.mpi import MPIComm, serial_comm
+from my_gpaw.new import zip
+from my_gpaw.new.calculation import DFTState
+from my_gpaw.new.lcao.builder import LCAODFTComponentsBuilder, create_lcao_ibzwfs
+from my_gpaw.new.lcao.hamiltonian import CollinearHamiltonianMatrixCalculator
+from my_gpaw.new.lcao.wave_functions import LCAOWaveFunctions
+from my_gpaw.new.pot_calc import PotentialCalculator
+from my_gpaw.setup import Setup
+from my_gpaw.spline import Spline
+from my_gpaw.utilities.timing import NullTimer
+from my_gpaw.typing import Array3D
 
 
 class TBHamiltonianMatrixCalculator(CollinearHamiltonianMatrixCalculator):

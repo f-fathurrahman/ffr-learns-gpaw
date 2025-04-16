@@ -10,15 +10,15 @@ import numpy as np
 # Script modules
 from ase.units import Hartree
 
-from gpaw import GPAW
+from my_gpaw import GPAW
 import gpaw.mpi as mpi
-from gpaw.response import ResponseGroundStateAdapter
-from gpaw.response.frequencies import ComplexFrequencyDescriptor
-from gpaw.response.jdos import JDOSCalculator
-from gpaw.response.symmetry import KPointFinder
-from gpaw.test.response.test_chiks import (generate_system_s,
+from my_gpaw.response import ResponseGroundStateAdapter
+from my_gpaw.response.frequencies import ComplexFrequencyDescriptor
+from my_gpaw.response.jdos import JDOSCalculator
+from my_gpaw.response.symmetry import KPointFinder
+from my_gpaw.test.response.test_chiks import (generate_system_s,
                                            generate_qrel_q, get_q_c)
-from gpaw.test.conftest import response_band_cutoff
+from my_gpaw.test.conftest import response_band_cutoff
 
 
 @pytest.mark.response

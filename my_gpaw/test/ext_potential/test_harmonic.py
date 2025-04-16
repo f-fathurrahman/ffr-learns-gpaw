@@ -3,10 +3,10 @@ import pytest
 from ase import Atoms
 from ase.units import Bohr, Ha
 
-from gpaw import GPAW
-from gpaw.external import ExternalPotential, known_potentials
-from gpaw.poisson import NoInteractionPoissonSolver
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.external import ExternalPotential, known_potentials
+from my_gpaw.poisson import NoInteractionPoissonSolver
+from my_gpaw.test import equal
 
 
 class HarmonicPotential(ExternalPotential):

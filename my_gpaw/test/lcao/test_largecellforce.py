@@ -13,8 +13,8 @@
 import numpy as np
 from numpy import array
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.atom.basis import BasisMaker
+from my_gpaw import GPAW
+from my_gpaw.atom.basis import BasisMaker
 
 
 def test_lcao_largecellforce():
@@ -38,7 +38,7 @@ def test_lcao_largecellforce():
     F_ac = system.get_forces()
 
     # Check that rightmost domain is in fact outside range of basis functions
-    from gpaw.mpi import rank, size
+    from my_gpaw.mpi import rank, size
     if rank == 0 and size > 1:
         assert len(calc.wfs.basis_functions.atom_indices) < len(system)
 

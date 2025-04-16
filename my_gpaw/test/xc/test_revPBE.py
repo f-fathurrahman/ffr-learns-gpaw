@@ -1,6 +1,6 @@
 from ase import Atoms
-from gpaw import GPAW, PoissonSolver
-from gpaw.test import equal
+from my_gpaw import GPAW, PoissonSolver
+from my_gpaw.test import equal
 from ase.units import Bohr, Hartree
 
 

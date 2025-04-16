@@ -1,8 +1,8 @@
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW, FermiDirac, PoissonSolver
-from gpaw.test import equal, gen
+from my_gpaw import GPAW, FermiDirac, PoissonSolver
+from my_gpaw.test import equal, gen
 
 
 @pytest.mark.later

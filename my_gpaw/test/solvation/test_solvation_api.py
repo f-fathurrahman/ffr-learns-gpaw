@@ -7,7 +7,7 @@ from ase.build import molecule
 from ase.units import Pascal, m, Bohr
 from ase.data.vdw import vdw_radii
 from ase.parallel import parprint
-from gpaw.solvation import (
+from my_gpaw.solvation import (
     # calculator
     SolvationGPAW,
     # cavities
@@ -29,7 +29,7 @@ from gpaw.solvation import (
     KB51Volume,
 )
 # poisson solver
-from gpaw.solvation.poisson import ADM12PoissonSolver
+from my_gpaw.solvation.poisson import ADM12PoissonSolver
 
 
 # references for custom classes:

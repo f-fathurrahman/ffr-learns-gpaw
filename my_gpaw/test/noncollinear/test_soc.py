@@ -9,9 +9,9 @@ import os
 import numpy as np
 import pytest
 from ase.build import mx2
-from gpaw import GPAW
-from gpaw.mpi import size
-from gpaw.spinorbit import soc_eigenstates
+from my_gpaw import GPAW
+from my_gpaw.mpi import size
+from my_gpaw.spinorbit import soc_eigenstates
 
 
 def check(E, hsplit, lsplit):

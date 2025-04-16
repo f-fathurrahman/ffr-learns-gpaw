@@ -2,8 +2,8 @@ import pytest
 from ase import Atom, Atoms
 from ase.parallel import world
 
-from gpaw import GPAW
-from gpaw.lrtddft import LrTDDFT
+from my_gpaw import GPAW
+from my_gpaw.lrtddft import LrTDDFT
 
 
 def get_H2(calculator=None):

@@ -3,11 +3,11 @@ import pytest
 
 from ase.build import fcc111
 
-from gpaw import GPAW
-from gpaw.mpi import world, serial_comm
-from gpaw.lcaotddft.wfwriter import WaveFunctionReader
+from my_gpaw import GPAW
+from my_gpaw.mpi import world, serial_comm
+from my_gpaw.lcaotddft.wfwriter import WaveFunctionReader
 
-from gpaw.test import only_on_master
+from my_gpaw.test import only_on_master
 from . import (parallel_options, calculate_error, calculate_time_propagation,
                check_wfs)
 

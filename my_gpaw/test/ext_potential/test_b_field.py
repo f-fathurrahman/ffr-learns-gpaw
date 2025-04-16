@@ -1,8 +1,8 @@
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW
-from gpaw.bfield import BField
+from my_gpaw import GPAW
+from my_gpaw.bfield import BField
 
 
 @pytest.mark.later

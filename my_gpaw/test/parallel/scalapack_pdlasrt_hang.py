@@ -4,9 +4,9 @@
 
 import pytest
 from ase.build import fcc100, add_adsorbate
-from gpaw import GPAW, ConvergenceError
-from gpaw.mpi import world
-from gpaw.utilities import compiled_with_sl
+from my_gpaw import GPAW, ConvergenceError
+from my_gpaw.mpi import world
+from my_gpaw.utilities import compiled_with_sl
 
 
 @pytest.mark.skip(reason='TODO')

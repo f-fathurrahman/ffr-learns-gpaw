@@ -1,6 +1,6 @@
 import numpy as np
-from gpaw.utilities.blas import axpy, r2k, rk, gemmdot, mmm, mmmx
-from gpaw.utilities.tools import tri2full
+from my_gpaw.utilities.blas import axpy, r2k, rk, gemmdot, mmm, mmmx
+from my_gpaw.utilities.tools import tri2full
 
 
 def test_gemm_size_zero():

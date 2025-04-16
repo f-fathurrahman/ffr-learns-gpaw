@@ -3,10 +3,10 @@ import os
 import numpy as np
 import pytest
 from ase import Atoms
-from gpaw import PW, FermiDirac
-from gpaw.new.ase_interface import GPAW as NewGPAW
-from gpaw import GPAW as AnyGPAW, SCIPY_VERSION
-from gpaw.mpi import world
+from my_gpaw import PW, FermiDirac
+from my_gpaw.new.ase_interface import GPAW as NewGPAW
+from my_gpaw import GPAW as AnyGPAW, SCIPY_VERSION
+from my_gpaw.mpi import world
 
 # Domain and k-point parallelization:
 dk = []

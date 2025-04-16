@@ -1,9 +1,9 @@
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW
-from gpaw.external import ConstantPotential
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.external import ConstantPotential
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

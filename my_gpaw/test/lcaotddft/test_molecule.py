@@ -4,14 +4,14 @@ import pytest
 from ase.build import molecule
 from ase.utils import workdir
 
-from gpaw import GPAW
-from gpaw.mpi import world, serial_comm, broadcast
-from gpaw.lcaotddft.wfwriter import WaveFunctionReader
-from gpaw.lcaotddft.densitymatrix import DensityMatrix
-from gpaw.lcaotddft.frequencydensitymatrix import FrequencyDensityMatrix
-from gpaw.lcaotddft.ksdecomposition import KohnShamDecomposition
+from my_gpaw import GPAW
+from my_gpaw.mpi import world, serial_comm, broadcast
+from my_gpaw.lcaotddft.wfwriter import WaveFunctionReader
+from my_gpaw.lcaotddft.densitymatrix import DensityMatrix
+from my_gpaw.lcaotddft.frequencydensitymatrix import FrequencyDensityMatrix
+from my_gpaw.lcaotddft.ksdecomposition import KohnShamDecomposition
 
-from gpaw.test import only_on_master
+from my_gpaw.test import only_on_master
 from . import (parallel_options, calculate_time_propagation, calculate_error,
                check_txt_data, check_wfs)
 
@@ -92,7 +92,7 @@ def test_propagation(initialize_system, module_tmp_path, parallel, in_tmp_dir):
 @pytest.fixture(scope='module')
 @only_on_master(world, broadcast=broadcast)
 def dipole_moment_reference(initialize_system):
-    from gpaw.tddft.spectrum import \
+    from my_gpaw.tddft.spectrum import \
         read_dipole_moment_file, calculate_fourier_transform
 
     unocc_calc, fdm = initialize_system

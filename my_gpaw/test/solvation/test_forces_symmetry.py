@@ -1,8 +1,8 @@
 from ase import Atoms
 from ase.data.vdw import vdw_radii
-from gpaw.test import equal
+from my_gpaw.test import equal
 from ase.units import Pascal, m
-from gpaw.solvation import (
+from my_gpaw.solvation import (
     SolvationGPAW,
     EffectivePotentialCavity,
     Power12Potential,

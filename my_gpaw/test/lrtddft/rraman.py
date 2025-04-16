@@ -3,9 +3,9 @@ from ase import Atoms, Atom
 from ase.vibrations.placzek import Placzek
 from ase.parallel import world, DummyMPI
 
-from gpaw import GPAW
-from gpaw.lrtddft.kssingle import KSSingles
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.lrtddft.kssingle import KSSingles
+from my_gpaw.test import equal
 
 
 @pytest.mark.skip(reason='TODO')

@@ -1,6 +1,6 @@
-from gpaw import GPAW, restart
+from my_gpaw import GPAW, restart
 from ase.build import bcc111
-from gpaw.poisson import PoissonSolver
+from my_gpaw.poisson import PoissonSolver
 import numpy as np
 
 

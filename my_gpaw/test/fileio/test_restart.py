@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW, PW, restart
-from gpaw.test import equal
+from my_gpaw import GPAW, PW, restart
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

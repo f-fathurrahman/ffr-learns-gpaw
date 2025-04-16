@@ -4,8 +4,8 @@
 import numpy as np
 import pytest
 
-from gpaw.elph import Supercell
-from gpaw.mpi import world
+from my_gpaw.elph import Supercell
+from my_gpaw.mpi import world
 
 SUPERCELL = (2, 1, 1)
 

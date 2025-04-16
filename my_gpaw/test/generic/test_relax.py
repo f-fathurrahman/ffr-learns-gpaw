@@ -5,9 +5,9 @@ from ase import Atoms
 from ase.io import read
 from ase.optimize import BFGS
 
-from gpaw import GPAW
-from gpaw.mpi import world
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.mpi import world
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

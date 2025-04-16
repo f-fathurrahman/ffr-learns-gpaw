@@ -5,16 +5,16 @@ import numpy as np
 
 from ase.build import molecule
 from ase.units import Hartree
-from gpaw import GPAW
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
-from gpaw.tddft.spectrum import photoabsorption_spectrum as spec_td
-from gpaw.lrtddft import LrTDDFT
-from gpaw.lrtddft import photoabsorption_spectrum as spec_lr
-from gpaw.lrtddft2 import LrTDDFT2
-from gpaw.mpi import world, serial_comm, broadcast
+from my_gpaw import GPAW
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
+from my_gpaw.tddft.spectrum import photoabsorption_spectrum as spec_td
+from my_gpaw.lrtddft import LrTDDFT
+from my_gpaw.lrtddft import photoabsorption_spectrum as spec_lr
+from my_gpaw.lrtddft2 import LrTDDFT2
+from my_gpaw.mpi import world, serial_comm, broadcast
 
-from gpaw.test import only_on_master
+from my_gpaw.test import only_on_master
 
 
 pytestmark = [pytest.mark.usefixtures('module_tmp_path')]

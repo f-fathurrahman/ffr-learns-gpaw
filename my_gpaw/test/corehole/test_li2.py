@@ -2,9 +2,9 @@
 import pytest
 from ase.build import molecule
 from ase.units import Bohr
-from gpaw import GPAW, PoissonSolver
-from gpaw.mixer import Mixer
-from gpaw.test import gen
+from my_gpaw import GPAW, PoissonSolver
+from my_gpaw.mixer import Mixer
+from my_gpaw.test import gen
 
 
 @pytest.mark.later

@@ -2,9 +2,9 @@ import pytest
 from ase import Atoms
 from ase.units import Bohr, Ha
 
-from gpaw import GPAW, PW
-from gpaw.external import ConstantElectricField, ConstantPotential
-from gpaw.test import equal
+from my_gpaw import GPAW, PW
+from my_gpaw.external import ConstantElectricField, ConstantPotential
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

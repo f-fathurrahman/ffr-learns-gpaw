@@ -1,7 +1,7 @@
 # Run with even number of cores
 
 import pytest
-from gpaw import GPAW, Mixer, PoissonSolver
+from my_gpaw import GPAW, Mixer, PoissonSolver
 import ase.parallel as mpi
 from ase.build import fcc211, add_adsorbate
 from ase.constraints import FixAtoms

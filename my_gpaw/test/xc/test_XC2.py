@@ -3,10 +3,10 @@ from math import pi
 import numpy as np
 import pytest
 
-from gpaw.atom.radialgd import EquidistantRadialGridDescriptor
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.xc import XC
-from gpaw.test import equal
+from my_gpaw.atom.radialgd import EquidistantRadialGridDescriptor
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.xc import XC
+from my_gpaw.test import equal
 
 
 @pytest.mark.ci

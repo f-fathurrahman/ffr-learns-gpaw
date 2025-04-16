@@ -3,7 +3,7 @@
 # running with python (uses _gpaw.so) gives right (non-zero) results!
 
 import numpy as np
-from gpaw.utilities.blas import mmm
+from my_gpaw.utilities.blas import mmm
 
 
 def test_linalg_gemm_complex():

@@ -1,5 +1,5 @@
 import pytest
-from gpaw.xc.fxc import FXCCorrelation
+from my_gpaw.xc.fxc import FXCCorrelation
 
 
 @pytest.fixture

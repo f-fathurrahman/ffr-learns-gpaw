@@ -10,16 +10,16 @@ have changed for:
 import numpy as np
 import pytest
 
-from gpaw import GPAW
-from gpaw.test import findpeak
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.test import findpeak
+from my_gpaw.mpi import world
 
-from gpaw.response import ResponseGroundStateAdapter
-from gpaw.response.chiks import ChiKSCalculator
-from gpaw.response.susceptibility import ChiFactory
-from gpaw.response.fxc_kernels import AdiabaticFXCCalculator
-from gpaw.response.pair_functions import read_pair_function
-from gpaw.test.conftest import response_band_cutoff
+from my_gpaw.response import ResponseGroundStateAdapter
+from my_gpaw.response.chiks import ChiKSCalculator
+from my_gpaw.response.susceptibility import ChiFactory
+from my_gpaw.response.fxc_kernels import AdiabaticFXCCalculator
+from my_gpaw.response.pair_functions import read_pair_function
+from my_gpaw.test.conftest import response_band_cutoff
 
 pytestmark = pytest.mark.skipif(world.size < 4, reason='world.size < 4')
 

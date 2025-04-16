@@ -3,7 +3,7 @@
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW
+from my_gpaw import GPAW
 
 
 @pytest.mark.later
@@ -21,7 +21,7 @@ def test_lcao_dos():
     system.calc = calc
     system.get_potential_energy()
 
-    from gpaw.utilities.dos import LCAODOS
+    from my_gpaw.utilities.dos import LCAODOS
 
     # Use RestartLCAODOS if you just restarted from a file.
     # Requires one diagonalization though!

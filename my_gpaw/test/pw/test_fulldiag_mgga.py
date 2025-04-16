@@ -2,7 +2,7 @@ import pytest
 from ase.build import bulk
 from numpy.testing import assert_almost_equal
 
-from gpaw import GPAW, PW
+from my_gpaw import GPAW, PW
 
 
 @pytest.mark.mgga

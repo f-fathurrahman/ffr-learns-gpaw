@@ -1,4 +1,4 @@
-from gpaw.response.wgg import choose_parallelization
+from my_gpaw.response.wgg import choose_parallelization
 
 
 def test_parallelizations():

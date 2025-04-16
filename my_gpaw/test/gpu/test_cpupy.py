@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from gpaw.gpu import cupy as cp
+from my_gpaw.gpu import cupy as cp
 
 
 @pytest.mark.gpu

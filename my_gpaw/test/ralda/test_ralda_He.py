@@ -1,10 +1,10 @@
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW, FermiDirac
-from gpaw.mpi import serial_comm
-from gpaw.xc.fxc import FXCCorrelation
-from gpaw.xc.rpa import RPACorrelation
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.mpi import serial_comm
+from my_gpaw.xc.fxc import FXCCorrelation
+from my_gpaw.xc.rpa import RPACorrelation
 
 
 @pytest.fixture(scope='module')

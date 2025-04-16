@@ -1,6 +1,6 @@
 import numpy as np
-from gpaw.xc import XC
-from gpaw.xc.gllb.contribution import Contribution
+from my_gpaw.xc import XC
+from my_gpaw.xc.gllb.contribution import Contribution
 
 
 class C_XC(Contribution):

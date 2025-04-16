@@ -1,7 +1,7 @@
 import gpaw.solvation as solv
 from ase import Atoms
 import numpy as np
-from gpaw.solvation.cavity import BAD_RADIUS_MESSAGE
+from my_gpaw.solvation.cavity import BAD_RADIUS_MESSAGE
 
 
 def test_solvation_nan_radius():

@@ -1,10 +1,10 @@
 from ase.build import molecule
 
-from gpaw.test import equal
+from my_gpaw.test import equal
 import gpaw.solvation as solv
-from gpaw.cluster import Cluster
-from gpaw.lrtddft import LrTDDFT
-from gpaw import PoissonSolver
+from my_gpaw.cluster import Cluster
+from my_gpaw.lrtddft import LrTDDFT
+from my_gpaw import PoissonSolver
 
 
 def test_solvation_lrtddft():

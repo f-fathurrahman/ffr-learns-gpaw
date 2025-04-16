@@ -2,7 +2,7 @@
 import pytest
 from math import factorial as fac
 from numpy import exp, sqrt, pi, absolute
-from gpaw.atom.radialgd import AERadialGridDescriptor
+from my_gpaw.atom.radialgd import AERadialGridDescriptor
 
 # Values from Rico, Lopez, Ramirez, Ema, Theor Chem Acc (2013) 132:1304
 #   Table 1 and 2.
@@ -93,7 +93,7 @@ gamma_sto_list = [  # See table 2 of Rico, Lopez, Ramirez, Ema,
 
 def radial_sto(n, zeta, l, r):
     """Build radial part of slater type orbital"""
-#       Stolen from gpaw all_electron.py (intialize_wave_functions)
+#       Stolen from my_gpaw all_electron.py (intialize_wave_functions)
 #
 #       STOs are defined as
 #

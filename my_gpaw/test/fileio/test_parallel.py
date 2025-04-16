@@ -1,7 +1,7 @@
 import pytest
-from gpaw.mpi import world
-from gpaw import GPAW, ConvergenceError, restart
-from gpaw.mixer import MixerSum
+from my_gpaw.mpi import world
+from my_gpaw import GPAW, ConvergenceError, restart
+from my_gpaw.mixer import MixerSum
 from ase.build import bulk
 
 # bulk Fe with k-point, band, and domain parallelization

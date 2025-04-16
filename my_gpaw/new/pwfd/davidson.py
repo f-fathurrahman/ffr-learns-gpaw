@@ -5,20 +5,20 @@ from typing import Callable
 
 import numpy as np
 from ase.units import Ha
-from gpaw.core.arrays import DistributedArrays as DA
-from gpaw.core.atom_centered_functions import AtomArrays as AA
-from gpaw.core.matrix import Matrix
-from gpaw.gpu import as_xp
-from gpaw.mpi import broadcast_float
-from gpaw.new import zip
-from gpaw.new.calculation import DFTState
-from gpaw.new.eigensolver import Eigensolver
-from gpaw.new.hamiltonian import Hamiltonian
-from gpaw.new.ibzwfs import IBZWaveFunctions
-from gpaw.new.pwfd.wave_functions import PWFDWaveFunctions
-from gpaw.typing import Array1D, Array2D
-from gpaw.utilities.blas import axpy
-from gpaw.yml import obj2yaml as o2y
+from my_gpaw.core.arrays import DistributedArrays as DA
+from my_gpaw.core.atom_centered_functions import AtomArrays as AA
+from my_gpaw.core.matrix import Matrix
+from my_gpaw.gpu import as_xp
+from my_gpaw.mpi import broadcast_float
+from my_gpaw.new import zip
+from my_gpaw.new.calculation import DFTState
+from my_gpaw.new.eigensolver import Eigensolver
+from my_gpaw.new.hamiltonian import Hamiltonian
+from my_gpaw.new.ibzwfs import IBZWaveFunctions
+from my_gpaw.new.pwfd.wave_functions import PWFDWaveFunctions
+from my_gpaw.typing import Array1D, Array2D
+from my_gpaw.utilities.blas import axpy
+from my_gpaw.yml import obj2yaml as o2y
 
 AAFunc = Callable[[AA, AA], AA]
 

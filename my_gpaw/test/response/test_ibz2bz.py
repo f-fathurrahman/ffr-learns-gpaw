@@ -1,9 +1,9 @@
 import numpy as np
 import pytest
-from gpaw import GPAW
-from gpaw.response.ibz2bz import IBZ2BZMaps
+from my_gpaw import GPAW
+from my_gpaw.response.ibz2bz import IBZ2BZMaps
 import gpaw.mpi as mpi
-from gpaw.test.conftest import response_band_cutoff
+from my_gpaw.test.conftest import response_band_cutoff
 
 
 @pytest.mark.later

@@ -1,10 +1,10 @@
 import pytest
-from gpaw import GPAW, restart
-from gpaw.cluster import Cluster
-from gpaw.test import equal
+from my_gpaw import GPAW, restart
+from my_gpaw.cluster import Cluster
+from my_gpaw.test import equal
 from ase.build import molecule
 from ase.units import mol, kcal
-from gpaw.solvation import SolvationGPAW, get_HW14_water_kwargs
+from my_gpaw.solvation import SolvationGPAW, get_HW14_water_kwargs
 
 
 @pytest.fixture

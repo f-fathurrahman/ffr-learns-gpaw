@@ -5,9 +5,9 @@ import pytest
 import numpy as np
 from ase import Atoms
 
-from gpaw import GPAW, PW
-from gpaw.hybrids.eigenvalues import non_self_consistent_eigenvalues
-from gpaw.mpi import size
+from my_gpaw import GPAW, PW
+from my_gpaw.hybrids.eigenvalues import non_self_consistent_eigenvalues
+from my_gpaw.mpi import size
 
 n = 7
 

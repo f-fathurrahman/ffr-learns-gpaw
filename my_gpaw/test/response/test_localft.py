@@ -7,19 +7,19 @@ import pytest
 # Script modules
 from ase.units import Ha
 
-from gpaw import GPAW
+from my_gpaw import GPAW
 import gpaw.mpi as mpi
-from gpaw.pw.descriptor import PWDescriptor
-from gpaw.kpt_descriptor import KPointDescriptor
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.lfc import LFC
-from gpaw.atom.radialgd import AERadialGridDescriptor
+from my_gpaw.pw.descriptor import PWDescriptor
+from my_gpaw.kpt_descriptor import KPointDescriptor
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.lfc import LFC
+from my_gpaw.atom.radialgd import AERadialGridDescriptor
 
-from gpaw.response import ResponseGroundStateAdapter, ResponseContext
-from gpaw.response.localft import (LocalFTCalculator, MicroSetup,
+from my_gpaw.response import ResponseGroundStateAdapter, ResponseContext
+from my_gpaw.response.localft import (LocalFTCalculator, MicroSetup,
                                    add_total_density, add_LSDA_Bxc)
-from gpaw.response.pair_functions import get_pw_coordinates
-from gpaw.test.response.test_site_kernels import get_pw_descriptor
+from my_gpaw.response.pair_functions import get_pw_coordinates
+from my_gpaw.test.response.test_site_kernels import get_pw_descriptor
 
 
 # ---------- Test parametrization ---------- #
@@ -175,7 +175,7 @@ def test_localft_paw_engine(a):
     nt_g, _ = rgd.pseudize(n_g, gcut)
 
     # Set up pseudo and ae densities on the Lebedev quadrature
-    from gpaw.sphere.lebedev import Y_nL
+    from my_gpaw.sphere.lebedev import Y_nL
     Y_nL = Y_nL[:, :9]  # include only s, p and d
     nL = Y_nL.shape[1]
     n_sLg = np.zeros((1, nL, Ng), dtype=float)
@@ -254,7 +254,7 @@ def test_Fe_bxc(gpw_files):
 
 class EmptyGSAdapter(ResponseGroundStateAdapter):
     # Make an empty subclass to pass isinstance in constructor
-    # In a future where the response code has been liberated from GPAW
+    # In a future where the response code has been liberated from my_gpaw
     # calculator objects, the
     # >>> assert isinstance(gs, ResponseGroundStateAdapter)
     # statements can be deleted, making this class redundant.

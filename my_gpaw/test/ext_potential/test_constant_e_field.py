@@ -3,9 +3,9 @@ import numpy as np
 from ase import Atoms
 from ase.units import Hartree, Bohr
 
-from gpaw import GPAW
-from gpaw.external import ConstantElectricField
-from gpaw.external import static_polarizability
+from my_gpaw import GPAW
+from my_gpaw.external import ConstantElectricField
+from my_gpaw.external import static_polarizability
 
 
 @pytest.mark.later

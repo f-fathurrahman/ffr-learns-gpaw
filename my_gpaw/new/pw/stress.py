@@ -3,15 +3,15 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 import numpy as np
-from gpaw.core.atom_arrays import AtomArrays
-from gpaw.gpu import synchronize, as_xp
-from gpaw.new.calculation import DFTState
-from gpaw.new.ibzwfs import IBZWaveFunctions
-from gpaw.new.pwfd.wave_functions import PWFDWaveFunctions
-from gpaw.typing import Array2D
+from my_gpaw.core.atom_arrays import AtomArrays
+from my_gpaw.gpu import synchronize, as_xp
+from my_gpaw.new.calculation import DFTState
+from my_gpaw.new.ibzwfs import IBZWaveFunctions
+from my_gpaw.new.pwfd.wave_functions import PWFDWaveFunctions
+from my_gpaw.typing import Array2D
 
 if TYPE_CHECKING:
-    from gpaw.new.pw.pot_calc import PlaneWavePotentialCalculator
+    from my_gpaw.new.pw.pot_calc import PlaneWavePotentialCalculator
 
 
 def calculate_stress(pot_calc: PlaneWavePotentialCalculator,

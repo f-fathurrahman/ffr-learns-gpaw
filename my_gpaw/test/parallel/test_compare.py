@@ -1,6 +1,6 @@
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.mpi import rank, size
+from my_gpaw import GPAW
+from my_gpaw.mpi import rank, size
 
 
 def test_parallel_compare():

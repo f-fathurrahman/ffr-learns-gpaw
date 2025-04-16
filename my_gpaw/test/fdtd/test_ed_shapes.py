@@ -1,10 +1,10 @@
 # flake8: noqa
-from gpaw.fdtd.poisson_fdtd import QSFDTD
-from gpaw.fdtd.polarizable_material import PermittivityPlus, PolarizableMaterial, \
+from my_gpaw.fdtd.poisson_fdtd import QSFDTD
+from my_gpaw.fdtd.polarizable_material import PermittivityPlus, PolarizableMaterial, \
     PolarizableSphere, PolarizableBox, \
     PolarizableEllipsoid, PolarizableRod, \
     PolarizableTetrahedron
-from gpaw.test import equal
+from my_gpaw.test import equal
 import pytest
 
 

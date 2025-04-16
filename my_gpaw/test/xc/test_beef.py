@@ -2,9 +2,9 @@ import pytest
 import numpy as np
 from ase.build import bulk
 from ase.dft.bee import BEEFEnsemble, readbee
-from gpaw import GPAW, Mixer, PW
-from gpaw.test import gen
-from gpaw.mpi import world
+from my_gpaw import GPAW, Mixer, PW
+from my_gpaw.test import gen
+from my_gpaw.mpi import world
 import _gpaw
 
 

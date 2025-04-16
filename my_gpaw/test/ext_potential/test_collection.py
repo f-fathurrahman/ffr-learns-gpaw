@@ -1,5 +1,5 @@
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.external import (ConstantElectricField, PointChargePotential,
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.external import (ConstantElectricField, PointChargePotential,
                            PotentialCollection, create_external_potential)
 
 

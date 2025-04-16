@@ -1,7 +1,7 @@
 import pytest
 from ase.lattice.compounds import L1_2
 
-from gpaw import GPAW, PW
+from my_gpaw import GPAW, PW
 
 
 @pytest.mark.later

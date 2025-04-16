@@ -3,14 +3,14 @@ import numpy as np
 import ase.io.ulm as ulm
 from ase.build import molecule
 
-from gpaw import GPAW
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
-from gpaw.lcaotddft.densitymatrix import DensityMatrix
-from gpaw.lcaotddft.frequencydensitymatrix import FrequencyDensityMatrix
-from gpaw.mpi import world
-from gpaw.tddft.folding import frequencies
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
+from my_gpaw.lcaotddft.densitymatrix import DensityMatrix
+from my_gpaw.lcaotddft.frequencydensitymatrix import FrequencyDensityMatrix
+from my_gpaw.mpi import world
+from my_gpaw.tddft.folding import frequencies
+from my_gpaw.test import equal
 
 
 @pytest.mark.gllb
@@ -77,7 +77,7 @@ def test_lcaotddft_restart(in_tmp_dir):
     # Test the absolute values
     data = np.loadtxt('dm.dat')[:8].ravel()
     if 0:
-        from gpaw.test import print_reference
+        from my_gpaw.test import print_reference
         print_reference(data, 'ref', '%.12le')
 
     ref = [0.000000000000e+00,

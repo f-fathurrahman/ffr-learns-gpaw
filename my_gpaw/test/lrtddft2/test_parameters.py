@@ -4,8 +4,8 @@ from contextlib import contextmanager
 from pathlib import Path
 
 from ase.build import molecule
-from gpaw import GPAW
-from gpaw.lrtddft2 import LrTDDFT2
+from my_gpaw import GPAW
+from my_gpaw.lrtddft2 import LrTDDFT2
 
 
 @contextmanager

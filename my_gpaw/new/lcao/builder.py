@@ -1,17 +1,17 @@
 from functools import partial
 
 import numpy as np
-from gpaw.core.matrix import Matrix
-from gpaw.lcao.tci import TCIExpansions
-from gpaw.new import zip
-from gpaw.new.fd.builder import FDDFTComponentsBuilder
-from gpaw.new.ibzwfs import create_ibz_wave_functions as create_ibzwfs
-from gpaw.new.lcao.eigensolver import LCAOEigensolver
-from gpaw.new.lcao.forces import TCIDerivatives
-from gpaw.new.lcao.hamiltonian import LCAOHamiltonian
-from gpaw.new.lcao.hybrids import HybridLCAOEigensolver, HybridXCFunctional
-from gpaw.new.lcao.wave_functions import LCAOWaveFunctions
-from gpaw.utilities.timing import NullTimer
+from my_gpaw.core.matrix import Matrix
+from my_gpaw.lcao.tci import TCIExpansions
+from my_gpaw.new import zip
+from my_gpaw.new.fd.builder import FDDFTComponentsBuilder
+from my_gpaw.new.ibzwfs import create_ibz_wave_functions as create_ibzwfs
+from my_gpaw.new.lcao.eigensolver import LCAOEigensolver
+from my_gpaw.new.lcao.forces import TCIDerivatives
+from my_gpaw.new.lcao.hamiltonian import LCAOHamiltonian
+from my_gpaw.new.lcao.hybrids import HybridLCAOEigensolver, HybridXCFunctional
+from my_gpaw.new.lcao.wave_functions import LCAOWaveFunctions
+from my_gpaw.utilities.timing import NullTimer
 
 
 class LCAODFTComponentsBuilder(FDDFTComponentsBuilder):

@@ -3,8 +3,8 @@
 
 import pytest
 import numpy as np
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.transformers import Transformer
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.transformers import Transformer
 
 
 @pytest.mark.ci

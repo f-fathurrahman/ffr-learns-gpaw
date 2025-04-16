@@ -1,8 +1,8 @@
 import pytest
 
 import _gpaw
-from gpaw.gpu import cupy as cp
-from gpaw.gpu.mpi import CuPyMPI
+from my_gpaw.gpu import cupy as cp
+from my_gpaw.gpu.mpi import CuPyMPI
 import gpaw.mpi as mpi
 
 

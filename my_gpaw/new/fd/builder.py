@@ -1,15 +1,15 @@
 from __future__ import annotations
 
-from gpaw.core import UniformGrid
-from gpaw.core.uniform_grid import UniformGridFunctions
-from gpaw.fd_operators import Laplace
-from gpaw.new import zip
-from gpaw.new.builder import create_uniform_grid
-from gpaw.new.fd.pot_calc import UniformGridPotentialCalculator
-from gpaw.new.hamiltonian import Hamiltonian
-from gpaw.new.poisson import PoissonSolver, PoissonSolverWrapper
-from gpaw.new.pwfd.builder import PWFDDFTComponentsBuilder
-from gpaw.poisson import PoissonSolver as make_poisson_solver
+from my_gpaw.core import UniformGrid
+from my_gpaw.core.uniform_grid import UniformGridFunctions
+from my_gpaw.fd_operators import Laplace
+from my_gpaw.new import zip
+from my_gpaw.new.builder import create_uniform_grid
+from my_gpaw.new.fd.pot_calc import UniformGridPotentialCalculator
+from my_gpaw.new.hamiltonian import Hamiltonian
+from my_gpaw.new.poisson import PoissonSolver, PoissonSolverWrapper
+from my_gpaw.new.pwfd.builder import PWFDDFTComponentsBuilder
+from my_gpaw.poisson import PoissonSolver as make_poisson_solver
 
 
 class FDDFTComponentsBuilder(PWFDDFTComponentsBuilder):
@@ -128,7 +128,7 @@ class FDHamiltonian(Hamiltonian):
     def create_preconditioner(self, blocksize):
         from types import SimpleNamespace
 
-        from gpaw.preconditioner import Preconditioner as PC
+        from my_gpaw.preconditioner import Preconditioner as PC
         pc = PC(self._gd, self.kin, self.grid.dtype, self.blocksize)
 
         def apply(psit, residuals, out):

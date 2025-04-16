@@ -6,11 +6,11 @@ from ase import Atom, Atoms, io
 from ase.parallel import parprint, paropen
 from ase.units import Ha
 
-from gpaw import GPAW
-from gpaw.mpi import world
-from gpaw.test import equal
-from gpaw.lrtddft import LrTDDFT
-from gpaw.lrtddft.excited_state import ExcitedState
+from my_gpaw import GPAW
+from my_gpaw.mpi import world
+from my_gpaw.test import equal
+from my_gpaw.lrtddft import LrTDDFT
+from my_gpaw.lrtddft.excited_state import ExcitedState
 
 
 def get_H2(calculator=None):

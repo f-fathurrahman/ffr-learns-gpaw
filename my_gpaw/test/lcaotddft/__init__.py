@@ -1,13 +1,13 @@
 import numpy as np
 
-from gpaw.mpi import world, broadcast_float
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
-from gpaw.lcaotddft.wfwriter import WaveFunctionWriter, WaveFunctionReader
-from gpaw.lcaotddft.densitymatrix import DensityMatrix
-from gpaw.lcaotddft.frequencydensitymatrix import FrequencyDensityMatrix
-from gpaw.tddft.folding import frequencies
-from gpaw.utilities import compiled_with_sl
+from my_gpaw.mpi import world, broadcast_float
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
+from my_gpaw.lcaotddft.wfwriter import WaveFunctionWriter, WaveFunctionReader
+from my_gpaw.lcaotddft.densitymatrix import DensityMatrix
+from my_gpaw.lcaotddft.frequencydensitymatrix import FrequencyDensityMatrix
+from my_gpaw.tddft.folding import frequencies
+from my_gpaw.utilities import compiled_with_sl
 
 
 def parallel_options(*, include_kpt=False, fix_sl_auto=False):

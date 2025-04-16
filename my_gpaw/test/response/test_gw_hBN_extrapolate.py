@@ -2,8 +2,8 @@
 It takes ~10 s on one core"""
 
 import pytest
-from gpaw.test import equal
-from gpaw.response.g0w0 import G0W0
+from my_gpaw.test import equal
+from my_gpaw.response.g0w0 import G0W0
 
 
 @pytest.mark.response

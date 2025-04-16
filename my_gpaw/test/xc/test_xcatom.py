@@ -1,8 +1,8 @@
 import numpy as np
 import numpy.random as ra
-from gpaw.setup import create_setup
-from gpaw.xc import XC
-from gpaw.test import equal
+from my_gpaw.setup import create_setup
+from my_gpaw.xc import XC
+from my_gpaw.test import equal
 
 
 def test_xc_xcatom():

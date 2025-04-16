@@ -1,8 +1,8 @@
 import pytest
 from ase.lattice.cubic import BodyCenteredCubic
 
-from gpaw import GPAW, PW
-from gpaw.test import equal
+from my_gpaw import GPAW, PW
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

@@ -4,8 +4,8 @@ from math import sqrt
 import numpy as np
 from ase import Atoms
 
-from gpaw import GPAW, restart
-from gpaw.test import equal
+from my_gpaw import GPAW, restart
+from my_gpaw.test import equal
 
 
 def test_fileio_restart_density(in_tmp_dir):

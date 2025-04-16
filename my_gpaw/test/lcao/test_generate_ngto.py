@@ -1,9 +1,9 @@
 import pytest
 import numpy as np
 
-from gpaw.basis_data import Basis
-from gpaw.mpi import world
-from gpaw.lcao.generate_ngto_augmented import \
+from my_gpaw.basis_data import Basis
+from my_gpaw.mpi import world
+from my_gpaw.lcao.generate_ngto_augmented import \
     create_GTO_dictionary as GTO, create_CGTO_dictionary as CGTO, \
     generate_nao_ngto_basis, read_gaussian_basis_file
 

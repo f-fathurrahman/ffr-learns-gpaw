@@ -1,14 +1,14 @@
 import pytest
-from gpaw.mpi import world
+from my_gpaw.mpi import world
 import numpy as np
 
 from ase.build import molecule
-from gpaw import GPAW
-from gpaw.tddft import TDDFT as GRIDTDDFT
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.poisson import PoissonSolver as PS
-from gpaw.poisson_moment import MomentCorrectionPoissonSolver
-from gpaw.poisson_extravacuum import ExtraVacuumPoissonSolver
+from my_gpaw import GPAW
+from my_gpaw.tddft import TDDFT as GRIDTDDFT
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.poisson import PoissonSolver as PS
+from my_gpaw.poisson_moment import MomentCorrectionPoissonSolver
+from my_gpaw.poisson_extravacuum import ExtraVacuumPoissonSolver
 
 pytestmark = pytest.mark.skipif(world.size > 2,
                                 reason='world.size > 2')

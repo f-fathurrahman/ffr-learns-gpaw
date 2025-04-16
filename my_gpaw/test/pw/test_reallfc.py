@@ -1,12 +1,12 @@
 import numpy as np
 import pytest
 
-from gpaw.test import equal
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.spline import Spline
+from my_gpaw.test import equal
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.spline import Spline
 import gpaw.mpi as mpi
-from gpaw.pw.descriptor import PWDescriptor
-from gpaw.pw.lfc import PWLFC
+from my_gpaw.pw.descriptor import PWDescriptor
+from my_gpaw.pw.lfc import PWLFC
 
 
 @pytest.mark.ci

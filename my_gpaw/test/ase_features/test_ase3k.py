@@ -4,7 +4,7 @@ import pytest
 from ase import Atoms
 from ase.io import read
 
-from gpaw import GPAW, FermiDirac
+from my_gpaw import GPAW, FermiDirac
 
 
 @pytest.mark.ci

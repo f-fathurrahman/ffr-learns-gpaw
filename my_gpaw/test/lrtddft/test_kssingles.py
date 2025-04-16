@@ -2,9 +2,9 @@ import pytest
 
 from ase.build import molecule
 
-from gpaw.mpi import world
-from gpaw import GPAW
-from gpaw.lrtddft.kssingle import KSSingles
+from my_gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.lrtddft.kssingle import KSSingles
 
 
 @pytest.mark.lrtddft

@@ -8,7 +8,7 @@ equal to a tolerance of 1e-10.
 import pytest
 import numpy as np
 
-from gpaw.response.chi0 import Chi0
+from my_gpaw.response.chi0 import Chi0
 
 
 @pytest.mark.response

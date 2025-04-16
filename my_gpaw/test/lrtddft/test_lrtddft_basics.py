@@ -1,9 +1,9 @@
 import pytest
 from ase import Atom, Atoms
 
-from gpaw import GPAW
-from gpaw.lrtddft import LrTDDFT
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.lrtddft import LrTDDFT
+from my_gpaw.mpi import world
 
 
 def get_H2(calculator=None):

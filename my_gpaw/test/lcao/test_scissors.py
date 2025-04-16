@@ -1,7 +1,7 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.lcao.scissors import Scissors
+from my_gpaw import GPAW
+from my_gpaw.lcao.scissors import Scissors
 
 
 @pytest.mark.later

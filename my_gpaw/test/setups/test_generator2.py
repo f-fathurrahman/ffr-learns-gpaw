@@ -1,9 +1,9 @@
 import numpy as np
 import pytest
 
-from gpaw.atom.generator2 import generate
-from gpaw.setup import Setup
-from gpaw.xc import XC
+from my_gpaw.atom.generator2 import generate
+from my_gpaw.setup import Setup
+from my_gpaw.xc import XC
 
 
 @pytest.mark.serial

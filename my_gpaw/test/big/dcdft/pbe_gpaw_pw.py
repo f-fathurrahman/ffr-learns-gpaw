@@ -9,8 +9,8 @@ from ase.utils import opencew
 from ase.calculators.calculator import kpts2mp
 from ase.io import Trajectory
 from ase.test.tasks.dcdft import DeltaCodesDFTCollection as Collection
-from gpaw import GPAW, PW, FermiDirac
-from gpaw.utilities import h2gpts
+from my_gpaw import GPAW, PW, FermiDirac
+from my_gpaw.utilities import h2gpts
 
 collection = Collection()
 

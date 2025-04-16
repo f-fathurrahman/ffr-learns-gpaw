@@ -2,9 +2,9 @@ import pytest
 from ase import Atoms
 from ase.units import Ha
 
-from gpaw import SCIPY_VERSION
-from gpaw.new.calculation import DFTCalculation
-from gpaw.mpi import size
+from my_gpaw import SCIPY_VERSION
+from my_gpaw.new.calculation import DFTCalculation
+from my_gpaw.mpi import size
 
 
 @pytest.mark.gpu

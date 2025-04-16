@@ -1,7 +1,7 @@
 import pytest
-from gpaw.mpi import serial_comm
-from gpaw import GPAW
-from gpaw.xc.rpa import RPACorrelation
+from my_gpaw.mpi import serial_comm
+from my_gpaw import GPAW
+from my_gpaw.xc.rpa import RPACorrelation
 
 
 @pytest.mark.rpa

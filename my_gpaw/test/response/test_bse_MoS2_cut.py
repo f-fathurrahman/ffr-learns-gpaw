@@ -2,11 +2,11 @@ import pytest
 import numpy as np
 from ase import Atoms
 from ase.lattice.hexagonal import Hexagonal
-from gpaw import GPAW, FermiDirac, PW
-from gpaw.mpi import world
-from gpaw.test import findpeak, equal
-from gpaw.response.bse import BSE
-from gpaw.response.df import read_response_function
+from my_gpaw import GPAW, FermiDirac, PW
+from my_gpaw.mpi import world
+from my_gpaw.test import findpeak, equal
+from my_gpaw.response.bse import BSE
+from my_gpaw.response.df import read_response_function
 
 
 @pytest.mark.response

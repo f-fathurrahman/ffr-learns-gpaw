@@ -1,5 +1,5 @@
 import pytest
-from gpaw.upf import UPFSetupData
+from my_gpaw.upf import UPFSetupData
 
 
 def get(fname):
@@ -14,7 +14,7 @@ def test_psp_upf_h2o():
 
     # dr = x[1] - x[0]
 
-    from gpaw.atom.atompaw import AtomPAW
+    from my_gpaw.atom.atompaw import AtomPAW
 
     if 0:
         # f = 1.0  # 1e-12
@@ -40,8 +40,8 @@ def test_psp_upf_h2o():
     # print 'horrible version ok, relatively speaking'
 
     if 1:
-        from gpaw import GPAW, PoissonSolver
-        from gpaw.utilities import h2gpts
+        from my_gpaw import GPAW, PoissonSolver
+        from my_gpaw.utilities import h2gpts
         from ase.build import molecule
 
         # s = UPFSetupData('/home/askhl/parse-upf/h_lda_v1.uspp.F.UPF')

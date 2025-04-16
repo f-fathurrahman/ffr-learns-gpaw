@@ -1,9 +1,9 @@
 import pytest
-from gpaw import GPAW, FermiDirac
-from gpaw.mpi import world, size, rank
-from gpaw.lrtddft2 import LrTDDFT2
-from gpaw.lrtddft2.lr_communicators import LrCommunicators
-from gpaw.test import equal
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.mpi import world, size, rank
+from my_gpaw.lrtddft2 import LrTDDFT2
+from my_gpaw.lrtddft2.lr_communicators import LrCommunicators
+from my_gpaw.test import equal
 from ase.atoms import Atoms
 
 

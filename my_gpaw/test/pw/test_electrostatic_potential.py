@@ -1,4 +1,4 @@
-from gpaw import GPAW
+from my_gpaw import GPAW
 
 
 def test_electrostatic_potential(gpw_files):

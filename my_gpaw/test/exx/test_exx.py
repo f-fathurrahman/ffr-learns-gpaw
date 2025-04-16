@@ -1,10 +1,10 @@
 """Test EXX/HFT implementation."""
 import pytest
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.test import equal
-from gpaw.xc import XC
-from gpaw.xc.hybrid import HybridXC
+from my_gpaw import GPAW
+from my_gpaw.test import equal
+from my_gpaw.xc import XC
+from my_gpaw.xc.hybrid import HybridXC
 
 
 def xc1(name):

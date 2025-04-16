@@ -6,9 +6,9 @@ from ase.parallel import parprint
 from ase.units import Hartree
 
 import gpaw.mpi as mpi
-from gpaw import GPAW
-from gpaw.test import equal
-from gpaw.lrtddft.kssingle import KSSingles
+from my_gpaw import GPAW
+from my_gpaw.test import equal
+from my_gpaw.lrtddft.kssingle import KSSingles
 
 
 @pytest.mark.lrtddft

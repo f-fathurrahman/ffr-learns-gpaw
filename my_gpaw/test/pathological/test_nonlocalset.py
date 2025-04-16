@@ -12,8 +12,8 @@ used with the utmost care."""
 
 import pytest
 from ase import Atoms
-from gpaw import GPAW, Mixer
-from gpaw.test import equal
+from my_gpaw import GPAW, Mixer
+from my_gpaw.test import equal
 
 
 @pytest.mark.libxc

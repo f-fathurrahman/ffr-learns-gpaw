@@ -2,11 +2,11 @@ import pytest
 import numpy as np
 import pickle
 from ase.build import molecule
-from gpaw.lcao.tools import makeU, makeV
-from gpaw import GPAW, FermiDirac, restart
-from gpaw.lcao.pwf2 import LCAOwrap
-from gpaw.mpi import world, rank, serial_comm
-from gpaw.test import equal
+from my_gpaw.lcao.tools import makeU, makeV
+from my_gpaw import GPAW, FermiDirac, restart
+from my_gpaw.lcao.pwf2 import LCAOwrap
+from my_gpaw.mpi import world, rank, serial_comm
+from my_gpaw.test import equal
 
 pytestmark = pytest.mark.skipif(world.size > 1,
                                 reason='world.size > 1')

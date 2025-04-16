@@ -1,5 +1,5 @@
 from ase.build import bulk
-from gpaw import GPAW, PW
+from my_gpaw import GPAW, PW
 import pytest
 
 

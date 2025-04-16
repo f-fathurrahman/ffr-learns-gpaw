@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from gpaw import GPAW
+from my_gpaw import GPAW
 from ase.io import read
 
 

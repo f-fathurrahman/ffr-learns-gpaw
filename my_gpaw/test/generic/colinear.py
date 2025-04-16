@@ -1,7 +1,7 @@
 import pytest
 from ase import Atoms
-from gpaw import GPAW, Mixer
-# from gpaw.xc.noncolinear import NonColinearLDA, NonColinearLCAOEigensolver, \
+from my_gpaw import GPAW, Mixer
+# from my_gpaw.xc.noncolinear import NonColinearLDA, NonColinearLCAOEigensolver, \
 #     NonColinearMixer
 
 

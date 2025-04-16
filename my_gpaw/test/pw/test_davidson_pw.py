@@ -1,8 +1,8 @@
 import pytest
-from gpaw.mpi import world
+from my_gpaw.mpi import world
 from ase import Atom, Atoms
-from gpaw import GPAW
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.test import equal
 
 pytestmark = pytest.mark.skipif(world.size > 1,
                                 reason='world.size > 1')

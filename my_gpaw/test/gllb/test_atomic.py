@@ -1,6 +1,6 @@
 import pytest
-from gpaw.atom.all_electron import AllElectron
-from gpaw.test import equal
+from my_gpaw.atom.all_electron import AllElectron
+from my_gpaw.test import equal
 
 
 @pytest.mark.gllb

@@ -1,6 +1,6 @@
 import pytest
 from ase.build import molecule
-from gpaw import GPAW
+from my_gpaw import GPAW
 
 
 @pytest.mark.libxc

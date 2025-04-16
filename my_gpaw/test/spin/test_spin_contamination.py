@@ -1,7 +1,7 @@
 import pytest
 from ase import Atom
-from gpaw import GPAW
-from gpaw.cluster import Cluster
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
 
 h = 0.25
 box = 3.0

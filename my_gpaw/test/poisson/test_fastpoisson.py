@@ -5,11 +5,11 @@
 import itertools
 import numpy as np
 from ase.build import bulk
-from gpaw.poisson import FastPoissonSolver, BadAxesError
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.fd_operators import Laplace
-from gpaw.mpi import world
-from gpaw.utilities import h2gpts
+from my_gpaw.poisson import FastPoissonSolver, BadAxesError
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.fd_operators import Laplace
+from my_gpaw.mpi import world
+from my_gpaw.utilities import h2gpts
 
 # Test: different pbcs
 # For pbc=000, test charged system
@@ -57,7 +57,7 @@ def test_poisson_fastpoisson():
         assert abs(charge) < 1e-12
 
         # Check use_cholesky=True/False ?
-        from gpaw.poisson import FDPoissonSolver
+        from my_gpaw.poisson import FDPoissonSolver
         ps = FastPoissonSolver(nn=nn)
         # print('setgrid')
 

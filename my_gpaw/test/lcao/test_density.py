@@ -13,9 +13,9 @@ import numpy as np
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW, ConvergenceError
-from gpaw.new.scf import SCFConvergenceError
-from gpaw.utilities.blas import axpy
+from my_gpaw import GPAW, ConvergenceError
+from my_gpaw.new.scf import SCFConvergenceError
+from my_gpaw.utilities.blas import axpy
 
 
 @pytest.mark.later

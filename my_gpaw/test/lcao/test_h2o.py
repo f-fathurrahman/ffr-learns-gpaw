@@ -1,9 +1,9 @@
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW, LCAO
-from gpaw.poisson import FDPoissonSolver
-from gpaw.test import equal
+from my_gpaw import GPAW, LCAO
+from my_gpaw.poisson import FDPoissonSolver
+from my_gpaw.test import equal
 
 
 @pytest.mark.later  # basis set cutoff??

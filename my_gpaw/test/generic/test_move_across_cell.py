@@ -1,7 +1,7 @@
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW, Davidson, MixerSum
+from my_gpaw import GPAW, Davidson, MixerSum
 
 # Move atom infinitesimally across cell border and test that SCF loop is still
 # well converged afterwards.  If it is /not/ well converged, then the code

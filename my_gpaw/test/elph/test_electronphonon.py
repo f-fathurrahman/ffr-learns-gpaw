@@ -3,9 +3,9 @@ import pytest
 from ase import Atoms
 from ase.phonons import Phonons
 
-from gpaw import GPAW
-from gpaw.elph.electronphonon import ElectronPhononCoupling
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.elph.electronphonon import ElectronPhononCoupling
+from my_gpaw.mpi import world
 
 pytestmark = pytest.mark.skipif(world.size > 2,
                                 reason='world.size > 2')

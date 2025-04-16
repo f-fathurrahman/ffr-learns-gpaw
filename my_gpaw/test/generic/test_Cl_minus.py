@@ -1,6 +1,6 @@
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.test import equal
 
 
 def test_generic_Cl_minus():

@@ -4,8 +4,8 @@ import os
 import pytest
 from ase import Atom, Atoms
 
-from gpaw import GPAW, FermiDirac, restart
-from gpaw.test import equal
+from my_gpaw import GPAW, FermiDirac, restart
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

@@ -6,8 +6,8 @@ from ase.db import connect
 from ase.io import iread, read, write
 from ase.units import Bohr
 
-from gpaw import GPAW, FermiDirac
-from gpaw.test import equal
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

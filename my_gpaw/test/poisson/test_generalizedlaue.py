@@ -3,10 +3,10 @@ import pytest
 
 @pytest.mark.skip(reason='TODO')
 def test_generalizedlaue():
-    from gpaw.poisson import (NonPeriodicLauePoissonSolver,
+    from my_gpaw.poisson import (NonPeriodicLauePoissonSolver,
                               GeneralizedLauePoissonSolver,
                               FDPoissonSolver, idst2, dst2)
-    from gpaw.grid_descriptor import GridDescriptor
+    from my_gpaw.grid_descriptor import GridDescriptor
     import numpy as np
     gd = GridDescriptor((10, 12, 42), (4, 5, 20), pbc_c=(True, True, False))
     poisson = GeneralizedLauePoissonSolver(nn=2)

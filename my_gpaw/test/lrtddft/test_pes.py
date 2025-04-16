@@ -2,12 +2,12 @@ import pytest
 from ase import Atom, Atoms
 from ase.parallel import parprint
 
-from gpaw import GPAW, mpi
-from gpaw.test import equal
-from gpaw.lrtddft import LrTDDFT
-from gpaw.poisson import FDPoissonSolver
-from gpaw.pes.dos import DOSPES
-from gpaw.pes.tddft import TDDFTPES
+from my_gpaw import GPAW, mpi
+from my_gpaw.test import equal
+from my_gpaw.lrtddft import LrTDDFT
+from my_gpaw.poisson import FDPoissonSolver
+from my_gpaw.pes.dos import DOSPES
+from my_gpaw.pes.tddft import TDDFTPES
 
 
 @pytest.mark.lrtddft

@@ -1,8 +1,8 @@
 from ase import Atom
 
-from gpaw import GPAW
-from gpaw.cluster import Cluster
-from gpaw.analyse.eed import ExteriorElectronDensity
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
+from my_gpaw.analyse.eed import ExteriorElectronDensity
 
 
 def test_utilities_eed(in_tmp_dir):

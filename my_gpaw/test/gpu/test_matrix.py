@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
-from gpaw.core.matrix import Matrix
-from gpaw.gpu import cupy as cp, as_xp
+from my_gpaw.core.matrix import Matrix
+from my_gpaw.gpu import cupy as cp, as_xp
 
 
 @pytest.mark.gpu

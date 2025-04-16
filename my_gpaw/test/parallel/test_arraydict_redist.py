@@ -1,7 +1,7 @@
 import numpy as np
-from gpaw.mpi import world
-from gpaw.utilities.partition import AtomPartition
-from gpaw.arraydict import ArrayDict
+from my_gpaw.mpi import world
+from my_gpaw.utilities.partition import AtomPartition
+from my_gpaw.arraydict import ArrayDict
 
 
 def test_parallel_arraydict_redist():

@@ -1,11 +1,11 @@
 import pytest
-from gpaw.utilities import compiled_with_libvdwxc
+from my_gpaw.utilities import compiled_with_libvdwxc
 import itertools
 import numpy as np
-from gpaw.grid_descriptor import GridDescriptor
-from gpaw.xc import XC
-from gpaw.xc.libvdwxc import vdw_df_cx
-from gpaw.mpi import world
+from my_gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.xc import XC
+from my_gpaw.xc.libvdwxc import vdw_df_cx
+from my_gpaw.mpi import world
 
 pytestmark = pytest.mark.skipif(not compiled_with_libvdwxc(),
                                 reason='not compiled_with_libvdwxc()')

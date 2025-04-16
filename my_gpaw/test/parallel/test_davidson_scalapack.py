@@ -3,7 +3,7 @@ import pytest
 
 from ase.build import bulk
 from ase.parallel import world
-from gpaw import GPAW, FermiDirac, PW
+from my_gpaw import GPAW, FermiDirac, PW
 
 
 def get_calculator(sl_auto, kpoint_gamma):

@@ -1,18 +1,18 @@
 from math import pi
 
 from ase.units import Ha
-from gpaw.core import PlaneWaves, UniformGrid
-from gpaw.core.domain import Domain
-from gpaw.core.matrix import Matrix
-from gpaw.core.plane_waves import PlaneWaveExpansions
-from gpaw.new import zip
-from gpaw.new.builder import create_uniform_grid
-from gpaw.new.pw.hamiltonian import PWHamiltonian, SpinorPWHamiltonian
-from gpaw.new.pw.poisson import make_poisson_solver
-from gpaw.new.pw.pot_calc import PlaneWavePotentialCalculator
-from gpaw.new.pwfd.builder import PWFDDFTComponentsBuilder
-from gpaw.new.spinors import SpinorWaveFunctionDescriptor
-from gpaw.typing import Array1D
+from my_gpaw.core import PlaneWaves, UniformGrid
+from my_gpaw.core.domain import Domain
+from my_gpaw.core.matrix import Matrix
+from my_gpaw.core.plane_waves import PlaneWaveExpansions
+from my_gpaw.new import zip
+from my_gpaw.new.builder import create_uniform_grid
+from my_gpaw.new.pw.hamiltonian import PWHamiltonian, SpinorPWHamiltonian
+from my_gpaw.new.pw.poisson import make_poisson_solver
+from my_gpaw.new.pw.pot_calc import PlaneWavePotentialCalculator
+from my_gpaw.new.pwfd.builder import PWFDDFTComponentsBuilder
+from my_gpaw.new.spinors import SpinorWaveFunctionDescriptor
+from my_gpaw.typing import Array1D
 
 
 class PWDFTComponentsBuilder(PWFDDFTComponentsBuilder):

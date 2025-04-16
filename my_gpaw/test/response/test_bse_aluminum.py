@@ -1,11 +1,11 @@
 import pytest
-from gpaw.mpi import world
+from my_gpaw.mpi import world
 import numpy as np
 from ase.build import bulk
-from gpaw import GPAW
-from gpaw.response.df import DielectricFunction
-from gpaw.response.bse import BSE, read_spectrum
-from gpaw.test import findpeak, equal
+from my_gpaw import GPAW
+from my_gpaw.response.df import DielectricFunction
+from my_gpaw.response.bse import BSE, read_spectrum
+from my_gpaw.test import findpeak, equal
 
 pytestmark = pytest.mark.skipif(world.size < 4,
                                 reason='world.size < 4')

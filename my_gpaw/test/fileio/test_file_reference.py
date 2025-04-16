@@ -2,8 +2,8 @@
 from math import sqrt
 import numpy as np
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.mpi import world, rank
+from my_gpaw import GPAW
+from my_gpaw.mpi import world, rank
 
 
 def test_fileio_file_reference(in_tmp_dir):

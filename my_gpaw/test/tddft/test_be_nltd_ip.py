@@ -1,9 +1,9 @@
 import numpy as np
 from ase import Atoms
-from gpaw import GPAW
-from gpaw.tddft import TDDFT
-from gpaw.tddft.abc import LinearAbsorbingBoundary
-from gpaw.tddft.laser import CWField
+from my_gpaw import GPAW
+from my_gpaw.tddft import TDDFT
+from my_gpaw.tddft.abc import LinearAbsorbingBoundary
+from my_gpaw.tddft.laser import CWField
 import pytest
 
 

@@ -6,12 +6,12 @@ Matteo Cococcioni and Nicola Marzari,
 J. Chem. Phys. 124, 074103, 2006
 """
 
-from gpaw import GPAW
-from gpaw.cluster import Cluster
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
+from my_gpaw.test import equal
 from ase import Atoms
 from ase.units import mol, kcal, Pascal, m, Bohr
-from gpaw.solvation import (
+from my_gpaw.solvation import (
     SolvationGPAW,
     FG02SmoothStepCavity,
     LinearDielectric,

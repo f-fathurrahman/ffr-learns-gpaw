@@ -1,6 +1,6 @@
 import pytest
-from gpaw import GPAW
-from gpaw.response.paw import two_phi_planewave_integrals
+from my_gpaw import GPAW
+from my_gpaw.response.paw import two_phi_planewave_integrals
 import numpy as np
 
 

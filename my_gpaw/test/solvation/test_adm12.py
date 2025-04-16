@@ -5,12 +5,12 @@ O. Andreussi, I. Dabo, and N. Marzari,
 The Journal of Chemical Physics, vol. 136, no. 6, p. 064102, 2012
 """
 
-from gpaw import GPAW
-from gpaw.cluster import Cluster
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.cluster import Cluster
+from my_gpaw.test import equal
 from ase.build import molecule
 from ase.units import mol, kcal, Pascal, m, Bohr
-from gpaw.solvation import (
+from my_gpaw.solvation import (
     SolvationGPAW,
     ADM12SmoothStepCavity,
     LinearDielectric,
@@ -20,7 +20,7 @@ from gpaw.solvation import (
     VolumeInteraction,
     ElDensity
 )
-from gpaw.solvation.poisson import ADM12PoissonSolver
+from my_gpaw.solvation.poisson import ADM12PoissonSolver
 import warnings
 
 SKIP_VAC_CALC = True

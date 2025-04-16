@@ -3,8 +3,8 @@ import pytest
 from ase.build import bulk
 from ase.parallel import parprint
 
-from gpaw import GPAW, PW, Mixer
-from gpaw.mpi import world
+from my_gpaw import GPAW, PW, Mixer
+from my_gpaw.mpi import world
 
 
 @pytest.mark.mgga

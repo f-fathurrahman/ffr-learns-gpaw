@@ -2,10 +2,10 @@ import pytest
 import numpy as np
 from ase import Atoms
 
-from gpaw import GPAW, PW, FermiDirac, Mixer
-from gpaw.utilities import compiled_with_sl
-from gpaw.response.df import DielectricFunction
-from gpaw.mpi import world
+from my_gpaw import GPAW, PW, FermiDirac, Mixer
+from my_gpaw.utilities import compiled_with_sl
+from my_gpaw.response.df import DielectricFunction
+from my_gpaw.mpi import world
 
 # This test assures that some things that
 # should be equal, are.

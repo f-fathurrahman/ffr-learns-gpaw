@@ -1,16 +1,16 @@
 import numpy as np
 import pytest
 
-from gpaw.mpi import world
-from gpaw.test import findpeak
+from my_gpaw.mpi import world
+from my_gpaw.test import findpeak
 
-from gpaw.response import ResponseContext, ResponseGroundStateAdapter
-from gpaw.response.frequencies import ComplexFrequencyDescriptor
-from gpaw.response.chiks import ChiKSCalculator
-from gpaw.response.fxc_kernels import AdiabaticFXCCalculator
-from gpaw.response.dyson import HXCScaling, HXCKernel
-from gpaw.response.susceptibility import ChiFactory
-from gpaw.response.pair_functions import read_pair_function
+from my_gpaw.response import ResponseContext, ResponseGroundStateAdapter
+from my_gpaw.response.frequencies import ComplexFrequencyDescriptor
+from my_gpaw.response.chiks import ChiKSCalculator
+from my_gpaw.response.fxc_kernels import AdiabaticFXCCalculator
+from my_gpaw.response.dyson import HXCScaling, HXCKernel
+from my_gpaw.response.susceptibility import ChiFactory
+from my_gpaw.response.pair_functions import read_pair_function
 
 
 pytestmark = pytest.mark.skipif(world.size < 4,

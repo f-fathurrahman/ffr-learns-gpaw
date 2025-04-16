@@ -1,9 +1,9 @@
 """Check for change in total energy and lowest eigenvalue regarding to box."""
 from ase import Atoms
 from ase.parallel import parprint
-from gpaw import GPAW, PoissonSolver
-from gpaw.cluster import Cluster
-from gpaw.test import equal
+from my_gpaw import GPAW, PoissonSolver
+from my_gpaw.cluster import Cluster
+from my_gpaw.test import equal
 
 
 def test_generic_asym_box(in_tmp_dir):

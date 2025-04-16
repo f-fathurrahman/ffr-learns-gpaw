@@ -5,11 +5,11 @@ import pytest
 from ase import Atom, Atoms
 
 import gpaw.mpi as mpi
-from gpaw import GPAW
-from gpaw.atom.generator2 import generate
-from gpaw.poisson import FDPoissonSolver
-from gpaw.test import equal
-from gpaw.xas import XAS
+from my_gpaw import GPAW
+from my_gpaw.atom.generator2 import generate
+from my_gpaw.poisson import FDPoissonSolver
+from my_gpaw.test import equal
+from my_gpaw.xas import XAS
 
 
 @pytest.mark.later

@@ -10,8 +10,8 @@ from itertools import count
 import pytest
 from ase.build import molecule, bulk
 
-from gpaw import GPAW, LCAO
-from gpaw.mpi import world
+from my_gpaw import GPAW, LCAO
+from my_gpaw.mpi import world
 
 
 def system1():

@@ -3,8 +3,8 @@ import numpy as np
 from ase import Atoms
 
 import gpaw.dscf as dscf
-from gpaw import GPAW, MixerSum
-from gpaw.mpi import rank
+from my_gpaw import GPAW, MixerSum
+from my_gpaw.mpi import rank
 
 
 @pytest.mark.skip(reason='TODO')

@@ -1,6 +1,6 @@
 import pytest
-from gpaw import GPAW
-from gpaw.utilities.ibz2bz import ibz2bz
+from my_gpaw import GPAW
+from my_gpaw.utilities.ibz2bz import ibz2bz
 
 
 @pytest.mark.legacy

@@ -1,9 +1,9 @@
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW, FermiDirac
-from gpaw.test import gen
-from gpaw.xas import XAS, RecursionMethod
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.test import gen
+from my_gpaw.xas import XAS, RecursionMethod
 
 
 @pytest.mark.later

@@ -1,6 +1,6 @@
-from gpaw import GPAW, FermiDirac
+from my_gpaw import GPAW, FermiDirac
 from ase import Atoms
-from gpaw.test import equal
+from my_gpaw.test import equal
 import numpy as np
 
 

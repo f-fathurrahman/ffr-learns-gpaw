@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 from ase.build import bulk
 
-from gpaw import GPAW, FermiDirac, Mixer
+from my_gpaw import GPAW, FermiDirac, Mixer
 
 
 @pytest.mark.later

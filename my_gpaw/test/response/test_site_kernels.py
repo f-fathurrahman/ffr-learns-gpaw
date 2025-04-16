@@ -8,15 +8,15 @@ import scipy.special as sc
 # Script modules
 from ase.build import bulk
 
-from gpaw import GPAW, PW
-from gpaw.response.site_kernels import (SphericalSiteKernels,
+from my_gpaw import GPAW, PW
+from my_gpaw.response.site_kernels import (SphericalSiteKernels,
                                         CylindricalSiteKernels,
                                         ParallelepipedicSiteKernels,
                                         sinc,
                                         spherical_geometry_factor,
                                         cylindrical_geometry_factor,
                                         parallelepipedic_geometry_factor)
-from gpaw.response.pair_functions import get_pw_coordinates
+from my_gpaw.response.pair_functions import get_pw_coordinates
 
 
 # ---------- Actual tests ---------- #
@@ -548,7 +548,7 @@ def get_pw_descriptor(atoms, calc, q_c, ecut=50., gammacentered=False):
 
     Works on a bare calculator instance without any actual data in it."""
     from ase.units import Ha
-    from gpaw.response.pair_functions import SingleQPWDescriptor
+    from my_gpaw.response.pair_functions import SingleQPWDescriptor
 
     # Create the plane wave descriptor
     q_c = np.asarray(q_c, dtype=float)

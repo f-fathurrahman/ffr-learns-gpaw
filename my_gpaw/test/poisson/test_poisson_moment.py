@@ -2,12 +2,12 @@ import numpy as np
 import pytest
 
 from ase.units import Bohr
-from gpaw.poisson import PoissonSolver, NoInteractionPoissonSolver
-from gpaw.poisson_moment import MomentCorrectionPoissonSolver, MomentCorrection
-from gpaw.poisson_extravacuum import ExtraVacuumPoissonSolver
-from gpaw.grid_descriptor import GridDescriptor
+from my_gpaw.poisson import PoissonSolver, NoInteractionPoissonSolver
+from my_gpaw.poisson_moment import MomentCorrectionPoissonSolver, MomentCorrection
+from my_gpaw.poisson_extravacuum import ExtraVacuumPoissonSolver
+from my_gpaw.grid_descriptor import GridDescriptor
 
-from gpaw.test import equal
+from my_gpaw.test import equal
 
 
 @pytest.mark.parametrize('moment_corrections, expected_len', [
@@ -140,8 +140,8 @@ def test_write(gd, moment_corrections):
         moment_corrections=moment_corrections)
     poisson.set_grid_descriptor(gd)
 
-    from gpaw.io import Writer
-    from gpaw.mpi import world
+    from my_gpaw.io import Writer
+    from my_gpaw.mpi import world
     filename = '/dev/null'
 
     # By using the Writer we check that everything is JSON serializable

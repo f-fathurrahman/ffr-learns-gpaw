@@ -1,4 +1,4 @@
-from gpaw.xc.gllb.nonlocalfunctional import NonLocalFunctional
+from my_gpaw.xc.gllb.nonlocalfunctional import NonLocalFunctional
 
 
 def get_nonlocal_functional(name: str,
@@ -36,10 +36,10 @@ def get_nonlocal_functional(name: str,
     * GLLBPBE (A test functional, which is just PBE but via
                NonLocalFunctional framework)
     """
-    from gpaw.xc.gllb.c_gllbscr import C_GLLBScr
-    from gpaw.xc.gllb.c_response import C_Response
-    from gpaw.xc.gllb.c_xc import C_XC
-    from gpaw.xc.gllb.coefficients import Coefficients
+    from my_gpaw.xc.gllb.c_gllbscr import C_GLLBScr
+    from my_gpaw.xc.gllb.c_response import C_Response
+    from my_gpaw.xc.gllb.c_xc import C_XC
+    from my_gpaw.xc.gllb.coefficients import Coefficients
 
     functional = NonLocalFunctional(name)
 

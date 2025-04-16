@@ -2,9 +2,9 @@ import numpy as np
 import pytest
 from ase.build import fcc111
 
-from gpaw import GPAW, LCAO, FermiDirac
-from gpaw.mpi import world
-from gpaw.utilities import compiled_with_sl
+from my_gpaw import GPAW, LCAO, FermiDirac
+from my_gpaw.mpi import world
+from my_gpaw.utilities import compiled_with_sl
 
 # This test verifies that energy and forces are (approximately)
 # parallelization independent

@@ -1,5 +1,5 @@
-from gpaw.utilities.blas import rk
-from gpaw.utilities.blas import mmm
+from my_gpaw.utilities.blas import rk
+from my_gpaw.utilities.blas import mmm
 
 
 def syrk(trans, a, c, alpha, beta, lower):

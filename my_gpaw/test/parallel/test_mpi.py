@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from gpaw.mpi import world, send, receive, broadcast_array
+from my_gpaw.mpi import world, send, receive, broadcast_array
 
 
 def test_send_receive_object():

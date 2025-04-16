@@ -1,10 +1,10 @@
 import pytest
 from ase import Atom, Atoms
 
-from gpaw import GPAW
-from gpaw.analyse.overlap import Overlap
-from gpaw.lrtddft.kssingle import KSSingles
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.analyse.overlap import Overlap
+from my_gpaw.lrtddft.kssingle import KSSingles
+from my_gpaw.test import equal
 
 txt = '-'
 txt = None

@@ -1,8 +1,8 @@
 import numpy as np
 from ase import Atoms
-from gpaw import GPAW
-from gpaw import PW
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw import PW
+from my_gpaw.test import equal
 
 
 def test_pw_bulk():

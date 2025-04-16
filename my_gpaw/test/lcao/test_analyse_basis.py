@@ -1,5 +1,5 @@
 from pathlib import Path
-from gpaw.lcao.analyse_basis import main
+from my_gpaw.lcao.analyse_basis import main
 
 
 def test_analyse_basis(in_tmp_dir, capsys):

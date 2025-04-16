@@ -5,11 +5,11 @@ from ase.build import molecule
 from ase.calculators.vdwcorrection import vdWTkatchenko09prl
 from ase.parallel import barrier, parprint
 
-from gpaw import GPAW
-from gpaw.analyse.hirshfeld import HirshfeldPartitioning
-from gpaw.analyse.vdwradii import vdWradii
-from gpaw.cluster import Cluster
-from gpaw.test import equal
+from my_gpaw import GPAW
+from my_gpaw.analyse.hirshfeld import HirshfeldPartitioning
+from my_gpaw.analyse.vdwradii import vdWradii
+from my_gpaw.cluster import Cluster
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

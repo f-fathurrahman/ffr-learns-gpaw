@@ -3,16 +3,16 @@ from __future__ import annotations
 from typing import Callable
 
 import numpy as np
-from gpaw.core.atom_arrays import (AtomArrays, AtomArraysLayout,
+from my_gpaw.core.atom_arrays import (AtomArrays, AtomArraysLayout,
                                    AtomDistribution)
-from gpaw.core.matrix import Matrix
-from gpaw.mpi import MPIComm, serial_comm
-from gpaw.new import cached_property
-from gpaw.new.pwfd.wave_functions import PWFDWaveFunctions
-from gpaw.new.wave_functions import WaveFunctions
-from gpaw.setup import Setups
-from gpaw.typing import Array2D, Array3D
-from gpaw.new.potential import Potential
+from my_gpaw.core.matrix import Matrix
+from my_gpaw.mpi import MPIComm, serial_comm
+from my_gpaw.new import cached_property
+from my_gpaw.new.pwfd.wave_functions import PWFDWaveFunctions
+from my_gpaw.new.wave_functions import WaveFunctions
+from my_gpaw.setup import Setups
+from my_gpaw.typing import Array2D, Array3D
+from my_gpaw.new.potential import Potential
 
 
 class LCAOWaveFunctions(WaveFunctions):
@@ -198,6 +198,6 @@ class LCAOWaveFunctions(WaveFunctions):
         ...
 
     def force_contribution(self, potential: Potential, F_av: Array2D):
-        from gpaw.new.lcao.forces import add_force_contributions
+        from my_gpaw.new.lcao.forces import add_force_contributions
         add_force_contributions(self, potential, F_av)
         return F_av

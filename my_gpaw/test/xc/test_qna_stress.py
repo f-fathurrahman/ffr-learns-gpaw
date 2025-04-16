@@ -1,8 +1,8 @@
 import pytest
 import numpy as np
 from ase.parallel import parprint
-from gpaw import GPAW
-from gpaw.mpi import world
+from my_gpaw import GPAW
+from my_gpaw.mpi import world
 
 
 def numeric_stress(atoms, d=1e-6, component=None):

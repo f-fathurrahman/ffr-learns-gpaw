@@ -2,9 +2,9 @@ import pytest
 from ase import Atom, Atoms
 from ase.parallel import parprint
 
-from gpaw.test import equal
-from gpaw import GPAW, mpi
-from gpaw.lrtddft import LrTDDFT
+from my_gpaw.test import equal
+from my_gpaw import GPAW, mpi
+from my_gpaw.lrtddft import LrTDDFT
 
 
 @pytest.mark.lrtddft

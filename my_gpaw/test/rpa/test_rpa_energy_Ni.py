@@ -1,10 +1,10 @@
 import pytest
 from ase.build import bulk
-from gpaw import GPAW, FermiDirac
-from gpaw.mpi import serial_comm
-from gpaw.test import equal
-from gpaw.xc.rpa import RPACorrelation
-from gpaw.xc.fxc import FXCCorrelation
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.mpi import serial_comm
+from my_gpaw.test import equal
+from my_gpaw.xc.rpa import RPACorrelation
+from my_gpaw.xc.fxc import FXCCorrelation
 
 
 @pytest.mark.rpa

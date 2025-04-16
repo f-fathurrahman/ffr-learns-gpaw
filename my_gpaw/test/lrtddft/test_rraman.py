@@ -1,9 +1,9 @@
 import pytest
 from ase.build import molecule
 
-from gpaw import GPAW, FermiDirac
-from gpaw.cluster import Cluster
-from gpaw.lrtddft import LrTDDFT
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.cluster import Cluster
+from my_gpaw.lrtddft import LrTDDFT
 
 
 @pytest.mark.lrtddft

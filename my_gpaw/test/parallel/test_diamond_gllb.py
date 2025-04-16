@@ -1,8 +1,8 @@
 """Calculate diamond with various parallelizations with GLLBSC."""
 import pytest
-from gpaw.mpi import world
+from my_gpaw.mpi import world
 from ase.build import bulk
-from gpaw import GPAW, Mixer
+from my_gpaw import GPAW, Mixer
 
 
 @pytest.mark.skipif(world.size < 4,

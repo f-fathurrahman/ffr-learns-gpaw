@@ -1,9 +1,9 @@
 import pytest
-from gpaw.mpi import world
+from my_gpaw.mpi import world
 from ase import Atoms
-from gpaw import GPAW, PW
-from gpaw.response.df import DielectricFunction
-from gpaw.test import equal, findpeak
+from my_gpaw import GPAW, PW
+from my_gpaw.response.df import DielectricFunction
+from my_gpaw.test import equal, findpeak
 
 # Comparing the EELS spectrum of sodium for different block
 # parallelizations. Intended to be run with 8 cores.

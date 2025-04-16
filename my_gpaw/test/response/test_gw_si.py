@@ -3,9 +3,9 @@
 import pytest
 from ase.build import bulk
 
-from gpaw import GPAW, PW, FermiDirac
-from gpaw.mpi import world
-from gpaw.response.g0w0 import G0W0
+from my_gpaw import GPAW, PW, FermiDirac
+from my_gpaw.mpi import world
+from my_gpaw.response.g0w0 import G0W0
 
 
 def generate_si_systems():

@@ -11,8 +11,8 @@ Compare to reference.
 """
 import pytest
 from ase.build import bulk
-from gpaw import GPAW, Davidson, Mixer
-from gpaw.mpi import world
+from my_gpaw import GPAW, Davidson, Mixer
+from my_gpaw.mpi import world
 
 
 @pytest.mark.gllb
@@ -64,7 +64,7 @@ def test_gllb_diamond(in_tmp_dir, deprecated_syntax):
 
     if deprecated_syntax:
         with pytest.warns(DeprecationWarning):
-            from gpaw import restart
+            from my_gpaw import restart
 
             calc.write('gs.gpw')
             # Calculate accurate KS-band gap from band structure
@@ -96,7 +96,7 @@ def test_gllb_diamond(in_tmp_dir, deprecated_syntax):
     if deprecated_syntax:
         with pytest.warns(DeprecationWarning):
             from ase.units import Ha
-            from gpaw.xc.gllb.c_response import ResponsePotential
+            from my_gpaw.xc.gllb.c_response import ResponsePotential
 
             # Calculate the discontinuity potential with accurate band gap
             response = calc.hamiltonian.xc.xcs['RESPONSE']

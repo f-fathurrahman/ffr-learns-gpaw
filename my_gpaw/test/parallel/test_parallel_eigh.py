@@ -1,8 +1,8 @@
 import pytest
 import numpy as np
-from gpaw.mpi import world
-from gpaw.blacs import BlacsGrid
-from gpaw.blacs import Redistributor
+from my_gpaw.mpi import world
+from my_gpaw.blacs import BlacsGrid
+from my_gpaw.blacs import Redistributor
 
 
 def parallel_eigh(matrixfile, blacsgrid=(4, 2), blocksize=64):

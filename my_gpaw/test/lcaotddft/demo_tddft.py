@@ -2,13 +2,13 @@ import numpy as np
 
 from ase import Atoms
 
-from gpaw import LCAO
-from gpaw.calculator import GPAW as old_GPAW
-from gpaw.lcaotddft import LCAOTDDFT
-from gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
-from gpaw.new.ase_interface import GPAW as new_GPAW
-from gpaw.new.rttddft import RTTDDFT
-from gpaw.tddft.units import as_to_au, autime_to_asetime
+from my_gpaw import LCAO
+from my_gpaw.calculator import GPAW as old_GPAW
+from my_gpaw.lcaotddft import LCAOTDDFT
+from my_gpaw.lcaotddft.dipolemomentwriter import DipoleMomentWriter
+from my_gpaw.new.ase_interface import GPAW as new_GPAW
+from my_gpaw.new.rttddft import RTTDDFT
+from my_gpaw.tddft.units import as_to_au, autime_to_asetime
 
 
 def main():
@@ -24,8 +24,8 @@ def main():
     run_new_td = True
 
     def assert_equal(a, b):
-        from gpaw.core.matrix import Matrix
-        from gpaw.core.atom_arrays import AtomArrays
+        from my_gpaw.core.matrix import Matrix
+        from my_gpaw.core.atom_arrays import AtomArrays
 
         def extract(o):
             if isinstance(o, Matrix):

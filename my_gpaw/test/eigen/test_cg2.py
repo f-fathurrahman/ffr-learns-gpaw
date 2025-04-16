@@ -1,5 +1,5 @@
 import numpy as np
-from gpaw.utilities.cg import CG
+from my_gpaw.utilities.cg import CG
 
 
 def test_eigen_cg2():

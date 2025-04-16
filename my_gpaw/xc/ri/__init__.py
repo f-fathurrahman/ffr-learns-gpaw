@@ -1,6 +1,6 @@
-from gpaw.xc import XC
-from gpaw.utilities import unpack2, pack
-from gpaw.hybrids.paw import pawexxvv
+from my_gpaw.xc import XC
+from my_gpaw.utilities import unpack2, pack
+from my_gpaw.hybrids.paw import pawexxvv
 import numpy as np
 
 

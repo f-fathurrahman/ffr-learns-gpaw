@@ -1,6 +1,6 @@
 import pytest
 from ase.build import bulk
-from gpaw import GPAW
+from my_gpaw import GPAW
 
 
 def test_generic_si_primitive(in_tmp_dir):

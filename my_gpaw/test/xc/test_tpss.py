@@ -1,8 +1,8 @@
 import pytest
 from ase.build import molecule
-from gpaw import GPAW, Davidson, Mixer, PoissonSolver
-from gpaw.utilities.tools import split_formula
-from gpaw.test import equal
+from my_gpaw import GPAW, Davidson, Mixer, PoissonSolver
+from my_gpaw.utilities.tools import split_formula
+from my_gpaw.test import equal
 
 
 @pytest.mark.mgga

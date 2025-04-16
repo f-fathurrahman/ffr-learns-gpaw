@@ -1,5 +1,5 @@
 from ase import Atoms
-from gpaw import GPAW
+from my_gpaw import GPAW
 import numpy as np
 
 # spin paired H2

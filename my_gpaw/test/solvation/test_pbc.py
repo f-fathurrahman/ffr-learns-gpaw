@@ -1,12 +1,12 @@
-from gpaw.cluster import Cluster
+from my_gpaw.cluster import Cluster
 from ase.build import molecule
 from ase.data.vdw import vdw_radii
-from gpaw.solvation import (
+from my_gpaw.solvation import (
     SolvationGPAW,
     EffectivePotentialCavity,
     Power12Potential,
     LinearDielectric)
-from gpaw.solvation.poisson import ADM12PoissonSolver
+from my_gpaw.solvation.poisson import ADM12PoissonSolver
 import warnings
 
 h = 0.3

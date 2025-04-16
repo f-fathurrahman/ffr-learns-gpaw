@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from gpaw.xc.fxc_kernels import get_pbe_fxc_and_intermediate_derivatives
+from my_gpaw.xc.fxc_kernels import get_pbe_fxc_and_intermediate_derivatives
 
 
 def eps_unif_x(kf_g):

@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from gpaw.elph import ResonantRamanCalculator
+from my_gpaw.elph import ResonantRamanCalculator
 
 
 def make_hermitian(mat):

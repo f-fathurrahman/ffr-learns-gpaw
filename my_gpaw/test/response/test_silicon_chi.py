@@ -6,16 +6,16 @@ from ase.build import bulk
 from ase.parallel import parprint
 from ase.utils.timing import Timer
 
-from gpaw import GPAW, PW, FermiDirac
-from gpaw.test import findpeak
-from gpaw.mpi import size, world
+from my_gpaw import GPAW, PW, FermiDirac
+from my_gpaw.test import findpeak
+from my_gpaw.mpi import size, world
 
-from gpaw.response import ResponseGroundStateAdapter
-from gpaw.response.df import DielectricFunction, read_response_function
-from gpaw.response.chiks import ChiKSCalculator
-from gpaw.response.susceptibility import ChiFactory
-from gpaw.response.dyson import HXCKernel
-from gpaw.response.pair_functions import read_pair_function
+from my_gpaw.response import ResponseGroundStateAdapter
+from my_gpaw.response.df import DielectricFunction, read_response_function
+from my_gpaw.response.chiks import ChiKSCalculator
+from my_gpaw.response.susceptibility import ChiFactory
+from my_gpaw.response.dyson import HXCKernel
+from my_gpaw.response.pair_functions import read_pair_function
 
 
 @pytest.mark.kspair

@@ -5,7 +5,7 @@ from math import sqrt
 import pytest
 from ase import Atoms
 
-from gpaw import GPAW, ConvergenceError
+from my_gpaw import GPAW, ConvergenceError
 
 kpts = (2, 1, 1)
 a = 1.42

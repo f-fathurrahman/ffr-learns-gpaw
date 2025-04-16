@@ -1,8 +1,8 @@
 import pytest
 import numpy as np
-from gpaw.xc.libxc import LibXC, short_names
-from gpaw.xc.kernel import XCKernel, codes
-from gpaw.test import equal
+from my_gpaw.xc.libxc import LibXC, short_names
+from my_gpaw.xc.kernel import XCKernel, codes
+from my_gpaw.test import equal
 
 
 @pytest.mark.ci

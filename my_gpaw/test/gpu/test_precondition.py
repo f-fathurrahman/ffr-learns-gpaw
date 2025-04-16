@@ -1,7 +1,7 @@
 import numpy as np
-from gpaw.core import PlaneWaves
-from gpaw.gpu import cupy as cp, T
-from gpaw.new.pw.hamiltonian import precondition
+from my_gpaw.core import PlaneWaves
+from my_gpaw.gpu import cupy as cp, T
+from my_gpaw.new.pw.hamiltonian import precondition
 import pytest
 
 

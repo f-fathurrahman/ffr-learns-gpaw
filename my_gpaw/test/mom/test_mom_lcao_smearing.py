@@ -1,7 +1,7 @@
 import pytest
 from ase.build import molecule
-from gpaw import GPAW, restart
-from gpaw.test import equal
+from my_gpaw import GPAW, restart
+from my_gpaw.test import equal
 
 
 @pytest.mark.mom

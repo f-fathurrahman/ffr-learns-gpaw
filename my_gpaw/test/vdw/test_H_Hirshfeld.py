@@ -3,10 +3,10 @@ import pytest
 from ase import Atom
 from ase.parallel import parprint
 
-from gpaw import GPAW, FermiDirac
-from gpaw.analyse.hirshfeld import HirshfeldPartitioning
-from gpaw.cluster import Cluster
-from gpaw.test import equal
+from my_gpaw import GPAW, FermiDirac
+from my_gpaw.analyse.hirshfeld import HirshfeldPartitioning
+from my_gpaw.cluster import Cluster
+from my_gpaw.test import equal
 
 
 @pytest.mark.later

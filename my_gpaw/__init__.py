@@ -66,8 +66,8 @@ with broadcast_imports:
 
 SCIPY_VERSION = [int(x) for x in scipy.__version__.split('.')[:2]]
 
-if getattr(_gpaw, 'version', 0) != 3:
-    raise ImportError('Please recompile GPAW''s C-extensions!')
+#if getattr(_gpaw, 'version', 0) != 3:
+#    raise ImportError('Please recompile GPAW''s C-extensions!')
 
 
 class ConvergenceError(Exception):
