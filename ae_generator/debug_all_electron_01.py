@@ -1,3 +1,6 @@
+import sys
+sys.path.append("../")
+
 from math import log, pi, sqrt
 import numpy as np
 
