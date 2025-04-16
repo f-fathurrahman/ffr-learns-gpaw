@@ -1,3 +1,6 @@
+import sys
+sys.path.append("../")
+
 from math import pi, sqrt
 import numpy as np
 from numpy.linalg import inv
