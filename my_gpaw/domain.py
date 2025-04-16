@@ -74,7 +74,7 @@ class Domain:
                                   parsize_c[2],
                                   1])
 
-        if np.product(self.parsize_c) != self.comm.size:
+        if np.prod(self.parsize_c) != self.comm.size:
             raise RuntimeError('Bad domain decomposition! '
                                'CPU counts %s do not multiply to '
                                'communicator size %d' % (self.parsize_c,
