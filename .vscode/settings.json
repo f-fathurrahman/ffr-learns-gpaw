@@ -5,8 +5,11 @@
         "ORIG_*": true,
         "GPAW_SETUPS": true,
         "*.o": true,
-        "*.gpw": true,
+        "**/*.gpw": true,
         "*.out": true,
         "*.a": true,
+        "my_gpaw": true,
+        "**/TEMP_*": true,
+        "**/__pycache__": true,
     },
 }
