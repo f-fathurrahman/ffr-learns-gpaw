@@ -133,7 +133,8 @@ class SCFLoop:
             e_entropy = wfs.calculate_occupation_numbers(dens.fixed)
             kin_en_using_band = True
         
-        print("type of wfs eigensolver = ", type(wfs.eigensolver))
+        type_eig = str(type(wfs.eigensolver)).replace("<", "").replace(">", "")
+        print("type of wfs eigensolver = ", type_eig)
         #print("dens.fixed = ", dens.fixed)
 
         ham.get_energy(e_entropy, wfs, kin_en_using_band=kin_en_using_band)

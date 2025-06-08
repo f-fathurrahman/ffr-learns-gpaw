@@ -121,7 +121,9 @@ class Eigensolver:
         a single kpoint.
         """
 
-        print("Pass here in Eigensolver iterate")
+        print("\n<div> ENTER Eigensolver iterate\n")
+        
+        print("File location = ", __file__)
 
         if not self.initialized:
             if isinstance(ham.xc, HybridXC):
@@ -142,6 +144,8 @@ class Eigensolver:
 
         wfs.orthonormalized = True
         self.error = self.band_comm.sum(self.kpt_comm.sum(error))
+
+        print("\n</div> EXIT Eigensolver iterate\n")
 
 
 

@@ -282,6 +282,8 @@ class FDPWWaveFunctions(WaveFunctions):
         Return (nlcao, nrand) tuple with number of bands intialized from
         LCAO and random numbers, respectively."""
 
+        print("\n<div> ENTER FDPWWaveFunctions(WaveFunctions) initialize\n")
+
         if self.kpt_u[0].psit is None:
             basis_functions = BasisFunctions(self.gd,
                                              [setup.basis_functions_J
@@ -319,7 +321,11 @@ class FDPWWaveFunctions(WaveFunctions):
             nlcao = 0
             nrand = 0
 
+        print("\n</div> EXIT FDPWWaveFunctions(WaveFunctions) initialize\n")
+
         return nlcao, nrand
+
+
 
     def initialize_wave_functions_from_restart_file(self):
         for kpt in self.kpt_u:

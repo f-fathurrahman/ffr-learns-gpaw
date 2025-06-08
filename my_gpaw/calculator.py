@@ -127,7 +127,7 @@ class GPAW(Calculator):
                  parallel=None,
                  **kwargs):
 
-        print("\n<div> ENTER GPAW 130\n")
+        print("\n<div> ENTER GPAW(Calculator) 130\n")
 
         if txt == '?':
             txt = '-' if restart is None else None
@@ -174,7 +174,7 @@ class GPAW(Calculator):
         Calculator.__init__(self, restart, label=label, **kwargs)
         print("Finished initializing Calculator")
 
-        print("\n</div> EXIT GPAW 130\n")
+        print("\n</div> EXIT GPAW(Calculator) 130\n")
 
     def new(self,
             timer=None,
@@ -431,7 +431,7 @@ class GPAW(Calculator):
                    system_changes=['cell']):
         """Calculate things."""
 
-        print("\n<div> ENTER GPAW icalculate\n")
+        print("\n<div> ENTER GPAW(Calculator) icalculate\n")
 
         Calculator.calculate(self, atoms) # why call this?
         atoms = self.atoms
@@ -547,7 +547,7 @@ class GPAW(Calculator):
                 else:
                     self.results['stress'] = stress * (Ha / Bohr**3)
 
-        print("\n</div> EXIT GPAW icalculate\n")
+        print("\n</div> EXIT GPAW(Calculator) icalculate\n")
 
 
 
@@ -670,7 +670,7 @@ class GPAW(Calculator):
     def initialize_positions(self, atoms=None):
         """Update the positions of the atoms."""
 
-        print("\n<div> ENTER GPAW initialize_positions\n")
+        print("\n<div> ENTER GPAW(Calculator) initialize_positions\n")
 
         self.log('Initializing position-dependent things.\n')
         if atoms is None:
@@ -687,12 +687,16 @@ class GPAW(Calculator):
         self.density.set_positions(self.spos_ac, atom_partition)
         self.hamiltonian.set_positions(self.spos_ac, atom_partition)
 
-        print("\n</div> EXIT GPAW initialize_positions\n")
+        print("\n</div> EXIT GPAW(Calculator) initialize_positions\n")
 
 
 
     def set_positions(self, atoms=None):
         """Update the positions of the atoms and initialize wave functions."""
+        
+        
+        print("\n<div> ENTER GPAW(Calculator) set_positions\n")
+        
         self.initialize_positions(atoms)
 
         nlcao, nrand = self.wfs.initialize(self.density, self.hamiltonian,
@@ -711,8 +715,10 @@ class GPAW(Calculator):
         if occ_name == 'mom':
             # Initialize MOM reference orbitals
             self.wfs.occupations.initialize_reference_orbitals()
+        
         print_positions(self.atoms, self.log, self.density.magmom_av)
 
+        print("\n</div> EXIT GPAW(Calculator) set_positions\n")
 
 
 
@@ -720,7 +726,7 @@ class GPAW(Calculator):
         """Inexpensive initialization."""
 
 
-        print("\n<div> ENTER GPAW initialize\n")
+        print("\n<div> ENTER GPAW(Calculator) initialize\n")
 
 
         self.log('Initialize ...\n')
@@ -1039,7 +1045,7 @@ class GPAW(Calculator):
         self.initialized = True
         self.log('... initialized\n')
 
-        print("\n</div> EXIT GPAW initialize\n")
+        print("\n</div> EXIT GPAW(Calculator) initialize\n")
 
 
 
@@ -1231,7 +1237,7 @@ class GPAW(Calculator):
 
     def create_hamiltonian(self, realspace, mode, xc):
 
-        print("\n<div> ENTER GPAW create_hamiltonian\n")
+        print("\n<div> ENTER GPAW(Calculator) create_hamiltonian\n")
 
         dens = self.density
         kwargs = dict(
@@ -1281,15 +1287,16 @@ class GPAW(Calculator):
         self.hamiltonian.soc = self.parameters.experimental.get('soc')
         self.log(self.hamiltonian, '\n')
 
-        print("type of GPAW.hamiltonian = ", type(self.hamiltonian))
+        type_ham = str(type(self.hamiltonian)).replace("<", "").replace(">", "")
+        print("type of GPAW.hamiltonian = ", type_ham)
 
-        print("\n</div> EXIT GPAW create_hamiltonian\n")
+        print("\n</div> EXIT GPAW(Calculator) create_hamiltonian\n")
 
 
 
     def create_kpoint_descriptor(self, nspins):
         
-        print("\n<div> ENTER GPAW create_kpoint_descriptor\n")
+        print("\n<div> ENTER GPAW(Calculator) create_kpoint_descriptor\n")
 
         par = self.parameters
 
@@ -1322,7 +1329,7 @@ class GPAW(Calculator):
 
         self.log(kd)
 
-        print("\n</div> EXIT GPAW create_kpoint_descriptor\n")
+        print("\n</div> EXIT GPAW(Calculator) create_kpoint_descriptor\n")
 
         return kd
 
@@ -1333,7 +1340,7 @@ class GPAW(Calculator):
                               nspins, collinear, nbands, nao, nvalence,
                               setups, cell_cv, pbc_c, N_c, xc):
         
-        print("\n<div> ENTER GPAW create_wave_functions\n")
+        print("\n<div> ENTER GPAW(Calculator) create_wave_functions\n")
 
         par = self.parameters
 
@@ -1457,7 +1464,7 @@ class GPAW(Calculator):
 
         self.log(self.wfs, '\n')
 
-        print("\n</div> EXIT GPAW create_wave_functions\n")
+        print("\n</div> EXIT GPAW(Calculator) create_wave_functions\n")
 
 
 

@@ -88,7 +88,9 @@ class Davidson(Eigensolver):
     def iterate_one_k_point(self, ham, wfs, kpt, weights):
         """Do Davidson iterations for the kpoint"""
 
-        print("Pass Davidson iterate_one_k_point")
+        print("\n<div> ENTER Davidson(Eigensolver) iterate_one_k_point\n")
+
+        print("File location: ", __file__)
 
         if isinstance(ham.xc, HybridXC):
             self.niter = 1
@@ -137,7 +139,8 @@ class Davidson(Eigensolver):
         else:
             R = psit.apply(Ht)
         
-        print("type of psit = ", type(psit))
+        type_psit = str(type(psit)).replace("<", "").replace(">", "")
+        print("type of psit = ", type_psit)
 
         self.calculate_residuals(kpt, wfs, ham, psit, P, kpt.eps_n, R, P2)
 
@@ -232,10 +235,6 @@ class Davidson(Eigensolver):
 
         error = wfs.gd.comm.sum(error)
 
-        #print()
-        #print("---------------------------------")
-        #print("EXIT Davidson.iterate_one_k_point")
-        #print("---------------------------------")
-        #print()
+        print("\n</div> EXIT Davidson(Eigensolver) iterate_one_k_point\n")
 
         return error

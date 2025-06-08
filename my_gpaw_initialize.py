@@ -14,6 +14,8 @@ def my_gpaw_initialize(calc, atoms=None, reading=False):
 
     """Inexpensive initialization."""
 
+    print("\n<div> ENTER my_gpaw_initialize\n")
+
     calc.log('Initialize ...\n')
 
     if atoms is None:
@@ -58,14 +60,6 @@ def my_gpaw_initialize(calc, atoms=None, reading=False):
     else:
         xc = calc.hamiltonian.xc
 
-    if par.fixdensity:
-        warnings.warn(
-            'The fixdensity keyword has been deprecated. '
-            'Please use the GPAW.fixed_density() method instead.',
-            DeprecationWarning)
-        if calc.hamiltonian.xc.type == 'MGGA':
-            raise ValueError('MGGA does not support deprecated '
-                                'fixdensity option.')
 
     mode = par.mode
     if isinstance(mode, str):
@@ -336,8 +330,4 @@ def my_gpaw_initialize(calc, atoms=None, reading=False):
     calc.initialized = True
     calc.log('... initialized\n')
 
-    print()
-    print("     ----------------")
-    print("     EXIT: initialize")
-    print("     ----------------")
-    print()
+    print("\n</div> EXIT my_gpaw_initialize\n")

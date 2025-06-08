@@ -8,6 +8,8 @@ def my_gpaw_create_wave_functions(
     nspins, collinear, nbands, nao, nvalence,
     setups, cell_cv, pbc_c, N_c, xc):
     
+    print("\n<div> ENTER my_gpaw_create_wave_functions\n")
+
     par = calc.parameters
 
     kd = calc.create_kpoint_descriptor(nspins)
@@ -130,8 +132,4 @@ def my_gpaw_create_wave_functions(
 
     calc.log(calc.wfs, '\n')
 
-    print()
-    print("    --------------------------")
-    print("    EXIT create_wave_functions")
-    print("    --------------------------")
-    print()
+    print("\n</div> EXIT my_gpaw_create_wave_functions\n")

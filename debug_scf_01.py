@@ -1,25 +1,39 @@
 from ase import Atoms
+from ase.build import molecule
+from ase.units import Ha
 from my_gpaw import GPAW, PW
 
-name = "Al-fcc"
-a = 4.05
-b = a/2
+def prepare_Al_fcc():
+    name = "Al-fcc"
+    a = 4.05
+    b = a/2
+    atoms = Atoms(name,
+        cell=[[0, b, b],
+            [b, 0, b],
+            [b, b, 0]],
+    pbc=True)
+    k = 4
+    calc = GPAW(
+        mode=PW(300),
+        kpts=(k,k,k),
+        txt="-"
+    )
+    atoms.calc = calc
+    return atoms, calc
 
-atoms = Atoms("Al",
-    cell=[[0, b, b],
-          [b, 0, b],
-          [b, b, 0]],
-pbc=True)
 
-k = 4
-calc = GPAW(
-    mode=PW(300),
-    kpts=(k,k,k),
-    txt="-"
-)
-print("Pass here 21")
+def prepare_H2O():
+    atoms = molecule("H2O", vacuum=3.0)
+    ecutwfc = 15*Ha
+    calc = GPAW(mode=PW(ecutwfc), txt="-")
+    atoms.calc = calc
+    return atoms, calc
 
-atoms.calc = calc
+
+#atoms, calc = prepare_Al_fcc()
+atoms, calc = prepare_H2O()
+
+
 
 # icalculate must be called in a `for` loop? because it is a generator
 #calc.icalculate(bulk)
@@ -47,7 +61,12 @@ calc.scf.check_eigensolver_state(calc.wfs, calc.hamiltonian, calc.density)
 calc.scf.niter = 1
 converged = False
 
+
 while calc.scf.niter <= calc.scf.maxiter:
+    
+    print(f"\n<SCF_ITERATION> BEGIN SCF ITER = {calc.scf.niter}\n")
+
+    # FIXME: change to plain function call
     calc.scf.iterate_eigensolver(calc.wfs, calc.hamiltonian, calc.density)
 
     calc.scf.check_convergence(
@@ -60,7 +79,11 @@ while calc.scf.niter <= calc.scf.maxiter:
         break
 
     calc.scf.update_ham_and_dens(calc.wfs, calc.hamiltonian, calc.density)
+
+    print(f"\n</SCF_ITERATION> END SCF ITER = {calc.scf.niter}\n")
     calc.scf.niter += 1
+
+
 
 # Don't fix the density in the next step.
 calc.scf.niter_fixdensity = 0
