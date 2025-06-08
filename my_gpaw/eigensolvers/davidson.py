@@ -86,15 +86,10 @@ class Davidson(Eigensolver):
 
     @timer('Davidson')
     def iterate_one_k_point(self, ham, wfs, kpt, weights):
-
-        #print()
-        #print("----------------------------------")
-        #print("ENTER Davidson.iterate_one_k_point")
-        #print("----------------------------------")
-        #print()
-
-
         """Do Davidson iterations for the kpoint"""
+
+        print("Pass Davidson iterate_one_k_point")
+
         if isinstance(ham.xc, HybridXC):
             self.niter = 1
 
@@ -141,6 +136,8 @@ class Davidson(Eigensolver):
             R = psit.new(buf=self.Htpsit_nG)
         else:
             R = psit.apply(Ht)
+        
+        print("type of psit = ", type(psit))
 
         self.calculate_residuals(kpt, wfs, ham, psit, P, kpt.eps_n, R, P2)
 

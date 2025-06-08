@@ -85,6 +85,8 @@ class Davidson(Eigensolver):
                n        n   n
         """
 
+        print("Pass here in Davidson(Eigensolver) iterate")
+
         if self.work_arrays is None:
             self._initialize(state.ibzwfs)
 

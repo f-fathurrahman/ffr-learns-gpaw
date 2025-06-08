@@ -449,6 +449,8 @@ class Hamiltonian:
 
         """
 
+        print("Pass here in Hamiltonian apply")
+
         wfs.kin.apply(a_xG, b_xG, kpt.phase_cd)
         self.apply_local_potential(a_xG, b_xG, kpt.s)
         shape = a_xG.shape[:-3]
@@ -464,6 +466,9 @@ class Hamiltonian:
             dH_ii = unpack(self.dH_asp[a][kpt.s])
             P_axi[a] = np.dot(P_xi, dH_ii)
         wfs.pt.add(b_xG, P_axi, kpt.q)
+
+
+
 
     def get_xc_difference(self, xc, density):
         """Calculate non-selfconsistent XC-energy difference."""

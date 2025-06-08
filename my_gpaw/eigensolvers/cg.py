@@ -63,6 +63,9 @@ class CG(Eigensolver):
 
     def iterate_one_k_point(self, ham, wfs, kpt, weights):
         """Do conjugate gradient iterations for the k-point"""
+
+        print("Pass here CG(Eigensolver) iterate_one_k_point")
+
         self.timer.start('CG')
 
         niter = self.niter

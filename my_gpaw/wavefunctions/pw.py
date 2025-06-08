@@ -67,7 +67,7 @@ class PW(Mode):
             be given to perform an explicit real-space interpolation.
         """
 
-        print("Enter PW")
+        print("\n<div> ENTER PW descriptor\n")
 
         assert not gammacentered
         self.ecut = ecut / Ha
@@ -88,7 +88,7 @@ class PW(Mode):
 
         Mode.__init__(self, force_complex_dtype)
 
-        print("Exit PW")
+        print("\n</div> EXIT PW descriptor\n")
 
 
 

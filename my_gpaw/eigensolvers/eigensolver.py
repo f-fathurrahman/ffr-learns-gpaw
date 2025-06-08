@@ -121,6 +121,8 @@ class Eigensolver:
         a single kpoint.
         """
 
+        print("Pass here in Eigensolver iterate")
+
         if not self.initialized:
             if isinstance(ham.xc, HybridXC):
                 self.blocksize = wfs.bd.mynbands
@@ -130,6 +132,7 @@ class Eigensolver:
 
         error = 0.0
         for kpt, weights in zip(wfs.kpt_u, weight_un):
+            print("kpt = ", kpt)
             if not wfs.orthonormalized:
                 wfs.orthonormalize(kpt)
             e = self.iterate_one_k_point(ham, wfs, kpt, weights)
@@ -140,9 +143,17 @@ class Eigensolver:
         wfs.orthonormalized = True
         self.error = self.band_comm.sum(self.kpt_comm.sum(error))
 
+
+
+
+
     def iterate_one_k_point(self, ham, kpt):
         """Implemented in subclasses."""
         raise NotImplementedError
+
+
+
+
 
     def calculate_residuals(self, kpt, wfs, ham, psit, P, eps_n,
                             R, C, n_x=None, calculate_change=False):

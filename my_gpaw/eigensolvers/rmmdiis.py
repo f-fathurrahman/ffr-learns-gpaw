@@ -63,6 +63,8 @@ class RMMDIIS(Eigensolver):
     def iterate_one_k_point(self, ham, wfs, kpt, weights):
         """Do a single RMM-DIIS iteration for the kpoint"""
 
+        print("Pass here RMMDIIS(Eigensolver) iterate_one_k_point")
+
         self.subspace_diagonalize(ham, wfs, kpt)
 
         psit = kpt.psit

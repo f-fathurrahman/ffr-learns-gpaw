@@ -47,6 +47,8 @@ class SCFLoop:
 
     def irun(self, wfs, ham, dens, log, callback):
 
+        print("\n<div> ENTER SCFLoop irun\n")
+
         self.eigensolver_used = getattr(wfs.eigensolver, "name", None)
         self.check_eigensolver_state(wfs, ham, dens)
         self.niter = 1
@@ -73,6 +75,10 @@ class SCFLoop:
 
         if not converged:
             self.not_converged(dens, ham, wfs, log)
+
+        print("\n</div> EXIT SCFLoop irun\n")
+
+
 
     def log(self, log, converged_items, entries, context):
         """Output from each iteration."""
@@ -126,8 +132,13 @@ class SCFLoop:
             wfs.eigensolver.iterate(ham, wfs)
             e_entropy = wfs.calculate_occupation_numbers(dens.fixed)
             kin_en_using_band = True
+        
+        print("type of wfs eigensolver = ", type(wfs.eigensolver))
+        #print("dens.fixed = ", dens.fixed)
 
         ham.get_energy(e_entropy, wfs, kin_en_using_band=kin_en_using_band)
+
+
 
     def do_if_converged(self, wfs, ham, dens, log):
 
