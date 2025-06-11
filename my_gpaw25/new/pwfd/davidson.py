@@ -45,10 +45,13 @@ class Davidson(Eigensolver):
         self.preconditioner_factory = preconditioner_factory
         self.blocksize = blocksize
 
+    # ffr
     def __str__(self):
-        return pformat(dict(name='Davidson',
+        str1 = pformat(dict(name='Davidson',
                             niter=self.niter,
                             converge_bands=self.converge_bands))
+        typ_str = str(type(self)).replace("<", "").replace(">", "")
+        return "This is a Davidson(Eigensolver) instance: " + typ_str + "\n" + str1 + "\n"
 
     def _initialize(self, ibzwfs):
         # First time: allocate work-arrays

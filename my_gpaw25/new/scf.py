@@ -56,6 +56,9 @@ class SCFLoop:
                 maxiter=None,
                 calculate_forces=None,
                 log=None):
+        
+        print("\n<div> ENTER New.SCFLoop.iterate\n")
+
         cc = self.convergence
         maxiter = maxiter or self.maxiter
 
@@ -79,6 +82,9 @@ class SCFLoop:
             dens_error = self.mixer.mix(density)
         else:
             dens_error = 0.0
+
+        print("self.eigensolver = ", self.eigensolver)
+        print("self.hamiltonian = ", self.hamiltonian)
 
         for self.niter in itertools.count(start=1):
             wfs_error = self.eigensolver.iterate(
@@ -126,6 +132,8 @@ class SCFLoop:
 
         self.eigensolver.postprocess(
             ibzwfs, density, potential, self.hamiltonian)
+        
+        print("\n</div> EXIT New.SCFLoop.iterate\n")
 
 
 class SCFContext:

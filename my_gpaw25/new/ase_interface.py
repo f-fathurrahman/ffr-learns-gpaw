@@ -152,6 +152,8 @@ class ASECalculator:
                  log: Logger,
                  dft: DFTCalculation | None = None,
                  atoms: Atoms | None = None):
+        
+        print("\n<div> ENTER New.ASECalculator.__init__\n")
         self.params = params
         self.log = log
         self.comm = log.comm
@@ -159,6 +161,8 @@ class ASECalculator:
         self._atoms = atoms
         self.timer = Timer()
         self.hooks: dict[str, Callable] = {}
+        print("\n</div> EXIT New.ASECalculator.__init__\n")
+
 
     @property
     def dft(self) -> DFTCalculation:
@@ -188,6 +192,9 @@ class ASECalculator:
         Will also calculate "cheap" properties: energy, magnetic moments
         and dipole moment.
         """
+
+        print("\n<div> ENTER New.ASECalculator.iconverge\n")
+
         if atoms is None:
             atoms = self.atoms
         else:
@@ -218,6 +225,7 @@ class ASECalculator:
                         changes = set()
 
         if self._dft is None:
+            print("---- Creating new calculation")
             self.create_new_calculation(atoms)
             converged = False
         elif changes:
@@ -252,6 +260,11 @@ class ASECalculator:
 
         self.hooks.get('converged', lambda: None)()
 
+        print("\n</div> EXIT New.ASECalculator.iconverge\n")
+
+
+
+
     def calculate_property(self,
                            atoms: Atoms | None,
                            prop: str) -> Any:
@@ -266,6 +279,8 @@ class ASECalculator:
         * magmoms
         * dipole
         """
+
+        # ffr: do SCF first?
         for _ in self.iconverge(atoms):
             pass
 

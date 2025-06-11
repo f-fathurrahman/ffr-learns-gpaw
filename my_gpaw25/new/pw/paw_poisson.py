@@ -117,6 +117,10 @@ class SlowPAWPoissonSolver(PAWPoissonSolver):
 
     def stress_contribution(self, vHt_h, Q_aL):
         return self.ghat_aLh.stress_contribution(vHt_h, Q_aL)
+    
+    # ffr
+    def __str__(self):
+        return "   This is a SlowPAWPoissonSolver instance\n"
 
 
 class SimplePAWPoissonSolver(PAWPoissonSolver):

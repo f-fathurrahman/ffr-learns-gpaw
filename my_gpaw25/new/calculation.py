@@ -110,6 +110,8 @@ class DFTCalculation:
         """Create DFTCalculation object from parameters and atoms."""
         from my_gpaw25.new.builder import builder as create_builder
 
+        print("\n<div> ENTER New.DFTCalculation.from_parameters\n")
+
         check_atoms_too_close(atoms)
         check_atoms_too_close_to_boundary(atoms)
 
@@ -150,8 +152,13 @@ class DFTCalculation:
         log(scf_loop)
         log(pot_calc)
 
+        print("\n</div> EXIT New.DFTCalculation.from_parameters\n")
+
         return cls(ibzwfs, density, potential,
                    builder.setups, scf_loop, pot_calc, log)
+
+
+
 
     def move_atoms(self, atoms) -> DFTCalculation:
         check_atoms_too_close(atoms)
@@ -183,6 +190,7 @@ class DFTCalculation:
         return self
 
     def iconverge(self, maxiter=None, calculate_forces=None):
+        print("\n<div> ENTER New.DFTCalculation.iconverge\n")
         self.ibzwfs.make_sure_wfs_are_read_from_gpw_file()
         yield from self.scf_loop.iterate(self.ibzwfs,
                                          self.density,
@@ -191,6 +199,8 @@ class DFTCalculation:
                                          maxiter=maxiter,
                                          calculate_forces=calculate_forces,
                                          log=self.log)
+        print("\n</div> EXIT New.DFTCalculation.iconverge\n")
+
 
     @trace
     def converge(self,

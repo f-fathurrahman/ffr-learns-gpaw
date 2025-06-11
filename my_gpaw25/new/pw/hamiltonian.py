@@ -21,6 +21,11 @@ class PWHamiltonian(Hamiltonian):
         # cache them:
         self.pw_cache = {}
 
+    # ffr
+    def __str__(self):
+        typ_str = str(type(self)).replace("<", "").replace(">", "")
+        return "This is a PWHamiltonian(Hamiltonian) instance: " + typ_str + "\n"
+
     @trace
     def apply_local_potential(self,
                               vt_R: UGArray,
