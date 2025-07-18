@@ -7,8 +7,8 @@ from abc import ABC, abstractmethod
 import numpy as np
 from scipy.interpolate import make_interp_spline, splder
 
-from my_gpaw.spline import Spline
-from my_gpaw.utilities import hartree, divrl
+from my_gpaw25.spline import Spline
+from my_gpaw25.utilities import hartree, divrl
 
 
 # A convenience constructor for RadialGrid

@@ -6,11 +6,11 @@ import numpy as np
 from numpy.linalg import inv
 import scipy.linalg
 
-from my_gpaw.atom.all_electron import AllElectron, shoot
-from my_gpaw.utilities import hartree
-from my_gpaw.atom.filter import Filter
-from my_gpaw import __version__ as version
-from my_gpaw.setup_data import SetupData
+from my_gpaw25.atom.all_electron import AllElectron, shoot
+from my_gpaw25.utilities import hartree
+from my_gpaw25.atom.filter import Filter
+from my_gpaw25 import __version__ as version
+from my_gpaw25.setup_data import SetupData
 
 # For checking ghost states
 def check_diagonalize(h, N, beta, e_ln, n_ln, q_ln, emax, vt_in, lmax, dH_lnn, dO_lnn, ghost):
