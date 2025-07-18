@@ -113,6 +113,10 @@ if orbital_free:
 vrold = None
 
 while True:
+
+    print(f"\nBegin iteration: {niter}")
+    print("-----------------------")
+
     # calculate hartree potential
     #radial_hartree(0, n * r * dr, r, vHr)
     py_radial_hartree(0, n * r * dr, r, vHr)
@@ -121,8 +125,6 @@ while True:
     # add potential from nuclear point charge (v = -Z / r)
     vHr -= Z # vHr is vH times r, so the potential to added is (-Z/r)*r => -Z
     print("sum vHr after adding -Z = ", np.sum(vHr))
-
-    exit()
 
     # calculated exchange correlation potential and energy
     vXC[:] = 0.0
@@ -133,10 +135,13 @@ while True:
     # admix with old version
 
     vr[:] = (vHr + vXC * r)
+    print("sum abs vr = ", np.sum(np.abs(vr)))
+    exit()
 
     if orbital_free:
         vr /= tw_coeff
 
+    # Mix the potential
     if niter > 0:
         vr[:] = mix * vr + (1 - mix) * vrold
     vrold = vr.copy()
