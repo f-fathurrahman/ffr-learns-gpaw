@@ -35,11 +35,20 @@ def my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel, gmax=None):
     if scalarrel:
         c0 += x * r2dvdr / Mr
         c1 = c10 - x * r * r2dvdr / (Mr * dr)
+    
+    #print("sum c10 = %18.10e" % np.sum(c10))
+    #print("sum c0 = %18.10e" % np.sum(c0))
+    #print("sum c1 = %18.10e" % np.sum(c1))
+    #print("sum c2 = %18.10e" % np.sum(c2))
 
     # vectors needed for numeric integration of diff. equation
     fm = 0.5 * c1 - c2
     fp = 0.5 * c1 + c2
     f0 = c0 - 2*c2
+
+    #print("sum fm = %18.10e" % np.sum(fm))
+    #print("sum fp = %18.10e" % np.sum(fp))
+    #print("sum f0 = %18.10e" % np.sum(f0))
 
     LARGE_U = 1e100
     SMALL_U = 1e-100
@@ -60,6 +69,7 @@ def my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel, gmax=None):
                 # There should"t be a node here!  Use a more negative
                 # eigenvalue:
                 print("!!!!!!", end=" ")
+                print("Early return in my_eigen_shoot 72")
                 return 100, None
             # Don't let u become too large
             if u[g - 1] > LARGE_U:
@@ -93,6 +103,7 @@ def my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel, gmax=None):
         g += 1
     # Early return
     if gmax is not None:
+        print("Early return in my_eigen_shoot")
         return
 
     print(f"my_eigen_shoot: after inward integration u={u[gtp]}")
@@ -109,12 +120,14 @@ def my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel, gmax=None):
     # determine size of the derivative discontinuity at gtp
     dudrminus = 0.5 * (u[gtp + 1] - u[gtp - 1]) / dr[gtp]
 
-    print("utp = ", utp)
-    print("dudrplus = ", dudrplus)
-    print("dudrminus = ", dudrminus)
+    print("utp = %18.10e" % utp)
+    print("dudrplus = %18.10e" % dudrplus)
+    print("dudrminus = %18.10e" % dudrminus)
 
     A = (dudrplus - dudrminus) * utp # utp factor is important
     # is A important for convergence?
+    print("A = %18.10e" % A)
+    print("nodes = ", nodes)
 
     print("EXIT my_eigen_shoot\n")
 
@@ -244,6 +257,7 @@ if scalarrel:
     r2dvdr -= vr
 else:
     r2dvdr = None
+print("sum abs r2dvdr = ", np.sum(np.abs(r2dvdr)))
 # XXX: r2dvdr is local to this function
 print("scalarrel = ", scalarrel)
 
@@ -265,6 +279,7 @@ nodes = n - l - 1  # analytically expected number of nodes
 delta = -0.2*e
 print("Integrating radial Schroedinger equation with energy = ", e)
 nn, A = my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel)
+#exit()
 # adjust eigenenergy until u has the correct number of nodes
 while nn != nodes:
     diff = np.sign(nn - nodes)
@@ -282,18 +297,20 @@ u *= 1.0 / sqrt(norm)
 plt.plot(r, u); plt.xlim(0.0, RMAX_PLOT)
 plt.savefig("IMG_after_node.png", dpi=150)
 
-print("nn = ", nn, " expected = ", nodes)
-print("A = ", A/sqrt(norm))
+#print("nn = ", nn, " expected = ", nodes)
+#print("A = ", A/sqrt(norm))
 
 
+print("---Adjusting eigenenergy until u is smooth ----")
 
 # adjust eigenenergy until u is smooth at the turning point
 de = 1.0
 iterNo = 1
 while abs(de) > 1e-9:
-    print("de = ", de)
+    print(f"\niterNo={iterNo} e={e} de={de}")
     norm = np.dot(np.where(abs(u) < 1e-160, 0, u)**2, dr)
     u *= 1.0 / sqrt(norm)
+    print("norm_u = %18.10e" % norm)
     #
     plt.clf()
     plt.plot(r, u); plt.xlim(0.0, RMAX_PLOT)
@@ -301,8 +318,10 @@ while abs(de) > 1e-9:
     #
     de = 0.5 * A / norm # here A is scaled by norm
     x = abs(de/e)
+    print("x = ", x)
     if x > 0.1:
         de *= 0.1 / x
+        print(f"de is adjusted to {de}")
     e -= de
     assert e < 0.0
     nn, A = my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel)
