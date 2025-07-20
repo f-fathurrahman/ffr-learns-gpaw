@@ -22,6 +22,8 @@ def my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel, gmax=None):
 
     print("\nENTER my_eigen_shoot")
 
+    print(f"Integrating radial Schroedinger equation with energy = {e} and l={l}")
+
     if scalarrel:
         x = 0.5 * alpha**2  # x = 1 / (2c^2)
         Mr = r * (1.0 + x * e) - x * vr
@@ -36,19 +38,19 @@ def my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel, gmax=None):
         c0 += x * r2dvdr / Mr
         c1 = c10 - x * r * r2dvdr / (Mr * dr)
     
-    #print("sum c10 = %18.10e" % np.sum(c10))
-    #print("sum c0 = %18.10e" % np.sum(c0))
-    #print("sum c1 = %18.10e" % np.sum(c1))
-    #print("sum c2 = %18.10e" % np.sum(c2))
+    print("sum c10 = %18.10e" % np.sum(c10))
+    print("sum c0 = %18.10e" % np.sum(c0))
+    print("sum c1 = %18.10e" % np.sum(c1))
+    print("sum c2 = %18.10e" % np.sum(c2))
 
     # vectors needed for numeric integration of diff. equation
     fm = 0.5 * c1 - c2
     fp = 0.5 * c1 + c2
     f0 = c0 - 2*c2
 
-    #print("sum fm = %18.10e" % np.sum(fm))
-    #print("sum fp = %18.10e" % np.sum(fp))
-    #print("sum f0 = %18.10e" % np.sum(f0))
+    print("sum fm = %18.10e" % np.sum(fm))
+    print("sum fp = %18.10e" % np.sum(fp))
+    print("sum f0 = %18.10e" % np.sum(f0))
 
     LARGE_U = 1e100
     SMALL_U = 1e-100
@@ -73,6 +75,7 @@ def my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel, gmax=None):
                 return 100, None
             # Don't let u become too large
             if u[g - 1] > LARGE_U:
+                print("-------> !!!! u is scaled !!!!!")
                 u *= SMALL_U
             g -= 1
 
@@ -99,6 +102,8 @@ def my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel, gmax=None):
     while g <= gtp:
         u[g + 1] = (fm[g]*u[g-1] - f0[g]*u[g]) / fp[g]
         if u[g+1] * u[g] < 0:
+            print(f"Found nodes between: {g+1} and {g}")
+            print(f"Values: {u[g+1]} and {u[g]}")
             nodes += 1
         g += 1
     # Early return
@@ -261,8 +266,8 @@ print("sum abs r2dvdr = ", np.sum(np.abs(r2dvdr)))
 # XXX: r2dvdr is local to this function
 print("scalarrel = ", scalarrel)
 
-ist = 4
-RMAX_PLOT = 10.0 # should depend on ist for good visualization
+ist = 3
+RMAX_PLOT = 2.0 # should depend on ist for good visualization
 # alternatively RMAX_PLOT can be determined from r[gtp] returned by eigen_shoot
 
 # Set n, l, u
@@ -275,21 +280,36 @@ u = u_j[ist]
 #    -71.41258334942484,
 #     -7.581580875185198, -6.289766502435535, -0.7733870397743262, -0.4539465426199744]
 
+nn, A = my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel)
+
+#plt.clf()
+#plt.plot(r, u, marker="o")
+#plt.xlim(0.0, 0.2)
+#plt.savefig("IMG_initial_integ_01.png", dpi=150)
+#plt.clf()
+#plt.plot(r, u, marker="o")
+#plt.xlim(0.0, 10.0)
+#plt.savefig("IMG_initial_integ_02.png", dpi=150)
+#exit() # for debug
+
+
+# adjust eigenenergy until u has the correct number of nodes
 nodes = n - l - 1  # analytically expected number of nodes
 delta = -0.2*e
-print("Integrating radial Schroedinger equation with energy = ", e)
-nn, A = my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel)
-#exit()
-# adjust eigenenergy until u has the correct number of nodes
 while nn != nodes:
     diff = np.sign(nn - nodes)
     while diff == np.sign(nn - nodes):
-        print("Different sign: integrate again")
         e -= diff * delta
+        print("Same sign but nn != nodes")
+        print(f"Integrate again with E = {e}")
         nn, A = my_eigen_shoot(u, l, vr, e, r2dvdr, r, dr, c10, c2, scalarrel)
+    print("Different sign or the same no of nodes: nn={nn} nodes={nodes}")
     delta /= 2
-# Note that A is not used here, only nn is used
 
+print(f"Number of nodes is already good: nn={nn} nodes={nodes} diff={diff}")
+print(f"   at E={e}")
+# Note that A is not used here, only nn is used
+exit()
 
 norm = np.dot(np.where(abs(u) < 1e-160, 0, u)**2, dr)
 u *= 1.0 / sqrt(norm)
