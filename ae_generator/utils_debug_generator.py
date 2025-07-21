@@ -1,5 +1,5 @@
 import numpy as np
-import scipy
+import scipy.linalg
 
 # For checking ghost states
 def check_diagonalize(r, h, N, beta, e_ln, n_ln, q_ln, emax, vt_in, lmax, dH_lnn, dO_lnn, ghost):

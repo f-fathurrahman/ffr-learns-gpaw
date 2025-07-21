@@ -4,13 +4,21 @@ sys.path.append("../")
 from math import pi, sqrt
 import numpy as np
 from numpy.linalg import inv
-import scipy.linalg
+
+import matplotlib.pyplot as plt
 
 from my_gpaw25.atom.all_electron import AllElectron, shoot
 from my_gpaw25.utilities import hartree
 from my_gpaw25.atom.filter import Filter
 from my_gpaw25 import __version__ as version
 from my_gpaw25.setup_data import SetupData
+
+import matplotlib
+matplotlib.style.use("dark_background")
+matplotlib.rcParams.update({
+    "axes.grid" : True,
+    "grid.color": "gray"
+})
 
 from utils_debug_generator import *
 
@@ -380,8 +388,7 @@ for l, (u_n, s_n) in enumerate(zip(u_ln, s_ln)):
                 r1 = r[:gc]
                 r2 = r1**2
                 rl1 = r1**(l + 1)
-                y = b[0] + r2 * (b[1] + r2 * (b[2] + r2 *
-                                              (b[3] + r2 * b[4])))
+                y = b[0] + r2 * (b[1] + r2 * (b[2] + r2 *(b[3] + r2 * b[4])))
                 y = np.exp(y)
                 s[:gc] = rl1 * y
                 return np.dot(s**2, dr) - 1
@@ -679,17 +686,22 @@ for l, j_n in enumerate(j_ln):
                 dK_jj[j1, j2] *= tw_coeff
 
 X_gamma = yukawa_gamma
-if exx:
-    X_p = constructX(self)
-    if yukawa_gamma is not None and yukawa_gamma > 0:
-        X_pg = constructX(self, yukawa_gamma)
-    else:
-        X_pg = None
-    ExxC = atomic_exact_exchange(self, "core-core")
-else:
-    X_p = None
-    X_pg = None
-    ExxC = None
+#if exx:
+#    X_p = constructX(self)
+#    if yukawa_gamma is not None and yukawa_gamma > 0:
+#        X_pg = constructX(self, yukawa_gamma)
+#    else:
+#        X_pg = None
+#    ExxC = atomic_exact_exchange(self, "core-core")
+#else:
+#    X_p = None
+#    X_pg = None
+#    ExxC = None
+
+X_p = None
+X_pg = None
+ExxC = None
+
 
 
 sqrt4pi = sqrt(4 * pi)
@@ -732,14 +744,7 @@ setup.X_p = X_p
 setup.X_pg = X_pg
 setup.X_gamma = X_gamma
 
-if ae_calc.jcorehole is not None:
-    setup.has_corehole = True
-    setup.lcorehole = l_j[jcorehole]  # l_j or vl_j ????? XXX
-    setup.ncorehole = n_j[jcorehole]
-    setup.phicorehole_g = divide_by_r(r, ae_calc.u_j[jcorehole], setup.lcorehole)
-    setup.core_hole_e = e_j[jcorehole]
-    setup.core_hole_e_kin = Ekincorehole
-    setup.fcorehole = fcorehole
+# jcorehole stuffs is removed
 
 if ghost and not orbital_free:
     # In orbital_free we are not interested in ghosts
