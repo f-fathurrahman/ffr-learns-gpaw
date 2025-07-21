@@ -64,11 +64,13 @@ if "extra" in par_keys:
     extra = par["extra"]
 else:
     extra = None
+print("extra = ", extra)
 
 if "vbar" in par_keys:
     vbar = par["vbar"]
 else:
     vbar = None
+print("vbar = ", vbar)
 
 if "filter" in par_keys:
     hfilter, xfilter = par["filter"]
@@ -88,6 +90,7 @@ if "empty_states" in par_keys:
     empty_states = par["empty_states"]
 else:
     empty_states = ""
+print("empty_states = ", empty_states)
 
 exx = False
 name = None
@@ -95,8 +98,6 @@ normconserving = ""
 write_xml = True
 yukawa_gamma = 0.0
 logderiv = False
-
-
 
 if isinstance(rcut, float):
     rcut_l = [rcut]
@@ -112,6 +113,7 @@ print("rcutmin = ", rcutmin)
 
 if rcutcomp is None:
     rcutcomp = rcutmin
+print("rcutcomp = ", rcutcomp)
 
 
 # Get some parameters from Generator superclass (i.e. AllElectron)
@@ -125,6 +127,8 @@ e_j = ae_calc.e_j
 if vbar is None:
     vbar = ("poly", rcutmin * 0.9)
 vbar_type, rcutvbar = vbar
+print("vbar_type = ", vbar_type)
+print("rcutvbar = ", rcutvbar)
 
 normconserving_l = [x in normconserving for x in "spdf"]
 print(normconserving_l)
@@ -135,6 +139,7 @@ if core.startswith("["):
     a, core = core.split("]")
     core_symbol = a[1:]
     j = len(configurations[core_symbol][1])
+print("core index = ", j)
 
 while core != "":
     assert n_j[j] == int(core[0])
@@ -143,6 +148,8 @@ while core != "":
         assert f_j[j] == 2 * (2 * l_j[j] + 1)
     j += 1
     core = core[2:]
+
+print("core = ", core)
 
 njcore = j
 print("njcore = ", njcore)
@@ -156,6 +163,7 @@ while empty_states != "":
     f_j.append(0.0)
     e_j.append(-0.01)
     empty_states = empty_states[2:]
+print("empty_states = ", empty_states)
 
 if 2 in l_j[njcore:]:
     print("We have a bound valence d-state.")
@@ -167,7 +175,13 @@ if 2 in l_j[njcore:]:
             f_j.append(0.0)
             e_j.append(-0.01)
 
+print("n_j = ", n_j)
+print("l_j = ", l_j)
+print("f_j = ", f_j)
+print("e_j = ", e_j)
+
 if l_j[njcore:] == [0] and Z > 2:
+    print("We only have bound valence s-state and we are not hydrogen and helium")
     # We have only a bound valence s-state and we are not
     # hydrogen and not helium.  Add bound p-state:
     n_j.append(n_j[njcore])
@@ -175,13 +189,22 @@ if l_j[njcore:] == [0] and Z > 2:
     f_j.append(0.0)
     e_j.append(-0.01)
 
+print("n_j = ", n_j)
+print("l_j = ", l_j)
+print("f_j = ", f_j)
+print("e_j = ", e_j)
+
 nj = len(n_j)
 
 Nv = sum(f_j[njcore:])
 Nc = sum(f_j[:njcore])
 
+Nv, Nc
+
 lmaxocc = max(l_j[njcore:])
 lmax = max(l_j[njcore:])
+
+print("orbital_free = ", orbital_free)
 
 #  Parameters for orbital_free
 if orbital_free:
@@ -196,14 +219,37 @@ if orbital_free:
 # Do all-electron calculation:
 ae_calc.run()
 
+plt.plot(ae_calc.r, ae_calc.u_j[0], label=f"E={ae_calc.e_j[0]}")
+plt.xlim(0.0, 0.2)
+plt.legend();
+
+plt.plot(ae_calc.r, ae_calc.u_j[1], label=f"E={ae_calc.e_j[1]}")
+plt.xlim(0.0, 0.2)
+plt.legend();
+
+plt.plot(ae_calc.r, ae_calc.u_j[2], label=f"E={ae_calc.e_j[2]}")
+plt.xlim(0.0, 1.0)
+plt.legend();
+
+ist = 4
+plt.plot(ae_calc.r, ae_calc.u_j[ist], label=f"E={ae_calc.e_j[ist]}")
+plt.xlim(0.0, 10.0)
+plt.legend();
+
+ae_calc.f_j
+
+dir(ae_calc)
+
 # Highest occupied atomic orbital:
 emax = max(e_j)
+print("emax (HOMO) = ", emax)
 
+# Get some parameters from ae_calc
 N = ae_calc.N
 r = ae_calc.r
 dr = ae_calc.dr
 d2gdr2 = ae_calc.d2gdr2
-beta = ae_calc.beta
+beta = ae_calc.beta # XXXXX why? why?
 
 dv = r**2 * dr
 
@@ -341,6 +387,8 @@ for l in range(lmax + 1):
     u_n = [ae_calc.u_j[j] for j in range(njcore, nj) if l_j[j] == l]
     for n, u in enumerate(u_n):
         u_ln[l][n] = u
+
+# ### FIXME: what is beta here?
 
 # Grid-index corresponding to rcut:
 gcut_l = [1 + int(rc * N / (rc + beta)) for rc in rcut_l]
