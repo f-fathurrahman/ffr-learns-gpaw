@@ -136,7 +136,6 @@ while True:
 
     vr[:] = (vHr + vXC * r)
     print("sum abs vr = ", np.sum(np.abs(vr)))
-    exit()
 
     if orbital_free:
         vr /= tw_coeff
@@ -149,7 +148,7 @@ while True:
     # solve Kohn-Sham equation and determine the density change
     solve_radial_schrod(rgd, N, r, dr, vr, d2gdr2, n_j, l_j,e_j, u_j, scalarrel=scalarrel)
     dn = calculate_density(r, f_j, u_j) - n
-    n += dn
+    n += dn # rhoe = rhoe + (rhoe_new - rhoe) # ????
 
     # estimate error from the square of the density change integrated
     q = log(np.sum((r * dn)**2))
