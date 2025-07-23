@@ -28,6 +28,8 @@ from utils_debug_generator import *
 # AllElectron object
 symbol = "Pd"
 
+# Some default parameters from original `Generator` class constructor:
+
 xcname = "LDA"
 scalarrel = True
 corehole = None
@@ -38,6 +40,8 @@ gpernode = 150
 orbital_free = False
 tw_coeff = 1.0
 
+
+# This is essentially calling superclass (i.e. `AllElectron`) constructor
 
 ae_calc = AllElectron(symbol,
     xcname = "LDA",
@@ -51,46 +55,63 @@ ae_calc = AllElectron(symbol,
     tw_coeff = tw_coeff,
 )
 
+# XXX: Now, some local variables are members of `Generator`. This should be clarified by probably prefixing the name with `self_`. Many of them are simply copying from parent class member.
+
 from my_gpaw.atom.configurations import parameters, configurations
 par = parameters[symbol]
 
+# par is a `Dict`. Some parameters for atomic PAW data generation are here. 
+
+for k,v in par.items():
+    print(f"{k} = {v}")
+
 par_keys = par.keys()
+
 # Some kwargs for Generator.run() method
 core = par["core"]
 rcut = par["rcut"]
 #XXX Those two parameters are always present for all atomic species?
 
+# XXX: What's this?
+
 if "extra" in par_keys:
     extra = par["extra"]
+    print("There is extra parameters in par")
+    print("extra = ", extra)
 else:
     extra = None
-print("extra = ", extra)
+    print("No extra parameters in par")
 
 if "vbar" in par_keys:
     vbar = par["vbar"]
+    print("vbar = ", vbar)
 else:
     vbar = None
-print("vbar = ", vbar)
+    print("No parameter for vbar")
 
 if "filter" in par_keys:
     hfilter, xfilter = par["filter"]
+    print(f"Using values from par: hfilter={hfilter} xfilter={xfilter}")
 else:
     hfilter = 0.4
     xfilter = 1.75
-#
-print(f"hfilter = {hfilter} xfilter = {xfilter}")
+    print(f"Default values: hfilter={hfilter} xfilter={xfilter}")
 
 if "rcutcomp" in par_keys:
     rcutcomp = par["rcutcomp"]
+    print(f"Using rcutcomp in par = {rcutcomp}")
 else:
     rcutcomp = None
-print("rcutcomp = ", rcutcomp)
+    print("No rcutcomp in par")
 
 if "empty_states" in par_keys:
     empty_states = par["empty_states"]
+    print(f"Using empty_states in par = {empty_states}")
 else:
     empty_states = ""
-print("empty_states = ", empty_states)
+    print("No empty states in par")
+
+# Some extra arguments in the `Generator.run()`(using the default values):
 
 exx = False
 name = None
@@ -99,8 +120,11 @@ write_xml = True
 yukawa_gamma = 0.0
 logderiv = False
 
+# Cutoff radius (for what?) This is given in `par`:
+
 if isinstance(rcut, float):
     rcut_l = [rcut]
+    print("Using the same rcut for all angular momentum")
 else:
     rcut_l = rcut
 rcutmax = max(rcut_l)
@@ -111,8 +135,11 @@ print("rcutmax = ", rcutmax)
 print("rcutmin = ", rcutmin)
 
 
+# XXX What's this? For compensation charge?
+
 if rcutcomp is None:
     rcutcomp = rcutmin
+    print("Using rcutmin for rcutcomp")
 print("rcutcomp = ", rcutcomp)
 
 
@@ -126,34 +153,51 @@ e_j = ae_calc.e_j
 
 if vbar is None:
     vbar = ("poly", rcutmin * 0.9)
+    print("Using default parameters for vbar")
 vbar_type, rcutvbar = vbar
 print("vbar_type = ", vbar_type)
 print("rcutvbar = ", rcutvbar)
 
-normconserving_l = [x in normconserving for x in "spdf"]
-print(normconserving_l)
+# XXX What's this?
 
+normconserving_l = [x in normconserving for x in "spdf"]
+print("normconserving_l = ", normconserving_l)
+
+# What's this?
+
+
+
+# XXX this will modify `core` variable
+
+core = par["core"] # get again (for notebook)
 # Parse core string:
 j = 0
-if core.startswith("["):
-    a, core = core.split("]")
+if core.startswith('['):
+    a, core = core.split(']')
     core_symbol = a[1:]
     j = len(configurations[core_symbol][1])
-print("core index = ", j)
-
-while core != "":
-    assert n_j[j] == int(core[0])
-    assert l_j[j] == "spdf".find(core[1])
+print("j (for njcore) = ", j)
+print("core for this j = ", core)
+# Just checking???
+while core != '':
+    assert n_j[j] == int(core[0]) # main quantum number
+    assert l_j[j] == 'spdf'.find(core[1])  # orbital quantum number
     if j != ae_calc.jcorehole:
         assert f_j[j] == 2 * (2 * l_j[j] + 1)
     j += 1
     core = core[2:]
-
-print("core = ", core)
-
+    print("core = ", core)
+print("Final j after checking: = ", j)
+#
 njcore = j
 print("njcore = ", njcore)
 
+empty_states
+
+# XXX This will also modify `empty_states` variable. It is not use after this, but it will add states that will be calculated in AllElectron calculation:
+
+empty_states = par["empty_states"]
+print("initial empty_states = ", empty_states)
 while empty_states != "":
     n = int(empty_states[0])
     l = "spdf".find(empty_states[1])
@@ -163,7 +207,8 @@ while empty_states != "":
     f_j.append(0.0)
     e_j.append(-0.01)
     empty_states = empty_states[2:]
-print("empty_states = ", empty_states)
+    print("empty_states = ", empty_states)
+print("Final  empty_states = ", empty_states)
 
 if 2 in l_j[njcore:]:
     print("We have a bound valence d-state.")
@@ -175,10 +220,12 @@ if 2 in l_j[njcore:]:
             f_j.append(0.0)
             e_j.append(-0.01)
 
-print("n_j = ", n_j)
-print("l_j = ", l_j)
-print("f_j = ", f_j)
-print("e_j = ", e_j)
+# States with zeros occupation are empty.
+print("Before ae_calc:")
+for n,l,f,e in zip(n_j, l_j, f_j, e_j):
+    print(f"n={n} l={l} f={f:5.1f} e={e:15.5f}")
+
+# This can be tested for alkalis?
 
 if l_j[njcore:] == [0] and Z > 2:
     print("We only have bound valence s-state and we are not hydrogen and helium")
@@ -189,60 +236,74 @@ if l_j[njcore:] == [0] and Z > 2:
     f_j.append(0.0)
     e_j.append(-0.01)
 
-print("n_j = ", n_j)
-print("l_j = ", l_j)
-print("f_j = ", f_j)
-print("e_j = ", e_j)
-
 nj = len(n_j)
+print("nj = ", nj)
 
 Nv = sum(f_j[njcore:])
 Nc = sum(f_j[:njcore])
 
-Nv, Nc
+print(f"Nv (valence electrons) ={Nv}, Nc (core electrons) ={Nc}")
 
 lmaxocc = max(l_j[njcore:])
 lmax = max(l_j[njcore:])
+print(f"lmax={lmax} lmaxocc={lmaxocc}")
 
-print("orbital_free = ", orbital_free)
+# +
+# .... orbital free stuffs are removed
+# -
 
-#  Parameters for orbital_free
-if orbital_free:
-    n_j = [1]
-    l_j = [0]
-    f_j = [Z]
-    e_j = [e_j[0]]
-    nj = len(n_j)
-    lmax = 0
-    lmaxocc = 0
+# States with zeros occupation are empty.
+print("States for all electron calculation:")
+for n,l,f,e in zip(n_j, l_j, f_j, e_j):
+    print(f"n={n} l={l} f={f:5.1f} e={e:15.5f}")
 
 # Do all-electron calculation:
 ae_calc.run()
 
-plt.plot(ae_calc.r, ae_calc.u_j[0], label=f"E={ae_calc.e_j[0]}")
-plt.xlim(0.0, 0.2)
-plt.legend();
+njcore
 
-plt.plot(ae_calc.r, ae_calc.u_j[1], label=f"E={ae_calc.e_j[1]}")
-plt.xlim(0.0, 0.2)
-plt.legend();
+n_j
 
-plt.plot(ae_calc.r, ae_calc.u_j[2], label=f"E={ae_calc.e_j[2]}")
-plt.xlim(0.0, 1.0)
+n_j[:njcore], n_j[njcore:]
+
+nj
+
+# States with zeros occupation are empty.
+print("After ae_calc:")
+for n,l,f,e in zip(n_j, l_j, f_j, e_j):
+    print(f"n={n} l={l} f={f:5.1f} e={e:15.5f}")
+
+for j in range(njcore,nj):
+    print(f"n={n_j[j]} l={l_j[j]} f={f_j[j]:5.1f} e={e_j[j]:15.5f}")
+
+ist = 0
+plt.figure(figsize=(5,2))
+plt.plot(ae_calc.r, ae_calc.u_j[ist], label=f"E={ae_calc.e_j[ist]:.2f}")
+plt.xlim(0.0, 0.2)
+plt.title(f"State index={ist+1} n={n_j[ist]} l={l_j[ist]}")
 plt.legend();
 
 ist = 4
-plt.plot(ae_calc.r, ae_calc.u_j[ist], label=f"E={ae_calc.e_j[ist]}")
-plt.xlim(0.0, 10.0)
+plt.figure(figsize=(5,2))
+plt.plot(ae_calc.r, ae_calc.u_j[ist], label=f"E={ae_calc.e_j[ist]:.2f}")
+plt.xlim(0.0, 2.0)
+plt.title(f"State index={ist+1} n={n_j[ist]} l={l_j[ist]}")
 plt.legend();
 
-ae_calc.f_j
+plt.figure(figsize=(7,4))
+for j in range(njcore, nj):
+    plt.plot(r, ae_calc.u_j[j], label=f"n={n_j[j]} l={l_j[j]} E={e_j[j]:.2f}")
+plt.xlim(0.0, 10.0)
+plt.title("Valence states wavefunctions")
+plt.legend();
 
-dir(ae_calc)
+f_j
 
 # Highest occupied atomic orbital:
 emax = max(e_j)
 print("emax (HOMO) = ", emax)
+
+# More parameters:
 
 # Get some parameters from ae_calc
 N = ae_calc.N
@@ -270,8 +331,9 @@ for f, e, u in zip(f_j[:njcore], e_j[:njcore], ae_calc.u_j[:njcore]):
     k = e - np.sum((u**2 * ae_calc.vr * dr)[1:] / r[1:])
     Ekincore += f * k
     if j == ae_calc.jcorehole:
-        Ekincorehole = k # self
+        Ekincorehole = k # self # this is needed for core hole calc
     j += 1
+print(f"Ekincore = {Ekincore}")
 
 # Calculate core density:
 if njcore == 0:
@@ -283,8 +345,10 @@ else:
     nc[1:] /= r[1:]**2
     nc[0] = nc[1]
 
-# print("nc = ", nc)
-# self.nc = nc
+plt.figure(figsize=(5,2))
+plt.plot(r, nc, label="coredensity")
+plt.xlim(0.0, 0.2)
+plt.legend();
 
 # Calculate core kinetic energy density
 if njcore == 0:
@@ -312,10 +376,12 @@ for l in range(lmax + 1):
     f_ln.append(f_n)
     e_ln.append(e_n)
 
-print("n_ln = ", n_ln)
-print("f_ln = ", f_ln)
-print("e_ln = ", e_ln)
-
+print("Valence energy states sorted by angular momentum")
+for l in range(lmax + 1):
+    print(f"l = {l}")
+    Nl = len(n_ln[l])
+    for i in range(Nl):
+        print(f" n = {n_ln[l][i]} e={e_ln[l][i]} f={f_ln[l][i]}")
 
 # Add extra projectors:
 if extra is not None:
@@ -357,8 +423,14 @@ else:
         lmax += 1
 
 
-print("lmax = ", lmax)
-#self.lmax = lmax
+print("After adding extra projectors: (state with n=-1 are added)")
+for l in range(lmax + 1):
+    print(f"l = {l}")
+    Nl = len(n_ln[l])
+    for i in range(Nl):
+        print(f" n = {n_ln[l][i]} e={e_ln[l][i]} f={f_ln[l][i]}")
+
+print("rcut_l before = {rcut_l}") # from par["rcut"]
 
 rcut_l.extend([rcutmin] * (lmax + 1 - len(rcut_l)))
 print("Cutoffs:")
@@ -381,38 +453,51 @@ for l in range(lmax + 1):
     s_ln.append(np.zeros((nn, N)))
     q_ln.append(np.zeros((nn, N)))
 
-# Fill in all-electron wave functions:
+# Fill in all-electron wave functions (for valence states)
 for l in range(lmax + 1):
     # Collect all-electron wave functions:
     u_n = [ae_calc.u_j[j] for j in range(njcore, nj) if l_j[j] == l]
     for n, u in enumerate(u_n):
         u_ln[l][n] = u
 
+u_ln[0].shape, u_ln[1].shape, u_ln[2].shape, 
+
 # ### FIXME: what is beta here?
 
 # Grid-index corresponding to rcut:
 gcut_l = [1 + int(rc * N / (rc + beta)) for rc in rcut_l]
+print(f"gcut_l = {gcut_l}")
+
+xfilter
 
 rcutfilter = xfilter * rcutmax
 gcutfilter = 1 + int(rcutfilter * N / (rcutfilter + beta))
 gcutmax = 1 + int(rcutmax * N / (rcutmax + beta))
 
+rcutfilter, gcutfilter
+
+gcutmax
+
 # Outward integration of unbound states stops at 3 * rcut:
 gmax = int(3 * rcutmax * N / (3 * rcutmax + beta))
 assert gmax > gcutfilter
+
+gmax
 
 # Calculate unbound extra states:
 c2 = -(r / dr)**2
 c10 = -d2gdr2 * r**2
 for l, (n_n, e_n, u_n) in enumerate(zip(n_ln, e_ln, u_ln)):
     for n, e, u in zip(n_n, e_n, u_n):
-        if n < 0:
+        if n < 0: # added projectors/extra states
+            print(f"Computing extra states: n={n} l={l} using e={e}")
             u[:] = 0.0
             shoot(u, l, ae_calc.vr, e, ae_calc.r2dvdr, r, dr, c10, c2,
                   ae_calc.scalarrel, gmax=gmax)
             u *= 1.0 / u[gcut_l[l]]
 
 charge = Z - Nv - Nc
+print("Z = ", Z)
 print("Charge: %.1f" % charge)
 print("Core electrons: %.1f" % Nc)
 print("Valence electrons: %.1f" % Nv)
@@ -420,6 +505,7 @@ print("Valence electrons: %.1f" % Nv)
 
 # Construct smooth wave functions:
 coefs = []
+# loop over u_ln and s_ln (output is s_ln)??
 for l, (u_n, s_n) in enumerate(zip(u_ln, s_ln)):
     nodeless = True
     gc = gcut_l[l]
@@ -481,6 +567,24 @@ for l, (u_n, s_n) in enumerate(zip(u_ln, s_ln)):
                 raise RuntimeError("Error: The %d%s pseudo wave has a node!" % (n_ln[l][0], "spdf"[l]))
             # Only the first state for each l must be nodeless:
             nodeless = False
+
+plt.figure(figsize=(6,4))
+plt.plot(r, s_ln[0][0], label="AE")
+plt.plot(r, s_ln[0][1], label="PS")
+plt.xlim(0.0, 10.0)
+plt.legend();
+
+plt.figure(figsize=(6,4))
+plt.plot(r, s_ln[1][0], label="AE")
+plt.plot(r, s_ln[1][1], label="PS")
+plt.xlim(0.0, 15.0)
+plt.legend();
+
+plt.figure(figsize=(6,4))
+plt.plot(r, s_ln[2][0], label="AE")
+plt.plot(r, s_ln[2][1], label="PS")
+plt.xlim(0.0, 15.0)
+plt.legend();
 
 # Calculate pseudo core density:
 gcutnc = 1 + int(rcutmax * N / (rcutmax + beta))

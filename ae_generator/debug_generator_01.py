@@ -187,12 +187,24 @@ if orbital_free:
     lmax = 0
     lmaxocc = 0
 
+
+print("\nDoing all electron calculations with the following configuration:")
+print("Z = ", Z)
+print("n_j = ", n_j)
+print("l_j = ", l_j)
+print("f_j = ", f_j)
+print("e_j = ", e_j) # starting guess
+
 # Do all-electron calculation:
 ae_calc.run()
+
+print("Done doing all electron calculations")
 
 # Highest occupied atomic orbital:
 emax = max(e_j)
 
+# Get some parameters from parent class (ae_calc)
+# `Generator` is inheriting `AllElectrons`.
 N = ae_calc.N
 r = ae_calc.r
 dr = ae_calc.dr
@@ -220,6 +232,7 @@ for f, e, u in zip(f_j[:njcore], e_j[:njcore], ae_calc.u_j[:njcore]):
     if j == ae_calc.jcorehole:
         Ekincorehole = k # self
     j += 1
+print("Ekincore = {Ekincore}")
 
 # Calculate core density:
 if njcore == 0:
@@ -353,10 +366,15 @@ c10 = -d2gdr2 * r**2
 for l, (n_n, e_n, u_n) in enumerate(zip(n_ln, e_ln, u_ln)):
     for n, e, u in zip(n_n, e_n, u_n):
         if n < 0:
+            print(f"Solving for unbound states: n={n} e={e}")
             u[:] = 0.0
             shoot(u, l, ae_calc.vr, e, ae_calc.r2dvdr, r, dr, c10, c2,
                   ae_calc.scalarrel, gmax=gmax)
             u *= 1.0 / u[gcut_l[l]]
+        else:
+            print(f"Skipping unbound states: n={n} e={e}")
+
+
 
 charge = Z - Nv - Nc
 print("Charge: %.1f" % charge)
@@ -639,6 +657,7 @@ print("--------------------------------")
 # Test for ghost states:
 for h in [0.05]:
     check_diagonalize(r, h, N, beta, e_ln, n_ln, q_ln, emax, vt, lmax, dH_lnn, dO_lnn, ghost)
+    print(f"h = {h} ghost = {ghost}")
 
 
 
