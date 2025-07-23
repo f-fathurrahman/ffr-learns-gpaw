@@ -42,4 +42,4 @@ for l in range(my_gen.lmax+1):
         plt.title(f"n={n_ln[l][i]} l={l} e={e_ln[l][i]:.2f}")
         plt.legend()
         plt.grid(True)
-        plt.savefig(f"IMG_prj_{l}_{i}.png", dpi=150)
+        plt.savefig(f"IMG_ae_ps_partialwave_{l}_{i}.png", dpi=150)
