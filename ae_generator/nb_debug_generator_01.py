@@ -163,10 +163,6 @@ print("rcutvbar = ", rcutvbar)
 normconserving_l = [x in normconserving for x in "spdf"]
 print("normconserving_l = ", normconserving_l)
 
-# What's this?
-
-
-
 # XXX this will modify `core` variable
 
 core = par["core"] # get again (for notebook)
@@ -242,7 +238,7 @@ print("nj = ", nj)
 Nv = sum(f_j[njcore:])
 Nc = sum(f_j[:njcore])
 
-print(f"Nv (valence electrons) ={Nv}, Nc (core electrons) ={Nc}")
+print(f"Nv (valence electrons) = {Nv}, Nc (core electrons) = {Nc}")
 
 lmaxocc = max(l_j[njcore:])
 lmax = max(l_j[njcore:])
@@ -290,13 +286,6 @@ plt.xlim(0.0, 2.0)
 plt.title(f"State index={ist+1} n={n_j[ist]} l={l_j[ist]}")
 plt.legend();
 
-plt.figure(figsize=(7,4))
-for j in range(njcore, nj):
-    plt.plot(r, ae_calc.u_j[j], label=f"n={n_j[j]} l={l_j[j]} E={e_j[j]:.2f}")
-plt.xlim(0.0, 10.0)
-plt.title("Valence states wavefunctions")
-plt.legend();
-
 f_j
 
 # Highest occupied atomic orbital:
@@ -313,6 +302,13 @@ d2gdr2 = ae_calc.d2gdr2
 beta = ae_calc.beta # XXXXX why? why?
 
 dv = r**2 * dr
+
+plt.figure(figsize=(7,4))
+for j in range(njcore, nj):
+    plt.plot(r, ae_calc.u_j[j], label=f"n={n_j[j]} l={l_j[j]} E={e_j[j]:.2f}")
+plt.xlim(0.0, 10.0)
+plt.title("Valence states wavefunctions")
+plt.legend();
 
 print()
 print("Generating PAW setup")
@@ -423,14 +419,14 @@ else:
         lmax += 1
 
 
-print("After adding extra projectors: (state with n=-1 are added)")
+print("After adding extra projectors: (state with n=-1 are added states)")
 for l in range(lmax + 1):
     print(f"l = {l}")
     Nl = len(n_ln[l])
     for i in range(Nl):
         print(f" n = {n_ln[l][i]} e={e_ln[l][i]} f={f_ln[l][i]}")
 
-print("rcut_l before = {rcut_l}") # from par["rcut"]
+print(f"rcut_l before = {rcut_l}") # from par["rcut"]
 
 rcut_l.extend([rcutmin] * (lmax + 1 - len(rcut_l)))
 print("Cutoffs:")
@@ -460,9 +456,9 @@ for l in range(lmax + 1):
     for n, u in enumerate(u_n):
         u_ln[l][n] = u
 
-u_ln[0].shape, u_ln[1].shape, u_ln[2].shape, 
+u_ln[0].shape, u_ln[1].shape, u_ln[2].shape
 
-# ### FIXME: what is beta here?
+# FIXME: what is beta here?
 
 # Grid-index corresponding to rcut:
 gcut_l = [1 + int(rc * N / (rc + beta)) for rc in rcut_l]
@@ -485,7 +481,7 @@ assert gmax > gcutfilter
 gmax
 
 # Calculate unbound extra states:
-c2 = -(r / dr)**2
+c2 = -(r/dr)**2
 c10 = -d2gdr2 * r**2
 for l, (n_n, e_n, u_n) in enumerate(zip(n_ln, e_ln, u_ln)):
     for n, e, u in zip(n_n, e_n, u_n):
@@ -510,7 +506,7 @@ for l, (u_n, s_n) in enumerate(zip(u_ln, s_ln)):
     nodeless = True
     gc = gcut_l[l]
     for u, s in zip(u_n, s_n):
-        s[:] = u
+        s[:] = u # Set it to be the same as AE
         if normconserving_l[l]:
             A = np.zeros((5, 5))
             A[:4, 0] = 1.0
@@ -544,12 +540,13 @@ for l, (u_n, s_n) in enumerate(zip(u_ln, s_ln)):
                 x1, f1 = x0, f0
         #
         else:
+            # XXX What is the recipe used here?
             A = np.ones((4, 4))
             A[:, 0] = 1.0
             A[:, 1] = r[gc - 2:gc + 2]**2
             A[:, 2] = A[:, 1]**2
             A[:, 3] = A[:, 1] * A[:, 2]
-            a = u[gc - 2:gc + 2] / r[gc - 2:gc + 2]**(l + 1)
+            a = u[gc - 2:gc + 2] / r[gc - 2:gc + 2]**(l + 1) # u is the AE
             if 0:  # l < 2 and nodeless:
                 a = np.log(a)
             a = np.linalg.solve(A, a)
@@ -568,22 +565,22 @@ for l, (u_n, s_n) in enumerate(zip(u_ln, s_ln)):
             # Only the first state for each l must be nodeless:
             nodeless = False
 
-plt.figure(figsize=(6,4))
-plt.plot(r, s_ln[0][0], label="AE")
-plt.plot(r, s_ln[0][1], label="PS")
+plt.figure(figsize=(4,3))
+plt.plot(r, u_ln[0][0], label="AE")
+plt.plot(r, s_ln[0][0], label="PS")
 plt.xlim(0.0, 10.0)
 plt.legend();
 
-plt.figure(figsize=(6,4))
-plt.plot(r, s_ln[1][0], label="AE")
+plt.figure(figsize=(4,3))
+plt.plot(r, u_ln[1][1], label="AE")
 plt.plot(r, s_ln[1][1], label="PS")
-plt.xlim(0.0, 15.0)
+plt.xlim(0.0, 10.0)
 plt.legend();
 
-plt.figure(figsize=(6,4))
-plt.plot(r, s_ln[2][0], label="AE")
-plt.plot(r, s_ln[2][1], label="PS")
-plt.xlim(0.0, 15.0)
+plt.figure(figsize=(4,3))
+plt.plot(r, u_ln[2][0], label="AE")
+plt.plot(r, s_ln[2][0], label="PS")
+plt.xlim(0.0, 5.0)
 plt.legend();
 
 # Calculate pseudo core density:
@@ -616,6 +613,13 @@ nt[0] = nt[1]
 nt += nct
 #self.nt = nt
 
+plt.figure(figsize=(5,3))
+plt.plot(r, nt, label="nt (soft valence den")
+plt.plot(r, nct, label="nct (pseudocore den)")
+plt.plot(r, tauct, label="tauct (pseudocore kinetic den)")
+plt.xlim(0.0, 5.0)
+plt.legend();
+
 # Calculate the shape function:
 x = r / rcutcomp
 gaussian = np.zeros(N)
@@ -629,15 +633,26 @@ assert abs(norm - 1) < 1e-2
 gt /= norm
 
 
+plt.plot(r, gaussian)
+plt.xlim(0.0, 2.0);
+
 # Calculate smooth charge density:
 Nt = np.dot(nt, dv)
 rhot = nt - (Nt + charge / (4 * pi)) * gt
 print("Pseudo-electron charge", 4 * pi * Nt)
 
+plt.figure(figsize=(4,3))
+plt.plot(r, rhot)
+plt.xlim(0.0, 5.0);
+
 vHt = np.zeros(N)
 hartree(0, rhot * r * dr, r, vHt)
 vHt[1:] /= r[1:]
 vHt[0] = vHt[1]
+
+plt.figure(figsize=(4,3))
+plt.plot(r, vHt)
+plt.xlim(0.0, 5.0);
 
 vXCt = np.zeros(N)
 #extra_xc_data = {} # only for GLLB
@@ -646,12 +661,18 @@ ae_calc.xc.calculate_spherical(ae_calc.rgd, nt.reshape((1, -1)), vXCt.reshape((1
 
 vt = vHt + vXCt
 
-if orbital_free:
-    vt /= tw_coeff
+plt.figure(figsize=(4,3))
+plt.plot(r, vt)
+plt.xlim(0.0, 5.0);
+
+# +
+# orbital-free stuffs removed
+# -
 
 # Construct zero potential:
 gc = 1 + int(rcutvbar * N / (rcutvbar + beta))
 if vbar_type == "f":
+    # This is the default??
     assert lmax == 2
     uf = np.zeros(N)
     l = 3
@@ -710,6 +731,10 @@ else:
 #
 vt += vbar
 
+
+plt.figure(figsize=(4,3))
+plt.plot(r, vbar)
+plt.xlim(0.0, 5.0);
 
 # Construct projector functions:
 for l, (e_n, s_n, q_n) in enumerate(zip(e_ln, s_ln, q_ln)):
@@ -771,10 +796,19 @@ for l, (e_n, u_n, s_n, q_n) in enumerate(zip(e_ln, u_ln,
     #
     A_nn = np.inner(s_n, q_n * dr)
     q_n[:] = np.dot(inv(np.transpose(A_nn)), q_n)
-#
-#self.vt = vt
-#self.vbar = vbar
-#
+
+# The projectors are `q_ln`:
+
+plt.figure(figsize=(4,3))
+plt.plot(r, q_ln[0][0], label="00")
+plt.plot(r, q_ln[0][1], label="01")
+plt.plot(r, q_ln[1][0], label="10")
+plt.plot(r, q_ln[1][1], label="11")
+plt.plot(r, q_ln[2][0], label="20")
+plt.plot(r, q_ln[2][1], label="21")
+plt.xlim(0.0, 5.0)
+plt.legend();
+
 print("state    eigenvalue         norm")
 print("--------------------------------")
 for l, (n_n, f_n, e_n) in enumerate(zip(n_ln, f_ln, e_ln)):
@@ -792,13 +826,17 @@ print("--------------------------------")
 
 # Writing data skipped ....
 
-
+# For some grid spacing, ghost state can appear:
 
 # Test for ghost states:
-for h in [0.05]:
+for h in [0.03]:
     check_diagonalize(r, h, N, beta, e_ln, n_ln, q_ln, emax, vt, lmax, dH_lnn, dO_lnn, ghost)
 
+# Test for ghost states:
+for h in [0.01]:
+    check_diagonalize(r, h, N, beta, e_ln, n_ln, q_ln, emax, vt, lmax, dH_lnn, dO_lnn, ghost)
 
+# # Preparing for setup data
 
 vn_j = []
 vl_j = []
@@ -843,24 +881,16 @@ for l, j_n in enumerate(j_ln):
             if orbital_free:
                 dK_jj[j1, j2] *= tw_coeff
 
-X_gamma = yukawa_gamma
-#if exx:
-#    X_p = constructX(self)
-#    if yukawa_gamma is not None and yukawa_gamma > 0:
-#        X_pg = constructX(self, yukawa_gamma)
-#    else:
-#        X_pg = None
-#    ExxC = atomic_exact_exchange(self, "core-core")
-#else:
-#    X_p = None
-#    X_pg = None
-#    ExxC = None
+dK_jj.shape
 
+# +
+# EXX stuffs are removed
+# -
+
+X_gamma = yukawa_gamma # needed for setup data
 X_p = None
 X_pg = None
 ExxC = None
-
-
 
 sqrt4pi = sqrt(4 * pi)
 # This is the returned variable
@@ -929,10 +959,5 @@ for l, n in zip(vl_j, vn_j):
         my_id = "%s-%s%d" % (symbol, "spdf"[l], -n)
     id_j.append(my_id)
 setup.id_j = id_j
-
-# if write_xml:
-#    setup.write_xml()
-
-# return setup
 
 
