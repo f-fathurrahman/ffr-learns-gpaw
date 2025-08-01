@@ -32,7 +32,6 @@ configuration = None
 nofiles = True
 txt = "-"
 gpernode = 150
-orbital_free = False
 tw_coeff = 1.0
 
 
@@ -44,7 +43,7 @@ ae_calc = AllElectron(symbol,
     nofiles = nofiles,
     txt = txt,
     gpernode = gpernode,
-    orbital_free = orbital_free,
+    orbital_free = False,
     tw_coeff = tw_coeff,
 )
 
@@ -176,17 +175,6 @@ Nc = sum(f_j[:njcore])
 
 lmaxocc = max(l_j[njcore:])
 lmax = max(l_j[njcore:])
-
-#  Parameters for orbital_free
-if orbital_free:
-    n_j = [1]
-    l_j = [0]
-    f_j = [Z]
-    e_j = [e_j[0]]
-    nj = len(n_j)
-    lmax = 0
-    lmaxocc = 0
-
 
 print("\nDoing all electron calculations with the following configuration:")
 print("Z = ", Z)
@@ -506,9 +494,6 @@ ae_calc.xc.calculate_spherical(ae_calc.rgd, nt.reshape((1, -1)), vXCt.reshape((1
 
 vt = vHt + vXCt
 
-if orbital_free:
-    vt /= tw_coeff
-
 # Construct zero potential:
 gc = 1 + int(rcutvbar * N / (rcutvbar + beta))
 if vbar_type == "f":
@@ -578,8 +563,6 @@ for l, (e_n, s_n, q_n) in enumerate(zip(e_ln, s_ln, q_ln)):
         q[gcutmax:] = 0.0
 #
 my_filter = Filter(r, dr, gcutfilter, hfilter).filter
-if orbital_free:
-    vbar *= tw_coeff
 vbar = my_filter(vbar * r)
 #
 # Calculate matrix elements:
@@ -655,11 +638,9 @@ print("--------------------------------")
 
 
 # Test for ghost states:
-for h in [0.05]:
+for h in [0.02, 0.05, 0.1]:
     check_diagonalize(r, h, N, beta, e_ln, n_ln, q_ln, emax, vt, lmax, dH_lnn, dO_lnn, ghost)
     print(f"h = {h} ghost = {ghost}")
-
-
 
 vn_j = []
 vl_j = []
@@ -701,8 +682,6 @@ for l, j_n in enumerate(j_ln):
     for n1, j1 in enumerate(j_n):
         for n2, j2 in enumerate(j_n):
             dK_jj[j1, j2] = dK_lnn[l][n1, n2]
-            if orbital_free:
-                dK_jj[j1, j2] *= tw_coeff
 
 X_gamma = yukawa_gamma
 #if exx:
@@ -765,10 +744,6 @@ setup.X_gamma = X_gamma
 
 # jcorehole stuffs is removed
 
-if ghost and not orbital_free:
-    # In orbital_free we are not interested in ghosts
-    raise RuntimeError("Ghost!")
-
 if scalarrel:
     reltype = "scalar-relativistic"
 else:
@@ -779,7 +754,7 @@ data = "Frozen core: " + (core or "none")
 
 setup.generatorattrs = attrs
 setup.generatordata = data
-setup.orbital_free = orbital_free
+setup.orbital_free = False
 setup.version = "0.6"
 
 id_j = []
