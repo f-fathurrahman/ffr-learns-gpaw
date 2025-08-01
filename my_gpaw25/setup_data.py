@@ -115,6 +115,8 @@ class SetupData:
 
         self.version = None
 
+        print("!!! SetupData constructor is called !!!")
+
         if readxml:
             self.read_xml(world=world)
 
@@ -449,6 +451,7 @@ class PAWXMLParser(xml.sax.handler.ContentHandler):
         self.setup = setup
         self.id = None
         self.data = None
+        print("!!! PAWXMLParser constructor is called !!!")
 
     def parse(self, source=None, world=None):
         setup = self.setup
