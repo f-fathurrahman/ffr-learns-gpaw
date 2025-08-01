@@ -8,7 +8,7 @@
         "**/*.gpw": true,
         "*.out": true,
         "*.a": true,
-        "my_gpaw": false,
+        "my_gpaw": true,
         "**/TEMP_*": true,
         "**/__pycache__": true,
     },
