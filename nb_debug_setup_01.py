@@ -96,3 +96,59 @@ plt.legend()
 plt.xlim(0.0, 10.0); plt.ylim(-1.5, 1.5);
 
 atom_data.rcut_j
+
+atom_data.data.Nc
+
+plt.plot(r_g, atom_data.data.nc_g)
+plt.xlim(0.0, 0.1);
+
+pt_jg = atom_data.data.pt_jg
+
+plt.figure(figsize=(6,4))
+plt.plot(r_g, pt_jg[0], label="0")
+plt.plot(r_g, pt_jg[1], label="1")
+plt.plot(r_g, pt_jg[2], label="2")
+plt.plot(r_g, pt_jg[3], label="3")
+plt.plot(r_g, pt_jg[4], label="4")
+plt.plot(r_g, pt_jg[5], label="5")
+plt.legend()
+plt.xlim(0.0, 5.0);
+
+len(atom_data.ghat_l)
+
+ghatl0 = atom_data.ghat_l[0]
+
+ghatl0_arr = np.array(
+    [ghatl0(r) for r in r_g]
+)
+
+plt.figure(figsize=(4,3))
+plt.plot(r_g, ghatl0_arr)
+plt.xlim(0,2);
+
+pws_ae = atom_data.get_partial_waves()[0]
+pws_ps = atom_data.get_partial_waves()[1]
+
+f_arr = np.zeros(r_g.shape)
+for iprj,pws in enumerate(pws_ae):
+    for i in range(len(r_g)):
+        f_arr[i] = pws(r_g[i])
+    plt.plot(r_g, f_arr, label=f"pws_ae_{iprj}")
+plt.legend()
+plt.xlim(0.0, 1.0)
+
+f_arr = np.zeros(r_g.shape)
+for iprj,pws in enumerate(pws_ps):
+    for i in range(len(r_g)):
+        f_arr[i] = pws(r_g[i])
+    plt.plot(r_g, f_arr, label=f"pws_ps_{iprj}")
+plt.legend()
+plt.xlim(0.0, 5.1)
+
+retval = atom_data.get_partial_waves()[2]
+f_arr = np.zeros(r_g.shape)
+for i in range(len(r_g)):
+    f_arr[i] = retval(r_g[i])
+plt.plot(r_g, f_arr, label=f"pws_r")
+plt.legend()
+plt.xlim(0.0, 0.1);
