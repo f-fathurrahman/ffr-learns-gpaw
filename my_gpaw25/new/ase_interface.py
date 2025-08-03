@@ -154,6 +154,7 @@ class ASECalculator:
                  atoms: Atoms | None = None):
         
         print("\n<div> ENTER New.ASECalculator.__init__\n")
+        print("INFO: This will only set some properties from given arguments in arguments")
         self.params = params
         self.log = log
         self.comm = log.comm
@@ -203,8 +204,10 @@ class ASECalculator:
         converged = True
 
         if self._dft is not None:
+            print("INFO: self._dft is not None is passed")
             changes = compare_atoms(self.atoms, atoms)
             if changes & {'numbers', 'pbc', 'cell'}:
+                print("INFO: some parameters are changed")
                 if 'numbers' not in changes:
                     # Remember magmoms if there are any:
                     magmom_a = self.dft.results.get('magmoms')
@@ -225,7 +228,7 @@ class ASECalculator:
                         changes = set()
 
         if self._dft is None:
-            print("---- Creating new calculation")
+            print("---- Creating new calculation because self._dft is None")
             self.create_new_calculation(atoms)
             converged = False
         elif changes:
@@ -236,9 +239,11 @@ class ASECalculator:
             converged = False
 
         if converged:
+            print("New.ASECalculator is converged, will return now")
             return
 
         if not self.dft.ibzwfs.has_wave_functions():
+            print("Will create new calculations because has_wave_functions is False")
             self.create_new_calculation(atoms)
 
         assert self.hooks.keys() <= {'scf_step', 'converged'}
@@ -252,6 +257,7 @@ class ASECalculator:
         self.log(f'Converged in {ctx.niter} steps')
 
         # Calculate all the cheap things:
+        print("INFO: Will calculate cheap things")
         self.dft.energies()
         self.dft.dipole()
         self.dft.magmoms()
@@ -280,6 +286,10 @@ class ASECalculator:
         * dipole
         """
 
+        print("\n<div> ENTER New.ASECalculator.calculate_property\n")
+        print("prop = ", prop)
+        print("with units = ", units[prop])
+
         # ffr: do SCF first?
         for _ in self.iconverge(atoms):
             pass
@@ -293,7 +303,13 @@ class ASECalculator:
         elif prop not in self.dft.results:
             raise KeyError('Unknown property:', prop)
 
+        print("\n</div> EXIT New.ASECalculator.calculate_property\n")
+
+        # Properties are stored in dft.results?
+        #
         return self.dft.results[prop] * units[prop]
+
+
 
     def get_property(self,
                      name: str,
@@ -321,12 +337,26 @@ class ASECalculator:
         return {name: value * units[name]
                 for name, value in self.dft.results.items()}
 
+
+
     @trace
     def create_new_calculation(self, atoms: Atoms) -> None:
+        #
+        print("\n<div> ENTER New.ASEInterface.create_new_calculation\n")
+        #
+        print("This will initialize ASECalculator._dft member")
+        print("Passed parameters (self.params)")
+        print(self.params)
+        #
         with self.timer('Init'):
             self._dft = DFTCalculation.from_parameters(
                 atoms, self.params, self.comm, self.log)
         self._atoms = atoms.copy()
+        #
+        print("\n</div> EXIT New.ASEInterface.create_new_calculation\n")
+
+
+
 
     def create_new_calculation_from_old(self, atoms: Atoms) -> None:
         with self.timer('Morph'):

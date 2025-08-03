@@ -123,12 +123,20 @@ class DFTCalculation:
         if not isinstance(log, Logger):
             log = Logger(log, comm or world)
 
+        # ffr: why we need builder?
         builder = builder or create_builder(atoms, params, log.comm)
+        typ_str = str(type(builder)).replace("<", "").replace(">", "")
+        print("type(builder) = ", typ_str)
+        print("builder = ", builder)
 
         basis_set = builder.create_basis_set()
+        typ_str = str(type(basis_set)).replace("<", "").replace(">", "")
+        print("type(basis_set) = ", typ_str)
 
         density = builder.density_from_superposition(basis_set)
         density.normalize()
+        typ_str = str(type(density)).replace("<", "").replace(">", "")
+        print("type(density) = ", typ_str)
 
         # The SCF-loop has a Hamiltonian that has an fft-plan that is
         # cached for later use, so best to create the SCF-loop first
