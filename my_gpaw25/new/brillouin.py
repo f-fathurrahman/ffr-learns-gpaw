@@ -34,6 +34,9 @@ class BZPoints:
                use_time_reversal=True,
                tolerance=1e-7) -> IBZ:
         """Find irreducible set of k-points."""
+
+        print("\n<div> ENTER New.BZPoints.reduce\n")
+
         if not use_time_reversal and len(symmetries) == 1:
             N = len(self)
             return IBZ(symmetries,
@@ -57,6 +60,8 @@ class BZPoints:
         if strict and -1 in bz2bz_Ks:
             raise ValueError(
                 'Your k-points are not as symmetric as your crystal!')
+
+        print("\n</div> EXIT New.BZPoints.reduce\n")
 
         return IBZ(symmetries, self, ibz2bz_k, bz2ibz_K, weight_k, bz2bz_Ks,
                    sym_K, time_reversal_K)

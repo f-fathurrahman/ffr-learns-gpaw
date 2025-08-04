@@ -30,6 +30,8 @@ class PlaneWavePotentialCalculator(PotentialCalculator):
 
         self.vbar_ag = setups.create_local_potentials(
             pw, relpos_ac, atomdist, xp)
+        # only once
+        #print("in PlaneWavePotentialCalculator, type vbar_ag = ", type(self.vbar_ag))
 
         self.fftplan = grid.fft_plans(xp=xp)
         self.fftplan2 = fine_grid.fft_plans(xp=xp)

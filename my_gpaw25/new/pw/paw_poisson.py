@@ -71,6 +71,9 @@ class SlowPAWPoissonSolver(PAWPoissonSolver):
               vHt_h: PWArray | None = None) -> tuple[float,
                                                      PWArray,
                                                      AtomArrays]:
+        
+        print("**** Pass here in SlowPAWPoissonSolver.solve()")
+        
         charge_h = self.pwh.zeros(xp=self.xp)
         self.ghat_aLh.add_to(charge_h, Q_aL)
         pwg = self.pwg

@@ -13,7 +13,8 @@ class Hamiltonian:
               psit_nG: XArray,
               out: XArray,
               spin: int) -> XArray:
-        #print("--- New.Hamiltonian.apply is called") # many calls
+        print("--- New.Hamiltonian.apply is called, type of self = ", type(self)) # many calls
+        #breakpoint() #???
         self.apply_local_potential(vt_sR[spin], psit_nG, out)
         if dedtaut_sR is not None:
             self.apply_mgga(dedtaut_sR[spin], psit_nG, out)
@@ -38,6 +39,7 @@ class Hamiltonian:
                                 psit_nG: XArray,
                                 spin: int,
                                 out: XArray) -> None:
+        print("in apply_orbital_dependent: type self = ", type(self))
         pass
 
     def create_preconditioner(self, blocksize):

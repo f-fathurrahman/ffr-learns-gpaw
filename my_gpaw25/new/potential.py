@@ -40,6 +40,9 @@ class Potential:
         self.vHt_x = potential.vHt_x
 
     def dH(self, P_ani, out_ani, spin):
+
+        print("**** Pass here in Potential.dH, type self = ", type(self))
+
         if len(P_ani.dims) == 1:  # collinear wave functions
             P_ani.block_diag_multiply(self.dH_asii, out_ani, spin)
             return

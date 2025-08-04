@@ -142,22 +142,47 @@ class DFTCalculation:
         # cached for later use, so best to create the SCF-loop first
         # FIX this!
         scf_loop = builder.create_scf_loop()
+        typ_str = str(type(scf_loop)).replace("<", "").replace(">", "")
+        print("type(scf_loop) = ", typ_str)
 
         pot_calc = builder.create_potential_calculator()
+        typ_str = str(type(pot_calc)).replace("<", "").replace(">", "")
+        print("type(pot_calc) = ", typ_str)
+
         potential, _ = pot_calc.calculate_without_orbitals(
             density, kpt_band_comm=builder.communicators['D'])
+        typ_str = str(type(potential)).replace("<", "").replace(">", "")
+        print("type(potential) = ", typ_str)
+
         ibzwfs = builder.create_ibz_wave_functions(
             basis_set, potential, log=log)
+        typ_str = str(type(ibzwfs)).replace("<", "").replace(">", "")
+        print("type(ibzwfs) = ", typ_str)
 
         if ibzwfs.wfs_qs[0][0]._eig_n is not None:
             ibzwfs.calculate_occs(scf_loop.occ_calc)
 
+        #breakpoint()
+
+        print("!!! Calling write_atoms")
         write_atoms(atoms, builder.initial_magmom_av, builder.grid, log)
+        
+        print("!!! Calling log ibzwfs")
         log(ibzwfs)
+
+        print("!!! Calling log density")
         log(density)
+
+        print("!!! Calling log potential")
         log(potential)
+
+        print("!!! Calling log builder.setups")
         log(builder.setups)
+
+        print("!!! Calling log scf_loop")
         log(scf_loop)
+
+        print("!!! Calling log pot_calc")
         log(pot_calc)
 
         print("\n</div> EXIT New.DFTCalculation.from_parameters\n")

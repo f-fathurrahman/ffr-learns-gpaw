@@ -111,6 +111,10 @@ class Davidson(Eigensolver):
                      potential.vt_sR,
                      potential.dedtaut_sR,
                      ibzwfs, density.D_asii)  # used by hybrids
+        print("DEBUG in Davidson.iterate type vt_sR = ", type(potential.vt_sR))
+        print("type hamiltonian = ", type(hamiltonian))
+        print("type Ht = ", type(Ht))
+        # Ht is like hamiltonian.apply, but with first 4 args are fixed
 
         weight_un = calculate_weights(self.converge_bands, ibzwfs)
 
@@ -131,6 +135,8 @@ class Davidson(Eigensolver):
         xp = M_nn.xp
 
         psit_nX = wfs.psit_nX
+        print("DEBUG type psit_nX = ", type(psit_nX))
+
         B = psit_nX.dims[0]  # number of bands
         eig_N = xp.empty(2 * B)
         b = psit_nX.mydims[0]

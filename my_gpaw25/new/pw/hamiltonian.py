@@ -33,6 +33,9 @@ class PWHamiltonian(Hamiltonian):
                               out: XArray) -> None:
         assert isinstance(psit_nG, PWArray)
         assert isinstance(out, PWArray)
+
+        print("--- ENTER PWHamiltonian.apply_local_potential")
+
         out_nG = out
         xp = psit_nG.xp
         pw = psit_nG.desc
@@ -93,6 +96,7 @@ class PWHamiltonian(Hamiltonian):
 
     def calculate_kinetic_energy(self, wfs, skip_sum=False):
         e_kin = 0.0
+        print("!!!!! PASS HERE in calculate_kinetic_energy, type wfs = ", type(wfs))
         for f, psit_G in zip(wfs.myocc_n, wfs.psit_nX):
             if f > 1.0e-10:
                 e_kin += f * psit_G.norm2('kinetic', skip_sum=skip_sum)
