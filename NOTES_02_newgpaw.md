@@ -13,9 +13,17 @@ Many important objects seem to be defined in this class.
 For each objects, learn how to initialize it. What parameters are
 needed to be constructed previously?
 
+TODO: learn some objects and methods in
+`calc_dft` and `calc_dft.scf_loop`
+
+Some methods in calc_dft are quite important (general for both SCF loop and direct minimization)
+
+Make a version of SCF iteration that does not use `yield`
+
 
 # Computing total energy
 
+```text
 New.ASECalculator.calculate_property
   New.ASECalculator.iconverge
     
@@ -25,7 +33,7 @@ New.ASECalculator.calculate_property
     New.DFTCalculation.iconverge
       New.SCFLoop.iterate
        ....
-
+```
 
 
 

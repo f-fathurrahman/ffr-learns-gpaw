@@ -87,14 +87,17 @@ class SCFLoop:
         print("self.hamiltonian = ", self.hamiltonian)
 
         for self.niter in itertools.count(start=1):
+            # diagonalize 
             wfs_error = self.eigensolver.iterate(
                 ibzwfs, density, potential, self.hamiltonian)
+            # update occupation numbers for energy levels obtained from diagonalization
             ibzwfs.calculate_occs(
                 self.occ_calc,
                 fix_fermi_level=self.fix_fermi_level)
             if self.eigensolver.direct:
                 ibzwfs.energies['band'] = 0.0
 
+            # Why need this?
             ctx = SCFContext(
                 log, self.niter,
                 ibzwfs, density, potential,

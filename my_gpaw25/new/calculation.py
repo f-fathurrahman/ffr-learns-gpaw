@@ -223,7 +223,7 @@ class DFTCalculation:
         return self
 
     def iconverge(self, maxiter=None, calculate_forces=None):
-        print("\n<div> ENTER New.DFTCalculation.iconverge\n")
+        #print("\n<div> ENTER New.DFTCalculation.iconverge\n")
         self.ibzwfs.make_sure_wfs_are_read_from_gpw_file()
         yield from self.scf_loop.iterate(self.ibzwfs,
                                          self.density,
@@ -232,7 +232,7 @@ class DFTCalculation:
                                          maxiter=maxiter,
                                          calculate_forces=calculate_forces,
                                          log=self.log)
-        print("\n</div> EXIT New.DFTCalculation.iconverge\n")
+        #print("\n</div> EXIT New.DFTCalculation.iconverge\n")
 
 
     @trace

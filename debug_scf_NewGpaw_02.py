@@ -41,9 +41,33 @@ atoms, calc = prepare_Al_fcc()
 # Do the SCF iterations: energy is not directly available
 #for _ in calc.iconverge(atoms):
 #    pass
+# calc is a Calculator object
+
 
 # This is for debugging DFT calculation object
 from my_gpaw25.new.calculation import DFTCalculation
 calc_dft = DFTCalculation.from_parameters(
     atoms, calc.params, calc.comm, calc.log
 )
+# This will converge the actual calculation, using yield
+#for _ in calc_dft.iconverge():
+#    pass
+
+"""
+# Call via scf_loop.iterate
+# Calling this will return a Generator object
+ret_obj = calc_dft.scf_loop.iterate(
+    calc_dft.ibzwfs,
+    calc_dft.density,
+    calc_dft.potential,
+    calc_dft.pot_calc,
+    maxiter=2,
+    calculate_forces=True,
+    log=calc_dft.log
+)
+
+# The actual loop need to be executed in loop ?
+for _ in ret_obj:
+    pass
+"""
+
