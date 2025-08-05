@@ -286,8 +286,8 @@ class ASECalculator:
         * dipole
         """
 
-        print("\n<div> ENTER New.ASECalculator.calculate_property\n")
-        print("prop = ", prop)
+        #print("\n<div> ENTER New.ASECalculator.calculate_property\n")
+        print("In New.ASECalculator.calculate_property: prop = ", prop)
         print("with units = ", units[prop])
 
         # ffr: do SCF first?
@@ -303,7 +303,7 @@ class ASECalculator:
         elif prop not in self.dft.results:
             raise KeyError('Unknown property:', prop)
 
-        print("\n</div> EXIT New.ASECalculator.calculate_property\n")
+        #print("\n</div> EXIT New.ASECalculator.calculate_property\n")
 
         # Properties are stored in dft.results?
         #
@@ -342,7 +342,7 @@ class ASECalculator:
     @trace
     def create_new_calculation(self, atoms: Atoms) -> None:
         #
-        print("\n<div> ENTER New.ASEInterface.create_new_calculation\n")
+        #print("\n<div> ENTER New.ASEInterface.create_new_calculation\n")
         #
         print("This will initialize ASECalculator._dft member")
         print("Passed parameters (self.params)")
@@ -353,7 +353,7 @@ class ASECalculator:
                 atoms, self.params, self.comm, self.log)
         self._atoms = atoms.copy()
         #
-        print("\n</div> EXIT New.ASEInterface.create_new_calculation\n")
+        #print("\n</div> EXIT New.ASEInterface.create_new_calculation\n")
 
 
 

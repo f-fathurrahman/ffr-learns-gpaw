@@ -14,6 +14,22 @@ For each objects, learn how to initialize it. What parameters are
 needed to be constructed previously?
 
 
+# Computing total energy
+
+New.ASECalculator.calculate_property
+  New.ASECalculator.iconverge
+    
+    New.ASECalculator.create_new_calculation
+      New.DFTCalculation.from_parameters
+    
+    New.DFTCalculation.iconverge
+      New.SCFLoop.iterate
+       ....
+
+
+
+
+
 # Wave functions
 
 Variable: DFTCalculation.ibzwfs
