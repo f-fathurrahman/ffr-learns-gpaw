@@ -98,6 +98,8 @@ class Davidson(Eigensolver):
                n        n   n
         """
 
+        #print("\n<div> ENTER New.pwfd.Davidson.iterate()\n")
+
         if self.work_arrays is None:
             self._initialize(ibzwfs)
 
@@ -111,9 +113,9 @@ class Davidson(Eigensolver):
                      potential.vt_sR,
                      potential.dedtaut_sR,
                      ibzwfs, density.D_asii)  # used by hybrids
-        print("DEBUG in Davidson.iterate type vt_sR = ", type(potential.vt_sR))
-        print("type hamiltonian = ", type(hamiltonian))
-        print("type Ht = ", type(Ht))
+        #print("DEBUG in Davidson.iterate type vt_sR = ", type(potential.vt_sR))
+        #print("type hamiltonian = ", type(hamiltonian))
+        #print("type Ht = ", type(Ht))
         # Ht is like hamiltonian.apply, but with first 4 args are fixed
 
         weight_un = calculate_weights(self.converge_bands, ibzwfs)
@@ -123,11 +125,17 @@ class Davidson(Eigensolver):
             for wfs, weight_n in zips(ibzwfs, weight_un):
                 e = self.iterate1(wfs, Ht, dH, dS_aii, weight_n)
                 error += wfs.weight * e
+
+        #print("\n</div> EXIT New.pwfd.Davidson.iterate()\n")
+
         return ibzwfs.kpt_band_comm.sum_scalar(
             float(error)) * ibzwfs.spin_degeneracy
 
     @trace
     def iterate1(self, wfs, Ht, dH, dS_aii, weight_n):
+
+        print("\n<div> ENTER New.pwfd.Davidson.iterate1()\n")
+
         H_NN = self.H_NN
         S_NN = self.S_NN
         M_nn = self.M_nn
@@ -135,7 +143,7 @@ class Davidson(Eigensolver):
         xp = M_nn.xp
 
         psit_nX = wfs.psit_nX
-        print("DEBUG type psit_nX = ", type(psit_nX))
+        #print("DEBUG type psit_nX = ", type(psit_nX))
 
         B = psit_nX.dims[0]  # number of bands
         eig_N = xp.empty(2 * B)
@@ -170,8 +178,8 @@ class Davidson(Eigensolver):
                                      function=function,
                                      cc=True)
 
-        Ht = partial(Ht, out=residual_nX, spin=wfs.spin)
-        dH = partial(dH, spin=wfs.spin)
+        Ht = partial(Ht, out=residual_nX, spin=wfs.spin) # local potential??
+        dH = partial(dH, spin=wfs.spin) # nonlocal potential??
 
         calculate_residuals(residual_nX, dH, dS_aii, wfs, P2_ani, P3_ani)
 
@@ -262,6 +270,8 @@ class Davidson(Eigensolver):
 
         if debug:
             psit_nX.sanity_check()
+
+        print("\n</div> EXIT New.pwfd.Davidson.iterate1()\n")
 
         return error
 

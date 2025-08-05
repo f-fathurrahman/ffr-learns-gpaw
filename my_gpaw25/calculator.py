@@ -127,6 +127,8 @@ class GPAW(Calculator):
                  parallel=None,
                  **kwargs):
 
+        print("\n<div> ENTER GPAW.init\n")
+
         if txt == '?':
             txt = '-' if restart is None else None
 
@@ -167,6 +169,10 @@ class GPAW(Calculator):
 
         Calculator.__init__(self, restart, label=label, _set_ok=True, **kwargs)
 
+        print("\n</div> EXIT GPAW.init\n")
+
+
+
     def new(self,
             timer=None,
             communicator=None,
@@ -185,6 +191,10 @@ class GPAW(Calculator):
             new_calc = calc.new(xc='PBE')
             atoms.calc = new_calc
         """
+
+        print("\n<div> ENTER GPAW.new()\n")
+
+
         assert 'atoms' not in kwargs
         assert 'restart' not in kwargs
         assert 'ignore_bad_restart_file' not in kwargs
@@ -202,6 +212,8 @@ class GPAW(Calculator):
 
         new_kwargs = dict(self.parameters)
         new_kwargs.update(kwargs)
+
+        print("\n</div> EXIT GPAW.new()\n")
 
         return GPAW(timer=timer, communicator=communicator,
                     txt=txt, parallel=new_parallel, **new_kwargs)
@@ -404,6 +416,7 @@ class GPAW(Calculator):
         return reader
 
     def check_state(self, atoms, tol=1e-12):
+        print("\n--- GPAW.check_state() is called ---\n")
         system_changes = Calculator.check_state(self, atoms, tol)
         if 'positions' not in system_changes:
             if self.hamiltonian:
@@ -684,8 +697,13 @@ class GPAW(Calculator):
             self.wfs.occupations.initialize_reference_orbitals()
         print_positions(self.atoms, self.log, self.density.magmom_av)
 
+
+
     def initialize(self, atoms=None, reading=False):
         """Inexpensive initialization."""
+
+        print("\n<div> ENTER GPAW.initialize()\n")
+
 
         self.log('Initialize ...\n')
 
@@ -1025,6 +1043,9 @@ class GPAW(Calculator):
         self.initialized = True
         self.log('... initialized\n')
 
+        print("\n</div> EXIT GPAW.initialize()\n")
+
+
     def create_setups(self, mode, xc):
         if self.parameters.filter is None and mode.name != 'pw':
             gamma = 1.6
@@ -1206,6 +1227,9 @@ class GPAW(Calculator):
         self.log(self.density, '\n')
 
     def create_hamiltonian(self, realspace, mode, xc):
+
+        print("\n<div> ENTER GPAW.create_hamiltonian()\n")
+
         dens = self.density
         kwargs = dict(
             gd=dens.gd, finegd=dens.finegd,
@@ -1241,7 +1265,7 @@ class GPAW(Calculator):
                     bcast_comm = dens.redistributor.broadcast_comm
                     xc_redist = GridRedistributor(self.world, bcast_comm,
                                                   gd, aux_gd)
-
+            print("Will call ReciprocalSpaceHamiltonian")
             self.hamiltonian = ReciprocalSpaceHamiltonian(
                 pd2=dens.pd2, pd3=dens.pd3, realpbc_c=self.atoms.pbc,
                 xc_redistributor=xc_redist,
@@ -1251,7 +1275,13 @@ class GPAW(Calculator):
         self.hamiltonian.soc = self.parameters.experimental.get('soc')
         self.log(self.hamiltonian, '\n')
 
+        print("\n</div> EXIT GPAW.create_hamiltonian()\n")
+
+
     def create_kpoint_descriptor(self, nspins):
+
+        print("\n<div> ENTER GPAW.create_kpoint_descriptor\n")
+
         par = self.parameters
 
         # Zero cell vectors that are not periodic so that ASE's
@@ -1283,7 +1313,11 @@ class GPAW(Calculator):
 
         self.log(kd)
 
+        print("\n</div> EXIT GPAW.create_kpoint_descriptor()\n")
+
         return kd
+
+
 
     def create_wave_functions(self, mode, realspace,
                               nspins, collinear, nbands, nao, nvalence,

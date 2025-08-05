@@ -33,6 +33,7 @@ class Potential:
                 f'  grid points: {self.vt_sR.desc.size}\n')
 
     def update_from(self, potential):
+        print("**** Pass here in New.Potential.update_from")
         self.vt_sR = potential.vt_sR
         self.dH_asii = potential.dH_asii
         self.dedtaut_sR = potential.dedtaut_sR
@@ -40,8 +41,9 @@ class Potential:
         self.vHt_x = potential.vHt_x
 
     def dH(self, P_ani, out_ani, spin):
-
-        print("**** Pass here in Potential.dH, type self = ", type(self))
+        
+        # Is this non-local Hamiltonian?
+        print("**** Pass here in New.Potential.dH")
 
         if len(P_ani.dims) == 1:  # collinear wave functions
             P_ani.block_diag_multiply(self.dH_asii, out_ani, spin)

@@ -21,6 +21,9 @@ ENERGY_NAMES = ['e_kinetic', 'e_coulomb', 'e_zero', 'e_external', 'e_xc',
 
 
 def apply_non_local_hamilton(dH_asp, collinear, P, out=None):
+
+    #print("--- !!! apply_non_local_hamiltonian is called !!! ---")
+
     if out is None:
         out = P.new()
     for a, I1, I2 in P.indices:
@@ -100,10 +103,13 @@ class Hamiltonian:
 
     @property
     def dH(self):
+        #typ_str = str(type(self)).replace("<", "").replace(">", "")
+        #print("Hamiltonian.dH is called: type(self) = ", typ_str)
         return functools.partial(apply_non_local_hamilton,
                                  self.dH_asp, self.collinear)
 
     def update_atomic_hamiltonians(self, value):
+        print("!!! Calling update_atomic_hamiltonians")
         if isinstance(value, dict):
             dtype = complex if self.soc else float
             tmp = self.setups.empty_atomic_matrix(self.ncomponents,
@@ -459,6 +465,8 @@ class Hamiltonian:
             When False, existing P_ani are used
 
         """
+
+        print("!!! Hamiltonian.apply is called, type(self) = ", type(self))
 
         wfs.kin.apply(a_xG, b_xG, kpt.phase_cd)
         self.apply_local_potential(a_xG, b_xG, kpt.s)

@@ -47,6 +47,8 @@ class SCFLoop:
 
     def irun(self, wfs, ham, dens, log, callback):
 
+        print("\n<div> ENTER SCFLoop.irun()\n")
+
         self.eigensolver_name = getattr(wfs.eigensolver, "name", None)
         check_eigensolver_state(self.eigensolver_name, wfs, ham, dens, log)
         self.niter = 1
@@ -79,10 +81,16 @@ class SCFLoop:
 
         if not converged:
             self.not_converged(dens, ham, wfs, log)
+        
+        print("\n</div> EXIT SCFLoop.irun()\n")
+
+
 
     def log(self, log, converged_items, entries, context):
         """Output from each iteration."""
         write_iteration(self.criteria, converged_items, entries, context, log)
+
+
 
     def check_convergence(self, dens, ham, wfs, log, callback):
 

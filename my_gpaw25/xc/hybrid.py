@@ -236,6 +236,9 @@ class HybridXC(HybridXCBase):
 
     def apply_orbital_dependent_hamiltonian(self, kpt, psit_nG,
                                             Htpsit_nG=None, dH_asp=None):
+        
+        print("Pass here in HybridXC.apply_orbital_dependent_hamiltonian")
+        
         if kpt.f_n is None:
             return
 
