@@ -35,7 +35,28 @@ New.ASECalculator.calculate_property
        ....
 ```
 
+# Computing energies
 
+Need two parameters: potential and ibzwfs
+Potential energies: `potential.energies` (a data field in `Potential`)
+Example output (as `dict`):
+```
+{'coulomb': np.float64(-0.2451148800157461),
+ 'zero': np.float64(0.05500662939980305),
+ 'xc': np.float64(-0.22341431839757964),
+ 'stress': np.float64(3.9927748584207907),
+ 'external': np.float64(0.0),
+ 'kinetic': np.float64(-0.017809744647594328),
+ 'spinorbit': np.float64(0.0)}
+```
+Why there is kinetic energy here?
+
+From `ibzwfs`:
+```
+{'band': 0.30611204200136466,
+ 'entropy': -0.0009564838067774605,
+ 'extrapolation': 0.00047824190338873027}
+```
 
 
 # Wave functions

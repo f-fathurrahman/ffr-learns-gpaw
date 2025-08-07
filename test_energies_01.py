@@ -39,7 +39,20 @@ calc_dft = DFTCalculation.from_parameters(
     atoms, calc.params, calc.comm, calc.log
 )
 
-print(calc_dft.energies())
-# This will access several methods/members from calc_dft.ibzwfs and calc_dft.potential
-# energies = combine_energies(self.potential, self.ibzwfs)
+# At this point we can already access several energies
 
+# This will only print the energies?
+#calc_dft.energies()
+# This will access several methods/members from calc_dft.ibzwfs and calc_dft.potential
+# TODO: need to locate where potential.energies are computed
+
+# Get the energies
+# combine_energies is not defined as member function of calc_dft
+from my_gpaw25.new.calculation import combine_energies
+# energies is a dict
+energies = combine_energies(
+    calc_dft.potential, calc_dft.ibzwfs
+)
+
+# combine_energies does not actually calculate the energies
+# It simply collect various terms in potential and ibzwfs
