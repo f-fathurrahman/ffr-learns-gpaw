@@ -89,8 +89,13 @@ class PotentialCalculator:
                   vHt_x: DistributedArrays | None = None,
                   kpt_band_comm: MPIComm | None = None
                   ) -> tuple[Potential, AtomArrays]:
+        
+        # pseudopotential?
         energies, vt_sR, dedtaut_sr, vHt_x, V_aL = (
             self.calculate_pseudo_potential(density, ibzwfs, vHt_x))
+        
+        # kinetic energy of what
+        print("type vt_sR = ", vt_sR)
         e_kinetic = 0.0
         for spin, (vt_R, nt_R) in enumerate(zips(vt_sR, density.nt_sR)):
             e_kinetic -= vt_R.integrate(nt_R)
@@ -106,6 +111,8 @@ class PotentialCalculator:
         else:
             dedtaut_sR = None
 
+        print("e_kinetic = ", e_kinetic)
+        # whose kinetic energy is this?
         energies['kinetic'] = e_kinetic
 
         if kpt_band_comm is None:
@@ -113,6 +120,7 @@ class PotentialCalculator:
                 kpt_band_comm = serial_comm
             else:
                 kpt_band_comm = ibzwfs.kpt_band_comm
+        #
         dH_asii, corrections = calculate_non_local_potential(
             self.setups,
             density,

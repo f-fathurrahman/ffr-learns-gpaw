@@ -58,6 +58,15 @@ From `ibzwfs`:
  'extrapolation': 0.00047824190338873027}
 ```
 
+# Computing potentials
+
+For potentials, we have `Potential` class.
+
+In PW calculation this is handled by `PlaneWavePotentialCalculator`.
+
+Some important methods:
+- `calculate_pseudo_potential`: I think this contains many PAW-specific stuffs.
+
 
 # Wave functions
 

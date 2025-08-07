@@ -93,6 +93,9 @@ class PlaneWavePotentialCalculator(PotentialCalculator):
         return e_xc
 
     def calculate_pseudo_potential(self, density, ibzwfs, vHt_h=None):
+
+        print("Pass here 97 in PlaneWavePotentialCalculator")
+
         nt_sr, nt0_g, taut_sr, e_xc, vxct_sr, dedtaut_sr = (
             self._interpolate_and_calculate_xc(self.xc, density))
 
