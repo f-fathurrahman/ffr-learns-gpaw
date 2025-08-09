@@ -17,6 +17,7 @@ class Hamiltonian:
         print("--- New.Hamiltonian.apply is called, type of self = ", typ_str)
         # many calls
         #breakpoint() #???
+        #raise SystemError("Hello ...") # useful to get call trace
         # where is non-local potential updated?
         self.apply_local_potential(vt_sR[spin], psit_nG, out)
         #
