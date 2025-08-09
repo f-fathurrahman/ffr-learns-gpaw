@@ -33,12 +33,17 @@ pot_calc = builder.create_potential_calculator()
 
 # XXX why we need to interpolate?
 nt_sr, nt0_g = pot_calc._interpolate_density(density.nt_sR)
-# size of nt_sr is twice of density.nt_sR i
+# size of nt_sr is twice of density.nt_sR
+# nt_sr is in real space (UGArray)
+# nt0_g is in reciprocal space (PWArray)
 
+# also interpolate kinetic energy density (if available)
 if density.taut_sR is not None:
     taut_sr = pot_calc.interpolate(density.taut_sR)
 else:
     taut_sr = None
+
+# Now calculate the XC energy and potential
 e_xc, vxct_sr, dedtaut_sr = pot_calc.xc.calculate(nt_sr, taut_sr)
 # e_xc: Float64
 # vxct_sr: UGArray
