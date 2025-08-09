@@ -20,6 +20,18 @@ Some methods in calc_dft are quite important (general for both SCF loop and dire
 
 Make a version of SCF iteration that does not use `yield`
 
+# PWDesc and PWArray
+
+Examples ...
+
+# UGArray
+
+Examples ...
+
+
+# PWAtomCenteredFunctions
+
+Example, output from `builder.get_pseudo_core_densities`
 
 # Computing total energy
 

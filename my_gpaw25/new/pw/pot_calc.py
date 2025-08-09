@@ -93,6 +93,7 @@ class PlaneWavePotentialCalculator(PotentialCalculator):
         return e_xc
 
     def calculate_pseudo_potential(self, density, ibzwfs, vHt_h=None):
+        # XXX ibzwfs is not used here?
 
         print("Pass here 97 in PlaneWavePotentialCalculator")
 
