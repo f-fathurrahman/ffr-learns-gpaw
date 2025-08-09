@@ -4,7 +4,7 @@ from ase import Atoms
 from ase.build import molecule
 from ase.units import Ha
 
-def prepare_Al_fcc():
+def prepare_Al_fcc(setups=None):
     a = 4.05
     b = a/2
     atoms = Atoms("Al",
@@ -16,15 +16,16 @@ def prepare_Al_fcc():
     calc = GPAW(
         mode=PW(300),
         kpts=(k,k,k),
-        txt="-"
+        txt="-",
+        setups=setups
     )
     atoms.calc = calc
     return atoms, calc
 
 
-def prepare_H2O():
+def prepare_H2O(setups=None):
     atoms = molecule("H2O", vacuum=3.0)
     ecutwfc = 15*Ha
-    calc = GPAW(mode=PW(ecutwfc), txt="-")
+    calc = GPAW(mode=PW(ecutwfc), txt="-", setups=setups)
     atoms.calc = calc
     return atoms, calc
