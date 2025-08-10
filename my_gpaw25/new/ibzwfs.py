@@ -220,6 +220,7 @@ class IBZWaveFunctions(Generic[WFT]):
 
         for wfs in self:
             wfs.add_to_density(nt_sR, D_asii)
+        # for pw this add_to_density is defined in pwfd wavefunc
 
         print("integ chg = ", nt_sR.integrate())
         #raise RuntimeError("... This is for debugging only ...")

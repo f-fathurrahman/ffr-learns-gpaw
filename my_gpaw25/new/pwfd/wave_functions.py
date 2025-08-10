@@ -153,6 +153,7 @@ class PWFDWaveFunctions(WaveFunctions, XP):
         #
         occ_n = self.weight * self.spin_degeneracy * self.myocc_n
 
+        # this is defined in parent wavefunctions class
         self.add_to_atomic_density_matrices(occ_n, D_asii)
 
         if self.ncomponents < 4:
