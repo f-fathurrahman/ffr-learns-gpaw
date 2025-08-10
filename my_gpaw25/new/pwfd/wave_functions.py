@@ -148,6 +148,9 @@ class PWFDWaveFunctions(WaveFunctions, XP):
     def add_to_density(self,
                        nt_sR: UGArray,
                        D_asii: AtomArrays) -> None:
+        #
+        print("Calling pwfd wavefunc add_to_density")
+        #
         occ_n = self.weight * self.spin_degeneracy * self.myocc_n
 
         self.add_to_atomic_density_matrices(occ_n, D_asii)

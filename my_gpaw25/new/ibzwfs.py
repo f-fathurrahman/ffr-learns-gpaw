@@ -213,8 +213,17 @@ class IBZWaveFunctions(Generic[WFT]):
 
     def add_to_density(self, nt_sR, D_asii) -> None:
         """Compute density and add to ``nt_sR`` and ``D_asii``."""
+
+        #raise RuntimeError("... This is for debugging only ...")
+
+        print("integ before = ", nt_sR.integrate())
+
         for wfs in self:
             wfs.add_to_density(nt_sR, D_asii)
+
+        print("integ chg = ", nt_sR.integrate())
+        #raise RuntimeError("... This is for debugging only ...")
+        #breakpoint()
 
         if self.xp is not np:
             synchronize()

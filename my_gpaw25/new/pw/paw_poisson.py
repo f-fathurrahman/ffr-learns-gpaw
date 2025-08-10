@@ -73,9 +73,14 @@ class SlowPAWPoissonSolver(PAWPoissonSolver):
                                                      AtomArrays]:
         
         print("**** Pass here in SlowPAWPoissonSolver.solve()")
-        
+        #raise RuntimeError("Calm down, this is only for debugging SlowPAWPoissonSolver")
+        #breakpoint()
+
+        # ghat_aLh is a PWAtomCenteredFunctions
+        # method add_to is defined in parent class AtomCenteredFunctions
+
         charge_h = self.pwh.zeros(xp=self.xp)
-        self.ghat_aLh.add_to(charge_h, Q_aL)
+        self.ghat_aLh.add_to(charge_h, Q_aL) # after this charge_h is not zeros
         pwg = self.pwg
 
         if pwg.comm.rank == 0:
@@ -92,6 +97,7 @@ class SlowPAWPoissonSolver(PAWPoissonSolver):
         if vHt_h is None:
             vHt_h = self.pwh.zeros(xp=self.xp)
 
+        # This will call PWPoissonSolver, output potential is in vHt_h
         e_coulomb = self.poisson_solver.solve(vHt_h, charge_h)
 
         if pwg.comm.rank == 0:
@@ -105,7 +111,7 @@ class SlowPAWPoissonSolver(PAWPoissonSolver):
         else:
             pwg.comm.send(vHt_h.data[self.h_g], 0)
 
-        V_aL = self.ghat_aLh.integrate(vHt_h)
+        V_aL = self.ghat_aLh.integrate(vHt_h) # Hartree energy?
 
         return e_coulomb, vHt_h, V_aL
 

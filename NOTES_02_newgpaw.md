@@ -33,6 +33,13 @@ Examples ...
 
 Example, output from `builder.get_pseudo_core_densities`
 
+# Computing density
+
+ibzwfs.add_to_density
+pwfdwavefunc.add_to_density
+add_to_atomic_density_matrices
+
+
 # Computing total energy
 
 ```text
@@ -78,6 +85,9 @@ In PW calculation this is handled by `PlaneWavePotentialCalculator`.
 
 Some important methods:
 - `calculate_pseudo_potential`: I think this contains many PAW-specific stuffs.
+
+non_local potential (using D_asii) ??
+
 
 
 # Wave functions

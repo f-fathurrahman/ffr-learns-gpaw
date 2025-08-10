@@ -114,6 +114,8 @@ class PlaneWavePotentialCalculator(PotentialCalculator):
             vt0_g = None
 
         Q_aL = density.calculate_compensation_charge_coefficients()
+        # XXX all electron density will be calculated here? No D_asii ?
+        # atom-centered contributions are in Q_aL, D_asii is accessed
         e_coulomb, vHt_h, V_aL = self.poisson_solver.solve(
             nt0_g, Q_aL, vt0_g, vHt_h)
 
